@@ -22,7 +22,7 @@ public class Asteroid : MonoBehaviour
         Vector3 direction = AsteroidSpawner.Instance.gameObject.transform.position - gameObject.transform.position;
 
 		GetComponent<Rigidbody>().angularVelocity = Random.insideUnitSphere * tumble;
-        rb.velocity = direction * speed;
+        rb.velocity = direction * Random.Range(0.05f,speed);
 
     }
 
