@@ -38,6 +38,7 @@ GameObject:
   - component: {fileID: 136037054950621272}
   - component: {fileID: 114290801184431100}
   - component: {fileID: 114708322543714738}
+  - component: {fileID: 96302069768446874}
   m_Layer: 0
   m_Name: Asteroid (2)
   m_TagString: Asteroid
@@ -81,9 +82,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1264119254905434}
-  m_LocalRotation: {x: -0.25269234, y: -0, z: -0, w: 0.9675467}
-  m_LocalPosition: {x: -12.13, y: 1.2600069, z: 19.590015}
-  m_LocalScale: {x: 0.4075191, y: 0.40751916, z: 0.40751916}
+  m_LocalRotation: {x: -0.27346936, y: 0.6049774, z: -0.26197475, w: 0.70041853}
+  m_LocalPosition: {x: 3.7426775, y: -6.9619117, z: -5.123994}
+  m_LocalScale: {x: 0.40752, y: 0.40752, z: 0.40752}
   m_Children:
   - {fileID: 4096131992330776}
   - {fileID: 4646849001844886}
@@ -96,9 +97,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1975519937120452}
-  m_LocalRotation: {x: 0.000000014901159, y: 2.2443586e-16, z: -8.59354e-16, w: 1}
+  m_LocalRotation: {x: 0.25269234, y: -0, z: -0, w: 0.9675467}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.334674, y: 1.3346742, z: 1.3346742}
   m_Children: []
   m_Father: {fileID: 4584924247490298}
   m_RootOrder: 1
@@ -152,7 +153,7 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1264119254905434}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 0.2
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 0
@@ -160,6 +161,106 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!96 &96302069768446874
+TrailRenderer:
+  serializedVersion: 2
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1264119254905434}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_RenderingLayerMask: 4294967295
+  m_Materials:
+  - {fileID: 2100000, guid: a23eef5e20ff8cb46adf33491fc443fb, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Time: 1.9
+  m_Parameters:
+    serializedVersion: 2
+    widthMultiplier: 0.27
+    widthCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    colorGradient:
+      serializedVersion: 2
+      key0: {r: 1, g: 1, b: 1, a: 1}
+      key1: {r: 1, g: 1, b: 1, a: 1}
+      key2: {r: 0, g: 0, b: 0, a: 0}
+      key3: {r: 0, g: 0, b: 0, a: 0}
+      key4: {r: 0, g: 0, b: 0, a: 0}
+      key5: {r: 0, g: 0, b: 0, a: 0}
+      key6: {r: 0, g: 0, b: 0, a: 0}
+      key7: {r: 0, g: 0, b: 0, a: 0}
+      ctime0: 0
+      ctime1: 65535
+      ctime2: 0
+      ctime3: 0
+      ctime4: 0
+      ctime5: 0
+      ctime6: 0
+      ctime7: 0
+      atime0: 0
+      atime1: 65535
+      atime2: 0
+      atime3: 0
+      atime4: 0
+      atime5: 0
+      atime6: 0
+      atime7: 0
+      m_Mode: 0
+      m_NumColorKeys: 2
+      m_NumAlphaKeys: 2
+    numCornerVertices: 90
+    numCapVertices: 72
+    alignment: 1
+    textureMode: 0
+    generateLightingData: 0
+  m_MinVertexDistance: 0
+  m_Autodestruct: 1
 --- !u!114 &114290801184431100
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -186,58 +287,58 @@ MonoBehaviour:
       z: 1
     EclipticUp:
       x: 0
-      y: 1
-      z: 0
+      y: 0
+      z: 1
     Position:
-      x: -12.130000137086169
-      y: -0.028676033020019042
-      z: 1.3291385617401468
-    AttractorDistance: 12.20263639232816
+      x: 3.7426784048797512
+      y: -0.00123698573926657
+      z: -8.644275699093061
+    AttractorDistance: 9.419506249191134
     AttractorMass: 1000
     Velocity:
-      x: -0.33261246464267846
-      y: 0.000000007991083194985838
-      z: -2.8503210108589268
-    SemiMinorAxis: 2.806593764593753
-    SemiMajorAxis: 6.424090974699875
-    FocalParameter: 1.2261608047704424
-    Eccentricity: 0.899517007479882
-    EnergyTotal: -155.66404709060322
-    Period: 3.2351721270160856
-    TrueAnomaly: 3.1408075020094497
-    MeanAnomaly: 3.135108232498169
-    EccentricAnomaly: 3.1381789294535176
+      x: 9.455748845032879
+      y: -0.002293937403904128
+      z: 4.062890500230058
+    SemiMinorAxis: 9.398237704688723
+    SemiMajorAxis: 9.398298323909504
+    FocalParameter: 9.398177085858936
+    Eccentricity: 0.0035916570316442097
+    EnergyTotal: -106.40224065413796
+    Period: 5.724712856963439
+    TrueAnomaly: 2.2611192604315544
+    MeanAnomaly: 2.255571126937866
+    EccentricAnomaly: 2.2583467700281767
     SquaresConstant: 0
     Periapsis:
-      x: 0.6417244793692509
-      y: 0.0015169354939037222
-      z: -0.06980677349027742
-    PeriapsisDistance: 0.645511885359326
+      x: -8.995368762498808
+      y: 0.0023898403453837818
+      z: 2.6034588695667575
+    PeriapsisDistance: 9.364542859648946
     Apoapsis:
-      x: -12.131073449409957
-      y: -0.028675945029633887
-      z: 1.3196178791702446
-    ApoapsisDistance: 12.202670064040422
+      x: 9.060218238511451
+      y: -0.002407069199280035
+      z: -2.622227743636237
+    ApoapsisDistance: 9.432053788170064
     CenterPoint:
-      x: -5.7446744850203535
-      y: -0.013579504767865083
-      z: 0.6249055528399836
-    OrbitCompressionRatio: 0.19086915325443798
+      x: 0.03242473800632114
+      y: -0.000008614426948126736
+      z: -0.009384437034739776
+    OrbitCompressionRatio: 0.9999870999997671
     OrbitNormal:
-      x: 0.002334205429002096
-      y: -0.9999972386410292
-      z: -0.00027238820077668194
+      x: -0.0002563863135639161
+      y: -0.9999999666180724
+      z: 0.000032092240986750314
     SemiMinorAxisBasis:
-      x: 0.10814207376706768
-      y: -0.000018365001383388722
-      z: 0.9941354492945541
+      x: -0.27801238120994753
+      y: 0.00004045148659898431
+      z: -0.9605774899807156
     SemiMajorAxisBasis:
-      x: -0.9941327091321225
-      y: -0.0023499729878084566
-      z: 0.10814173228029621
-    Inclination: 1.5710687283504545
-    OrbitNormalDotEclipticNormal: -0.00027238820077668194
-  LockOrbitEditing: 1
+      x: 0.9605774566166089
+      y: -0.00025520096188372525
+      z: -0.27801238230056596
+    Inclination: 1.5707642479027295
+    OrbitNormalDotEclipticNormal: 0.000032092240986750314
+  LockOrbitEditing: 0
 --- !u!114 &114708322543714738
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -249,7 +350,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c19560e3c6a341e48361ef8c42b3609, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tumble: 10
+  tumble: 2
+  safespot: {fileID: 0}
 --- !u!136 &136037054950621272
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -261,5 +363,5 @@ CapsuleCollider:
   m_Enabled: 1
   m_Radius: 0.51
   m_Height: 1.52
-  m_Direction: 1
+  m_Direction: 0
   m_Center: {x: 0.01, y: 0, z: -0.05}
