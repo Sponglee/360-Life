@@ -7,6 +7,7 @@ TagManager:
   - Asteroid
   - Planet
   - Life
+  - Boundary
   layers:
   - Default
   - TransparentFX

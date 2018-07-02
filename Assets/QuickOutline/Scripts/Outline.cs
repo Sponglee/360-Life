@@ -101,19 +101,33 @@ public class Outline : MonoBehaviour {
   }
 
   void OnEnable() {
-    foreach (var meshRenderer in meshRenderers) {
+    //foreach (var meshRenderer in meshRenderers) {
 
       // Append outline shaders
-      var materials = meshRenderer.sharedMaterials.ToList();
+      var materials = meshRenderers[0].sharedMaterials.ToList();
 
       materials.Add(outlineMaskMaterial);
       materials.Add(outlineFillMaterial);
 
-      meshRenderer.materials = materials.ToArray();
-    }
+      meshRenderers[0].materials = materials.ToArray();
+    //}
   }
 
-  void OnValidate() {
+    //void OnEnable()
+    //{
+    //    foreach (var meshRenderer in meshRenderers)
+    //    {
+
+    //        Append outline shaders
+    //       var materials = meshRenderer.sharedMaterials.ToList();
+
+    //        materials.Add(outlineMaskMaterial);
+    //        materials.Add(outlineFillMaterial);
+
+    //        meshRenderer.materials = materials.ToArray();
+    //    }
+    //}
+    void OnValidate() {
 
     // Update material properties
     needsUpdate = true;
