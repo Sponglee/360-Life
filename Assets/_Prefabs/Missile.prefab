@@ -25,9 +25,10 @@ GameObject:
   - component: {fileID: 114616785097509918}
   - component: {fileID: 54656445387978928}
   - component: {fileID: 96967324911100586}
+  - component: {fileID: 114753528240103330}
   m_Layer: 0
   m_Name: Missile
-  m_TagString: Untagged
+  m_TagString: Missile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -39,7 +40,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1066230717441396}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -4.47, y: 2.053, z: 1.1}
+  m_LocalPosition: {x: 2.01, y: 2.053, z: 1.1}
   m_LocalScale: {x: 0.15909171, y: 0.15909171, z: 0.15909171}
   m_Children: []
   m_Father: {fileID: 0}
@@ -138,7 +139,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 5
+  m_Time: 0.5
   m_Parameters:
     serializedVersion: 2
     widthMultiplier: 1
@@ -168,8 +169,8 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 1, g: 1, b: 1, a: 1}
-      key1: {r: 1, g: 1, b: 1, a: 1}
+      key0: {r: 0.6037736, g: 0.6037736, b: 0.6037736, a: 0.75686276}
+      key1: {r: 0.7490196, g: 0.7490196, b: 0.7490196, a: 0.7254902}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
@@ -213,12 +214,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44846810f0f13244c91091351947025f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 10
   turn: 20
-  missileLife: 4
+  missileLife: 2
   homingMissile: {fileID: 54656445387978928}
   fuseDelay: 0.5
   target: {fileID: 0}
+--- !u!114 &114753528240103330
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1066230717441396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aac527eda0cc49649871a7560e92b115, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!136 &136368813776483322
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -226,7 +238,7 @@ CapsuleCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1066230717441396}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5
   m_Height: 2

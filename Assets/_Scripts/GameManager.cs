@@ -11,6 +11,8 @@ public class GameManager : Singleton<GameManager> {
     public float scores=0;
     public float mps=1;
     public float moneyTimer;
+
+
     public float missileLimit = 1;
 
     public Text moneyText;
@@ -25,7 +27,7 @@ public class GameManager : Singleton<GameManager> {
     public float missileCost;
     public GameObject missile;
 
-   
+    public float lifeMultiplier = 1;
     [SerializeField]
     private int lifeCount = 1;
     public int LifeCount
@@ -86,24 +88,36 @@ public class GameManager : Singleton<GameManager> {
 
 
     // Update is called once per frame
-    void FixedUpdate () {
+    void FixedUpdate() {
 
         moneyTimer += Time.deltaTime;
 
-        if(moneyTimer>=1)
+        if (moneyTimer >= 1)
         {
             money += mps * lifeCount;
             moneyText.text = money.ToString();
             moneyTimer = 0;
         }
 
-
-        lifeTimer += Time.deltaTime;
-        lifeSlider.value = lifeTimer/lifeSpreadTime;
-
-        if (lifeTimer>= lifeSpreadTime)
+        if (lifeCount < lifePlanets.Count)
         {
-
+            lifeTimer += 1 *  Time.deltaTime;
+            lifeSlider.value = lifeTimer / lifeSpreadTime;
+        }
+        else
+        {
+            lifeTimer = 0;
+            lifeSlider.value = lifeTimer / lifeSpreadTime;
+        }
+        if (lifeTimer>= lifeSpreadTime )
+        {
+            
+            lifeTimer = 0;
+            if(lifeMultiplier != 1)
+            {
+                lifeSpreadTime *= 2;
+                lifeMultiplier = 1;
+            }
             LifeCount++;
             moneyMultiplier.text = string.Format("x{0}", lifeCount);
         }

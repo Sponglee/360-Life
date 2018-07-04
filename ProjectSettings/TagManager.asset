@@ -8,6 +8,7 @@ TagManager:
   - Planet
   - Life
   - Boundary
+  - Missile
   layers:
   - Default
   - TransparentFX

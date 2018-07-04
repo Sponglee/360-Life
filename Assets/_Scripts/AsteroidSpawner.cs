@@ -48,7 +48,7 @@ public class AsteroidSpawner : Singleton<AsteroidSpawner> {
 
                     Vector3 center = transform.position;
 
-                    Vector3d spawnPosition = RandomCircle(center,Random.Range(5f,10f));
+                    Vector3d spawnPosition = RandomCircle(center,Random.Range(1f,30f));
 
                     Quaternion spawnRotation = Quaternion.identity;
 
@@ -65,6 +65,7 @@ public class AsteroidSpawner : Singleton<AsteroidSpawner> {
 
                 //tmp.GetComponent<KeplerOrbitMover>().SetAutoCircleOrbit();
 
+               
                 yield return new WaitForSeconds(spawnWait);
             }
             //if (gameOver)
@@ -73,6 +74,7 @@ public class AsteroidSpawner : Singleton<AsteroidSpawner> {
             //    restart = true;
             //    break;
             //}
+            hazardCount += 3;
             yield return new WaitForSeconds(waveWait);
 
 
@@ -82,7 +84,7 @@ public class AsteroidSpawner : Singleton<AsteroidSpawner> {
 
     Vector3d RandomCircle(Vector3 center, float radius)
     {
-        float randAngle = Random.Range(00f,60f);
+        float randAngle = Random.Range(00f,180f);
 
         //ang += randAngle%360;
         Vector3d pos;

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using SimpleKeplerOrbits;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,7 +7,7 @@ using UnityEngine.UI;
 public class Planet : MonoBehaviour {
 
 
-    //[SerializeField]
+    [SerializeField]
     private float range = 18f;
     public float Range
     {
@@ -21,22 +22,28 @@ public class Planet : MonoBehaviour {
         }
     }
 
-    private Transform planetTarget;
-    public Transform PlanetTarget
+    private Stack<Transform> planetTargets;
+
+    private float targetCount = 1;
+    public float TargetCount
     {
         get
         {
-            return planetTarget;
+            targetCount = GameManager.Instance.missileLimit;
+            return targetCount;
         }
 
         set
         {
-            planetTarget = value;
+            targetCount = value;
         }
     }
 
 
-    public float pewCoolDown = 2f;
+    private float pewTimer = 2;
+    private float missileCoolDown = 2;
+   
+
 
     private string setTag;
     public string SetTag
@@ -57,76 +64,181 @@ public class Planet : MonoBehaviour {
 
 
 
-    //number of simultaneous missiles per planet
-    private int missileCount=0;
-    public int MissileCount
-    {
-        get
-        {
-            return missileCount;
-        }
+    ////number of simultaneous missiles per planet
+    //[SerializeField]
+    //private int missileCount=1;
+    //public int MissileCount
+    //{
+    //    get
+    //    {
+    //        return missileCount;
+    //    }
 
-        set
-        {
-            missileCount = value;
-        }
-    }
+    //    set
+    //    {
+    //        missileCount = value;
+    //    }
+    //}
+
+ 
 
 
 
     // Use this for initialization
     void Start () {
-		
+        planetTargets = new Stack<Transform>();
+        targetCount = GameManager.Instance.missileLimit;
 	}
 	
 	// Update is called once per frame
 	void FixedUpdate ()
     {
-        pewCoolDown -= Time.deltaTime;
-		if(gameObject.CompareTag("Life") && pewCoolDown<0 && GameManager.Instance.money >= GameManager.Instance.missileCost && MissileCount<=GameManager.Instance.missileLimit)
-        {
-            GameManager.Instance.money -= GameManager.Instance.missileCost;
-            GameManager.Instance.moneyText.GetComponent<Text>().text = GameManager.Instance.money.ToString();
-            pewCoolDown = 2f;
 
-            if (PrepeareFire())
+        if (gameObject.CompareTag("Life") && pewTimer <= 0 && planetTargets.Count != 0)
+        {
+
+            //StartCoroutine(StopMissiles());
+          
+            if(planetTargets.Count>0)
             {
-                MissileCount++;
-                GameObject tmp = SimplePool.Spawn(GameManager.Instance.missile, gameObject.transform.position, Quaternion.identity);
-                tmp.transform.SetParent(transform);
+                for (int i = 0; i < TargetCount; i++)
+                {
+                    if(i<planetTargets.Count)
+                    {
+                        Debug.Log("SPAWN " + i + " " + gameObject.name + " " + planetTargets.Count);
+                        GameObject tmp = SimplePool.Spawn(GameManager.Instance.missile, gameObject.transform.position, Quaternion.identity);
+                        tmp.GetComponent<Missile>().Target = planetTargets.Pop();
+                        pewTimer = targetCount;
+                        tmp.transform.SetParent(AsteroidSpawner.Instance.transform);
+                    }
+                  
+
+                }
+
+                planetTargets.Clear();
+
             }
-           
-         
+
+
         }
+        else if (gameObject.CompareTag("Life"))
+        {
+            pewTimer -= Time.fixedDeltaTime;
+            Fire();
+        }
+        else
+            pewTimer = missileCoolDown;
 	}
 
 
-
-    private bool PrepeareFire()
-    {
-        //yield return new WaitForSecondsRealtime(fuseDelay);
+    //private IEnumerator StopMissiles()
+    //{
+    //    foreach (Transform pT in planetTargets)
+    //    {
+    //        GameObject tmp = SimplePool.Spawn(GameManager.Instance.missile, gameObject.transform.position, Quaternion.identity);
+    //        tmp.GetComponent<Missile>().Target = pT;
+    //        pewTimer = targetCount;
+    //        tmp.transform.SetParent(AsteroidSpawner.Instance.transform);
+    //        yield return new WaitForSecondsRealtime(0.1f);
+    //    }
+    //}
+    //private bool PrepeareFire()
+    //{
+    //    //yield return new WaitForSecondsRealtime(fuseDelay);
 
      
 
 
+    //    foreach (GameObject go in GameObject.FindGameObjectsWithTag("Asteroid"))
+    //    {
+    //        float diff = (go.transform.parent.position - this.transform.position).sqrMagnitude;
+
+    //       // Debug.Log(diff + " : " + distance);
+
+    //        if (diff < range)
+    //        {
+    //            planetTarget = go.transform;
+    //            return true;
+
+    //        }
+    //    }
+
+    //    return false;
+    //}
+
+    private void Fire()
+    {
+        //yield return new WaitForSecondsRealtime(fuseDelay);
+        planetTargets.Clear();
+
+        float distance = Mathf.Infinity;
+        float fastestAsteroidSpeed = 0;
+      
+        //Transform target=null;
+
+        //for (int i = 0; i < targetCount; i++)
+        //{
         foreach (GameObject go in GameObject.FindGameObjectsWithTag("Asteroid"))
         {
-            var diff = (go.transform.parent.position - transform.position).sqrMagnitude;
-
-           // Debug.Log(diff + " : " + distance);
-
-            if (diff < Range)
+            if(planetTargets.Count == 0)
             {
-                planetTarget = go.transform;
-                return true;
+                var diff = (go.transform.parent.position - transform.position).sqrMagnitude;
+                var goRb = go.GetComponent<KeplerOrbitMover>().OrbitData;
 
+                Vector3 goVel = new Vector3((float)goRb.Velocity.x, (float)goRb.Velocity.y, (float)goRb.Velocity.z);
+                float angleOfAttack = Vector3.Dot(goVel, go.transform.parent.position - transform.position);
+
+
+                if (diff < distance && angleOfAttack < 0 && goVel.sqrMagnitude > fastestAsteroidSpeed && diff <= range)
+                {
+
+                    distance = diff;
+                    fastestAsteroidSpeed = goVel.sqrMagnitude;
+
+                    if (distance < range && fastestAsteroidSpeed <= goVel.sqrMagnitude)
+                    {
+                        planetTargets.Push(go.transform);
+                        //target = go.transform;
+
+                    }
+
+                }
             }
+            else
+            {
+                var diff = (go.transform.parent.position - transform.position).sqrMagnitude;
+                //var goRb = go.GetComponent<KeplerOrbitMover>().OrbitData;
+
+                //Vector3 goVel = new Vector3((float)goRb.Velocity.x, (float)goRb.Velocity.y, (float)goRb.Velocity.z);
+                //float angleOfAttack = Vector3.Dot(goVel, go.transform.parent.position - transform.position);
+
+
+                //if (diff >= distance && diff <= range)
+                //{
+
+                //    //distance = diff;
+                //    //fastestAsteroidSpeed = goVel.sqrMagnitude;
+
+                //    //if (distance < range && fastestAsteroidSpeed <= goVel.sqrMagnitude)
+                //    //{
+                        planetTargets.Push(go.transform);
+                        //target = go.transform;
+
+                    //}
+
+                //}
+            }
+               
+
         }
+            //if(target != null)
+            //    planetTargets.Add(target);
+        //    yield return new WaitForSecondsRealtime(0.2f);
+        ////}
+       
 
-        return false;
+
     }
-
-
 
 
 

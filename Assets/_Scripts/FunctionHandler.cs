@@ -12,6 +12,48 @@ public class FunctionHandler : Singleton<FunctionHandler> {
 
 
 
+
+    public Text doubleLifeCostText;
+    [SerializeField]
+    private float doubleLifeCost;
+    public float DoubleLifeCost
+    {
+        get
+        {
+            return doubleLifeCost;
+        }
+
+        set
+        {
+            doubleLifeCost = value;
+            doubleLifeCostText.text = value.ToString();
+        }
+    }
+
+    public Text doubleMissileCostText;
+    [SerializeField]
+    private float doubleMissileCost;
+    public float DoubleMissileCost
+    {
+        get
+        {
+            return doubleMissileCost;
+        }
+
+        set
+        {
+            doubleMissileCost = value;
+            doubleMissileCostText.text = value.ToString();
+        }
+    }
+
+
+    public void Start()
+    {
+        doubleLifeCostText.text = doubleLifeCost.ToString();
+        doubleMissileCostText.text = doubleMissileCost.ToString();
+    }
+
     public void Restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
@@ -62,4 +104,27 @@ public class FunctionHandler : Singleton<FunctionHandler> {
     {
         SceneManager.LoadScene("Tilted");
     }
+
+    public void DoubleLife()
+    {
+        if(GameManager.Instance.money >= DoubleLifeCost)
+        {
+            GameManager.Instance.lifeMultiplier = 2;
+            GameManager.Instance.lifeSpreadTime /= 2;
+            GameManager.Instance.money -= DoubleLifeCost;
+            DoubleLifeCost *=2f;
+        }
+    }
+
+
+    public void DoubleMissiles()
+    {
+        if (GameManager.Instance.money >= DoubleMissileCost)
+        {
+            GameManager.Instance.missileLimit += 1;
+            GameManager.Instance.money -= DoubleMissileCost;
+            DoubleMissileCost *= 2f;
+        }
+    }
+
 }

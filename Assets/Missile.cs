@@ -1,16 +1,18 @@
-﻿using System.Collections;
+﻿using SimpleKeplerOrbits;
+using System.Collections;
 using UnityEngine;
 
 public class Missile : MonoBehaviour
 {
+    private bool hasFired = false;
     [SerializeField]
     private float speed = 5;
     [SerializeField]
     private float turn = 20;
 
     [SerializeField]
-    private float missileLife = 2;
-
+    private float missileLife = 0.5f;
+    private float missileCoolDown;
 
     [SerializeField]
     private Rigidbody homingMissile;
@@ -20,76 +22,80 @@ public class Missile : MonoBehaviour
 
     [SerializeField]
     private Transform target;
+    public Transform Target
+    {
+        get
+        {
+            return target;
+        }
+
+        set
+        {
+            target = value;
+        }
+    }
+
+
+
     private Transform home;
 
     private bool comingHome = false;
-    private float missileRange = 0f;
+    //private float missileRange = 0f;
 
+   
     private void Start()
     {
-        home = transform.parent;
-        comingHome = false;
-        missileRange = home.GetComponent<Planet>().Range;
-        transform.SetParent(AsteroidSpawner.Instance.transform);
-        homingMissile = gameObject.GetComponent<Rigidbody>();
+      
+      
 
         //StartCoroutine(Fire());
     }
 
-    private void Fire()
-    {
-        //yield return new WaitForSecondsRealtime(fuseDelay);
-
-        float distance = Mathf.Infinity;
-
-
-        foreach (GameObject go in GameObject.FindGameObjectsWithTag("Asteroid"))
-        {
-            var diff = (go.transform.parent.position - transform.position).sqrMagnitude;
-
-
-
-            if (diff < distance)
-            {
-                distance = diff;
-                if(distance < missileRange)
-                {
-                    target = go.transform;
-                }
-                else
-                {
-                    comingHome = true;
-                }
-
-            }
-          
-        }
-
-
-    }
+    
 
 
 
 
     private void FixedUpdate()
     {
-        //missileLife -= Time.fixedDeltaTime;
-
-        //if (missileLife < 0)
-        //{
-        //    missileLife = 2f;
-        //    SimplePool.Despawn(gameObject);
-        //}
-
-        if (!comingHome)
-            Fire();
-        else
-            target = home;
-
-        if (target == null || homingMissile == null)
+        if (!hasFired)
         {
+            home = transform.parent;
+            comingHome = false;
+            //missileRange = home.GetComponent<Planet>().Range;
+          
+            homingMissile = gameObject.GetComponent<Rigidbody>();
+           
+            hasFired = true;
+        }
+
+        missileCoolDown -= Time.fixedDeltaTime;
+
+        if (missileCoolDown < 0 && Target == null)
+        {
+            missileCoolDown = missileLife;
+            SimplePool.Despawn(gameObject);
+            //home.GetComponent<Planet>().MissileCount--;
+        }
+
+        //if (!comingHome)
+
+        //else
+        //    target = home;
+        if (Target == null || homingMissile == null)
+        {
+            if (hasFired)
+            {
+                //Debug.Log("HASFIRED");
+                hasFired = false;
+                SimplePool.Despawn(gameObject);
+            }
             //Destroy(gameObject);
             return;
+        }
+        else if (Target != null)
+        {
+            hasFired = true;
         }
         //else if (target != firstTarget)
         //{
@@ -102,31 +108,37 @@ public class Missile : MonoBehaviour
 
         homingMissile.velocity = transform.forward * speed;
 
-        var targetRotation = Quaternion.LookRotation(target.position - transform.position);
+        var targetRotation = Quaternion.LookRotation(Target.position - transform.position);
 
         homingMissile.MoveRotation(Quaternion.RotateTowards(transform.rotation, targetRotation, turn));
     }
 
 
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.CompareTag("Asteroid"))
         {
 
             comingHome = true;
-            home.GetComponent<Planet>().MissileCount--;
-            SimplePool.Despawn(other.gameObject);
+            missileLife = 2f;
+            hasFired = false;
+            SimplePool.Despawn(gameObject);
+            Destroy(other.gameObject);
+            //home.GetComponent<Planet>().MissileCount--;
         }
-        else if (other.gameObject.CompareTag("Life"))
-        {
-            comingHome = false;
+        //else if (other.gameObject.CompareTag("Life") && comingHome)
+        //{
+        //    comingHome = false;
+        //    SimplePool.Despawn(gameObject);
            
-        }
+        //}
         else if(other.gameObject.CompareTag("Planet"))
         {
-            home.GetComponent<Planet>().MissileCount--;
+            hasFired = false;
+            missileLife = 2f;
             SimplePool.Despawn(gameObject);
+            //home.GetComponent<Planet>().MissileCount--;
         }
     }
 }

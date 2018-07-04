@@ -78,8 +78,8 @@ GameObject:
   - component: {fileID: 400010}
   - component: {fileID: 19800010}
   - component: {fileID: 19900010}
-  - component: {fileID: 114906452410138556}
   - component: {fileID: 82135639942623124}
+  - component: {fileID: 114823868971991574}
   m_Layer: 0
   m_Name: explosion_player
   m_TagString: Untagged
@@ -32287,7 +32287,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: a019ae3af8e864616b85773c509f5285, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
-  m_Pitch: 1
+  m_Pitch: -0.03
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -32370,7 +32370,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
---- !u!114 &114906452410138556
+--- !u!114 &114823868971991574
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -32378,7 +32378,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 100008}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3d464fe680b2c142aef38acd8332866, type: 3}
+  m_Script: {fileID: 11500000, guid: 142a2a65f64e62142a21a47c2ecbabfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifeTime: 2
+  lifeTime: 0

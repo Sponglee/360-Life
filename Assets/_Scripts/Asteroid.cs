@@ -46,7 +46,7 @@ public class Asteroid : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Planet"))
+        if (collision.gameObject.CompareTag("Missile"))
         {
             SimplePool.Spawn(AsteroidSpawner.Instance.explosion, gameObject.transform.position, Quaternion.identity);
 
@@ -60,6 +60,12 @@ public class Asteroid : MonoBehaviour
 
             StartCoroutine(StopDestroy());
             gameObject.transform.GetChild(0).gameObject.SetActive(false);
+        }
+
+        if(collision.gameObject.CompareTag("Planet"))
+        {
+            SimplePool.Spawn(AsteroidSpawner.Instance.explosion, gameObject.transform.position, Quaternion.identity);
+            StartCoroutine(StopDestroy());
         }
        
         if (collision.gameObject.CompareTag("Life"))
