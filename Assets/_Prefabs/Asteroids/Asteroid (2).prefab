@@ -256,7 +256,7 @@ TrailRenderer:
       m_NumAlphaKeys: 2
     numCornerVertices: 90
     numCapVertices: 72
-    alignment: 1
+    alignment: 0
     textureMode: 0
     generateLightingData: 0
   m_MinVertexDistance: 0
@@ -353,6 +353,7 @@ MonoBehaviour:
   tumble: 2
   safespot: {fileID: 0}
   speed: 0.2
+  scoreValue: 10
 --- !u!136 &136037054950621272
 CapsuleCollider:
   m_ObjectHideFlags: 1

@@ -13,6 +13,8 @@ public class AsteroidSpawner : Singleton<AsteroidSpawner> {
     private GameObject randomHazard;
 
 
+    public GameObject fltText;
+
     public Transform Sol;
 
 

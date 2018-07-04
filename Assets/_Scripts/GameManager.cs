@@ -7,16 +7,23 @@ public class GameManager : Singleton<GameManager> {
 
     public bool gameOver=false;
 
-
+    public float money = 0;
     public float scores=0;
-    public float spm=1;
+    public float mps=1;
+    public float moneyTimer;
+    public float missileLimit = 1;
 
+    public Text moneyText;
     public Text scoreText;
-    public Text scoreMultiplier;
+    public Text moneyMultiplier;
     
     public GameObject menu;
     public GameObject ui;
 
+
+
+    public float missileCost;
+    public GameObject missile;
 
    
     [SerializeField]
@@ -29,29 +36,18 @@ public class GameManager : Singleton<GameManager> {
             lifeCount = value;
             if (LifeCount<=0)
             {
-                gameOver = true;
-                FunctionHandler.Instance.OpenMenu();
-                Time.timeScale = 0f;
+                StartCoroutine(StopGameOver());
                 
             }
 
             if (lifeCount < lifeIndex && lifeCount >= 0)
             {
-                //Debug.Log(lifeIndex + "   :   " + lifeCount);
-                //while (lifeIndex >= 0 && lifeIndex<lifePlanets.Count && lifePlanets[lifeIndex].GetComponent<Outline>().enabled != true)
-                //{
-
                     lifeIndex--;
                    
                     if (lifeIndex < 0)
                         lifeIndex = lifePlanets.Count;
-                    //}
-
-               
-
-
             }
-            else if (lifeCount > lifeIndex)
+            else if (lifeCount > lifeIndex && lifeCount<=lifePlanets.Count)
             {
                 while (lifeIndex >= 0 && lifeIndex < lifePlanets.Count && lifePlanets[lifeIndex].GetComponent<Outline>().enabled != false)
                 {
@@ -60,7 +56,7 @@ public class GameManager : Singleton<GameManager> {
                         lifeIndex = 0;
                 }
 
-                lifePlanets[lifeIndex].tag = "Life";
+                lifePlanets[lifeIndex].GetComponent<Planet>().SetTag = "Life";
                 lifePlanets[lifeIndex].GetComponent<Outline>().enabled = true;
 
 
@@ -83,7 +79,8 @@ public class GameManager : Singleton<GameManager> {
     private void Start()
     {
         Time.timeScale = 1f;
-        scoreMultiplier.text = string.Format("x{0}", lifeCount);
+        moneyMultiplier.text = string.Format("x{0}", lifeCount);
+        moneyText.text = money.ToString();
         scoreText.text = scores.ToString();
     }
 
@@ -91,9 +88,15 @@ public class GameManager : Singleton<GameManager> {
     // Update is called once per frame
     void FixedUpdate () {
 
-        scores += spm * lifeCount;
-        scoreText.text = scores.ToString();
-        
+        moneyTimer += Time.deltaTime;
+
+        if(moneyTimer>=1)
+        {
+            money += mps * lifeCount;
+            moneyText.text = money.ToString();
+            moneyTimer = 0;
+        }
+
 
         lifeTimer += Time.deltaTime;
         lifeSlider.value = lifeTimer/lifeSpreadTime;
@@ -102,7 +105,17 @@ public class GameManager : Singleton<GameManager> {
         {
 
             LifeCount++;
-            scoreMultiplier.text = string.Format("x{0}", lifeCount);
+            moneyMultiplier.text = string.Format("x{0}", lifeCount);
         }
 	}
+
+
+
+    public IEnumerator StopGameOver()
+    {
+        gameOver = true;
+        yield return new WaitForSecondsRealtime(0.5f);
+        FunctionHandler.Instance.OpenMenu();
+        Time.timeScale = 0f;
+    }
 }

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using SimpleKeplerOrbits;
+using UnityEngine.UI;
 
 public class Asteroid : MonoBehaviour 
 {
@@ -10,6 +11,8 @@ public class Asteroid : MonoBehaviour
 
     public float speed=0.3f;
 
+    [SerializeField]
+    private int scoreValue;
 
     void Start ()
 	{
@@ -45,7 +48,16 @@ public class Asteroid : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Planet"))
         {
-            Instantiate(AsteroidSpawner.Instance.explosion, gameObject.transform);
+            SimplePool.Spawn(AsteroidSpawner.Instance.explosion, gameObject.transform.position, Quaternion.identity);
+
+            //Float text spawn, rotate to camera
+            GameObject tmp = SimplePool.Spawn(AsteroidSpawner.Instance.fltText, gameObject.transform.position, Quaternion.identity);
+            tmp.transform.LookAt(Camera.main.transform);
+            tmp.transform.GetChild(0).GetChild(0).GetComponent<Text>().text = string.Format("+{0}", scoreValue.ToString());
+
+            GameManager.Instance.scores += scoreValue;
+            GameManager.Instance.scoreText.text = GameManager.Instance.scores.ToString();
+
             StartCoroutine(StopDestroy());
             gameObject.transform.GetChild(0).gameObject.SetActive(false);
         }
@@ -53,14 +65,14 @@ public class Asteroid : MonoBehaviour
         if (collision.gameObject.CompareTag("Life"))
         {
             //collision.gameObject.SetActive(false);
-            Instantiate(AsteroidSpawner.Instance.planetExplosion, gameObject.transform);
+            SimplePool.Spawn(AsteroidSpawner.Instance.planetExplosion, gameObject.transform.position, Quaternion.identity);
             collision.gameObject.GetComponent<Outline>().enabled = false;
 
                 
             GameManager.Instance.LifeCount--;
-            GameManager.Instance.scoreMultiplier.text = string.Format("x{0}", GameManager.Instance.LifeCount);
+            GameManager.Instance.moneyMultiplier.text = string.Format("x{0}", GameManager.Instance.LifeCount);
             collision.gameObject.GetComponent<Outline>().enabled = false;
-            collision.gameObject.tag = "Planet";
+            collision.gameObject.GetComponent<Planet>().SetTag = "Planet";
 
 
             StartCoroutine(StopDestroy());

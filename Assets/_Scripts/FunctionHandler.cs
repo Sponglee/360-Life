@@ -14,7 +14,7 @@ public class FunctionHandler : Singleton<FunctionHandler> {
 
     public void Restart()
     {
-        SceneManager.LoadScene("Main");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
 
@@ -51,4 +51,15 @@ public class FunctionHandler : Singleton<FunctionHandler> {
         Application.Quit();
     }
 
+
+    public void PlainScene()
+    {
+        SceneManager.LoadScene("Main");
+
+    }
+
+    public void TiltScene()
+    {
+        SceneManager.LoadScene("Tilted");
+    }
 }
