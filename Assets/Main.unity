@@ -5504,6 +5504,7 @@ Prefab:
       propertyPath: orthographic size
       value: 10
       objectReference: {fileID: 0}
+<<<<<<< HEAD
     - target: {fileID: 4171042745531376, guid: 9f4b354caafd4d9429883f5e28664ab2, type: 2}
       propertyPath: m_LocalPosition.x
       value: 2.54
@@ -5560,6 +5561,8 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
+=======
+>>>>>>> parent of f512c58... 05.07.18
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9f4b354caafd4d9429883f5e28664ab2, type: 2}
   m_IsPrefabParent: 0
@@ -6845,14 +6848,6 @@ Prefab:
     - target: {fileID: 19800000, guid: 9930946b7c5f48e44aef1e56c2de7315, type: 2}
       propertyPath: ShapeModule.m_Scale.z
       value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 100004, guid: 9930946b7c5f48e44aef1e56c2de7315, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 100002, guid: 9930946b7c5f48e44aef1e56c2de7315, type: 2}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9930946b7c5f48e44aef1e56c2de7315, type: 2}

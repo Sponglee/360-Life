@@ -189,13 +189,17 @@ public class Planet : MonoBehaviour {
                 //float angleOfAttack = Vector3.Dot(goVel, go.transform.parent.position - transform.position);
 
 
+<<<<<<< HEAD
                 if (diff < distance /*&& angleOfAttack < 0 && goVel.sqrMagnitude > fastestAsteroidSpeed && diff <= range*/)
+=======
+                if (diff < distance && angleOfAttack < 0 && goVel.sqrMagnitude > fastestAsteroidSpeed && diff <= range)
+>>>>>>> parent of f512c58... 05.07.18
                 {
 
                     distance = diff;
-                    //fastestAsteroidSpeed = goVel.sqrMagnitude;
+                    fastestAsteroidSpeed = goVel.sqrMagnitude;
 
-                    if (distance < range /*&& fastestAsteroidSpeed <= goVel.sqrMagnitude*/)
+                    if (distance < range && fastestAsteroidSpeed <= goVel.sqrMagnitude)
                     {
                         planetTargets.Push(go.transform);
                         //target = go.transform;
