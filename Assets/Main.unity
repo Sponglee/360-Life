@@ -1571,7 +1571,6 @@ RectTransform:
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &351884373
-<<<<<<< HEAD
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -1579,39 +1578,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 351884371}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -900027084, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
-  m_EffectDistance: {x: 1, y: -1}
-  m_UseGraphicAlpha: 1
---- !u!114 &351884374
-=======
->>>>>>> parent of e588012... 06.07.18
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 351884371}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-<<<<<<< HEAD
-=======
-  m_Script: {fileID: -900027084, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
-  m_EffectDistance: {x: 1, y: -1}
-  m_UseGraphicAlpha: 1
---- !u!114 &351884374
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 351884371}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
->>>>>>> parent of e588012... 06.07.18
   m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -5132,7 +5098,6 @@ Prefab:
       propertyPath: orthographic size
       value: 10
       objectReference: {fileID: 0}
-<<<<<<< HEAD
     - target: {fileID: 4171042745531376, guid: 9f4b354caafd4d9429883f5e28664ab2, type: 2}
       propertyPath: m_LocalPosition.x
       value: 2.54
@@ -5161,8 +5126,6 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-<<<<<<< HEAD
-<<<<<<< HEAD
     - target: {fileID: 4674763651883810, guid: 9f4b354caafd4d9429883f5e28664ab2, type: 2}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 59.36
@@ -5191,12 +5154,6 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
-=======
->>>>>>> parent of f512c58... 05.07.18
-=======
->>>>>>> parent of e588012... 06.07.18
-=======
->>>>>>> parent of e588012... 06.07.18
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9f4b354caafd4d9429883f5e28664ab2, type: 2}
   m_IsPrefabParent: 0
