@@ -14,6 +14,7 @@ public class GameManager : Singleton<GameManager> {
 
 
     public float missileLimit = 1;
+    public float missileTime = 2;
 
     public Text moneyText;
     public Text scoreText;

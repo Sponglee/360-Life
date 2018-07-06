@@ -43,6 +43,19 @@ public class Planet : MonoBehaviour
 
     private float pewTimer = 2;
     private float missileCoolDown = 2;
+    public float MissileCoolDown
+    {
+        get
+        {
+            missileCoolDown = GameManager.Instance.missileTime;
+            return missileCoolDown;
+        }
+
+        set
+        {
+            missileCoolDown = value;
+        }
+    }
 
 
 
@@ -110,7 +123,7 @@ public class Planet : MonoBehaviour
                         Debug.Log("SPAWN " + i + " " + gameObject.name + " " + planetTargets.Count);
                         GameObject tmp = SimplePool.Spawn(GameManager.Instance.missile, gameObject.transform.position, Quaternion.identity);
                         tmp.GetComponent<Missile>().Target = planetTargets.Pop();
-                        pewTimer = targetCount;
+                        pewTimer = missileCoolDown;
                         tmp.transform.SetParent(AsteroidSpawner.Instance.transform);
                     }
 
@@ -174,6 +187,7 @@ public class Planet : MonoBehaviour
         planetTargets.Clear();
 
         float distance = Mathf.Infinity;
+        float fastestAsteroidSpeed = 0;
 
         //Transform target=null;
 
@@ -184,30 +198,26 @@ public class Planet : MonoBehaviour
             if (planetTargets.Count == 0)
             {
                 var diff = (go.transform.parent.position - transform.position).sqrMagnitude;
-                var goRb = go.GetComponent<KeplerOrbitMover>().OrbitData;
+                //var goRb = go.GetComponent<KeplerOrbitMover>().OrbitData;
 
-                Vector3 goVel = new Vector3((float)goRb.Velocity.x, (float)goRb.Velocity.y, (float)goRb.Velocity.z);
-                float angleOfAttack = Vector3.Dot(goVel, go.transform.parent.position - transform.position);
+                //Vector3 goVel = new Vector3((float)goRb.Velocity.x, (float)goRb.Velocity.y, (float)goRb.Velocity.z);
+                //float angleOfAttack = Vector3.Dot(goVel, go.transform.parent.position - transform.position);
 
 
-<<<<<<< HEAD
-=======
-                if (diff < distance /*&& angleOfAttack < 0 && goVel.sqrMagnitude > fastestAsteroidSpeed */&& diff <= range)
+                if (diff < distance /*&& angleOfAttack < 0 && goVel.sqrMagnitude > fastestAsteroidSpeed && diff <= range*/)
                 {
->>>>>>> parent of e588012... 06.07.18
 
+                    distance = diff;
+                    //fastestAsteroidSpeed = goVel.sqrMagnitude;
 
-                //distance = diff;
-                //fastestAsteroidSpeed = goVel.sqrMagnitude;
+                    if (distance < range /*&& fastestAsteroidSpeed <= goVel.sqrMagnitude*/)
+                    {
+                        planetTargets.Push(go.transform);
+                        //target = go.transform;
 
-                if (distance < range /*&& fastestAsteroidSpeed <= goVel.sqrMagnitude*/)
-                {
-                    planetTargets.Push(go.transform);
-                    //target = go.transform;
+                    }
 
                 }
-
-
             }
             else
             {
@@ -245,93 +255,11 @@ public class Planet : MonoBehaviour
 
     }
 
+
+
+
+
+
+
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    //public static Vector3 CalculateInterceptCourse(Vector3 aTargetPos, Vector3 aTargetSpeed, Vector3 aInterceptorPos, float aInterceptorSpeed, out bool aSuccess)
-    //{
-    //    aSuccess = true;
-    //    Vector3 targetDir = aTargetPos - aInterceptorPos;
-    //    float iSpeed2 = aInterceptorSpeed * aInterceptorSpeed;
-    //    float tSpeed2 = aTargetSpeed.sqrMagnitude;
-    //    float fDot1 = Vector3.Dot(targetDir, aTargetSpeed);
-    //    float targetDist2 = targetDir.sqrMagnitude;
-    //    float d = (fDot1 * fDot1) - targetDist2 * (tSpeed2 - iSpeed2);
-    //    if (d < 0.1f)
-    //        aSuccess = false;
-    //    float sqrt = Mathf.Sqrt(d);
-    //    float S1 = (-fDot1 - sqrt) / targetDist2;
-    //    float S2 = (-fDot1 + sqrt) / targetDist2;
-    //    if (S1 < 0.0001f)
-    //    {
-    //        if (S2 < 0.0001f)
-    //            return Vector3.zero;
-    //        else
-    //            return (S2) * targetDir + aTargetSpeed;
-    //    }
-    //    else if (S2 < 0.0001f)
-    //        return (S1) * targetDir + aTargetSpeed;
-    //    else if (S1 < S2)
-    //        return (S2) * targetDir + aTargetSpeed;
-    //    else
-    //        return (S1) * targetDir + aTargetSpeed;
-    //}
-
-    //void AcquireTargetLock(GameObject target)
-    //{
-    //    bool acquireTargetLockSuccess;
-    //    Rigidbody playerShipScript = target.GetComponent<Rigidbody>();
-    //    Vector3 targetVelocity = playerShipScript.velocity;
-    //    Vector3 direction = CalculateInterceptCourse(target.transform.position, targetVelocity, gameObject.transform.position, 500, out acquireTargetLockSuccess);
-    //    if (acquireTargetLockSuccess)
-    //    {
-    //        Quaternion targetRotation = Quaternion.LookRotation(direction, Vector3.up);
-    //        gameObject.transform.rotation = Quaternion.Slerp(gameObject.transform.rotation, targetRotation, Time.deltaTime * 1f);
-    //        if (Mathf.Abs(gameObject.transform.rotation.eulerAngles.y - targetRotation.eulerAngles.y) < 5)
-    //            SimplePool.Spawn(GameManager.Instance.missile, gameObject.transform.position, Quaternion.identity);
-    //    }
-    //}
-
-//}
