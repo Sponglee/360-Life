@@ -184,12 +184,20 @@ public class Planet : MonoBehaviour
             if (planetTargets.Count == 0)
             {
                 var diff = (go.transform.parent.position - transform.position).sqrMagnitude;
-                //var goRb = go.GetComponent<KeplerOrbitMover>().OrbitData;
+                var goRb = go.GetComponent<KeplerOrbitMover>().OrbitData;
 
-                //Vector3 goVel = new Vector3((float)goRb.Velocity.x, (float)goRb.Velocity.y, (float)goRb.Velocity.z);
-                //float angleOfAttack = Vector3.Dot(goVel, go.transform.parent.position - transform.position);
+                Vector3 goVel = new Vector3((float)goRb.Velocity.x, (float)goRb.Velocity.y, (float)goRb.Velocity.z);
+                float angleOfAttack = Vector3.Dot(goVel, go.transform.parent.position - transform.position);
 
 
+<<<<<<< HEAD
+=======
+                if (diff < distance /*&& angleOfAttack < 0 && goVel.sqrMagnitude > fastestAsteroidSpeed */&& diff <= range)
+                {
+
+                    distance = diff;
+                    //fastestAsteroidSpeed = goVel.sqrMagnitude;
+>>>>>>> parent of e588012... 06.07.18
 
                 //distance = diff;
                 //fastestAsteroidSpeed = goVel.sqrMagnitude;
