@@ -110,9 +110,13 @@ public class FunctionHandler : Singleton<FunctionHandler> {
         if(GameManager.Instance.money >= DoubleLifeCost)
         {
             GameManager.Instance.lifeMultiplier = 2;
+<<<<<<< HEAD
 
             GameManager.Instance.lifeSpreadTime = 1;
 
+=======
+            GameManager.Instance.lifeSpreadTime = 1;
+>>>>>>> parent of e588012... 06.07.18
             GameManager.Instance.money -= DoubleLifeCost;
             DoubleLifeCost *=2f;
         }
