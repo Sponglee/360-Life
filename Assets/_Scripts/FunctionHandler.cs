@@ -9,7 +9,7 @@ public class FunctionHandler : Singleton<FunctionHandler> {
 
     public GameObject gameOverText;
     public Text menuScoreText;
-
+    public Text waveMenuText;
 
 
 
@@ -62,7 +62,14 @@ public class FunctionHandler : Singleton<FunctionHandler> {
 
     public void OpenMenu()
     {
+        int menuWave = 0;
         menuScoreText.text = GameManager.Instance.scores.ToString();
+        if (AsteroidSpawner.Instance.nextWave - 1 < 0)
+           menuWave = 0;
+        else
+           menuWave = AsteroidSpawner.Instance.nextWave - 1;
+
+        waveMenuText.text = menuWave.ToString();
 
         if (GameManager.Instance.gameOver)
             gameOverText.SetActive(true);
@@ -110,7 +117,7 @@ public class FunctionHandler : Singleton<FunctionHandler> {
         if(GameManager.Instance.money >= DoubleLifeCost)
         {
             GameManager.Instance.lifeMultiplier = 2;
-            GameManager.Instance.lifeSpreadTime = 1;
+            GameManager.Instance.lifeTimer = GameManager.Instance.lifeSpreadTime;
             GameManager.Instance.money -= DoubleLifeCost;
             DoubleLifeCost *=2f;
         }
@@ -129,7 +136,7 @@ public class FunctionHandler : Singleton<FunctionHandler> {
 
     public void DoubleMoney()
     {
-        if (GameManager.Instance.money >= DoubleLifeCost)
+        if (GameManager.Instance.money >= DoubleLifeCost && GameManager.Instance.LifeCount<GameManager.Instance.lifePlanets.Count)
         {
             GameManager.Instance.lifeMultiplier = 2;
             GameManager.Instance.lifeSpreadTime = 1;
