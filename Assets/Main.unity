@@ -5505,6 +5505,7 @@ Prefab:
       value: 10
       objectReference: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
     - target: {fileID: 4171042745531376, guid: 9f4b354caafd4d9429883f5e28664ab2, type: 2}
       propertyPath: m_LocalPosition.x
       value: 2.54
@@ -5561,6 +5562,8 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
+=======
+>>>>>>> parent of f512c58... 05.07.18
 =======
 >>>>>>> parent of f512c58... 05.07.18
     m_RemovedComponents: []

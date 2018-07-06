@@ -190,7 +190,11 @@ public class Planet : MonoBehaviour {
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
                 if (diff < distance /*&& angleOfAttack < 0 && goVel.sqrMagnitude > fastestAsteroidSpeed && diff <= range*/)
+=======
+                if (diff < distance && angleOfAttack < 0 && goVel.sqrMagnitude > fastestAsteroidSpeed && diff <= range)
+>>>>>>> parent of f512c58... 05.07.18
 =======
                 if (diff < distance && angleOfAttack < 0 && goVel.sqrMagnitude > fastestAsteroidSpeed && diff <= range)
 >>>>>>> parent of f512c58... 05.07.18

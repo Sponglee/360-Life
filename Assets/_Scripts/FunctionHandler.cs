@@ -118,7 +118,11 @@ public class FunctionHandler : Singleton<FunctionHandler> {
         {
             GameManager.Instance.lifeMultiplier = 2;
 <<<<<<< HEAD
+<<<<<<< HEAD
             GameManager.Instance.lifeTimer = GameManager.Instance.lifeSpreadTime;
+=======
+            GameManager.Instance.lifeSpreadTime /= 2;
+>>>>>>> parent of f512c58... 05.07.18
 =======
             GameManager.Instance.lifeSpreadTime /= 2;
 >>>>>>> parent of f512c58... 05.07.18
@@ -139,6 +143,7 @@ public class FunctionHandler : Singleton<FunctionHandler> {
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     public void DoubleMoney()
     {
         if (GameManager.Instance.money >= DoubleLifeCost && GameManager.Instance.LifeCount<GameManager.Instance.lifePlanets.Count)
@@ -149,6 +154,8 @@ public class FunctionHandler : Singleton<FunctionHandler> {
             DoubleLifeCost *= 2f;
         }
     }
+=======
+>>>>>>> parent of f512c58... 05.07.18
 =======
 >>>>>>> parent of f512c58... 05.07.18
 }
