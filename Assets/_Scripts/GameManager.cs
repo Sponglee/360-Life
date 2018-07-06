@@ -63,9 +63,7 @@ public class GameManager : Singleton<GameManager> {
 
 
                 lifeTimer = 0;
-                if (lifeMultiplier == 1)
-                    lifeSpreadTime += 0.5f * lifeSpreadTime;
-              
+                lifeSpreadTime += 0.5f * lifeSpreadTime;
             }
             else
                 return;
@@ -111,14 +109,13 @@ public class GameManager : Singleton<GameManager> {
             lifeTimer = 0;
             lifeSlider.value = lifeTimer / lifeSpreadTime;
         }
-
-        if (lifeTimer>= lifeSpreadTime && LifeCount<lifePlanets.Count)
+        if (lifeTimer>= lifeSpreadTime )
         {
             
             lifeTimer = 0;
-            if (lifeMultiplier != 1)
+            if(lifeMultiplier != 1)
             {
-
+                lifeSpreadTime *= 2;
                 lifeMultiplier = 1;
             }
             LifeCount++;
