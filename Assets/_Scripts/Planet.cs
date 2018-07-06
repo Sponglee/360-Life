@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Planet : MonoBehaviour {
+public class Planet : MonoBehaviour
+{
 
 
     [SerializeField]
@@ -42,7 +43,7 @@ public class Planet : MonoBehaviour {
 
     private float pewTimer = 2;
     private float missileCoolDown = 2;
-   
+
 
 
     private string setTag;
@@ -80,30 +81,31 @@ public class Planet : MonoBehaviour {
     //    }
     //}
 
- 
+
 
 
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         planetTargets = new Stack<Transform>();
         targetCount = GameManager.Instance.missileLimit;
-	}
-	
-	// Update is called once per frame
-	void FixedUpdate ()
+    }
+
+    // Update is called once per frame
+    void FixedUpdate()
     {
 
         if (gameObject.CompareTag("Life") && pewTimer <= 0 && planetTargets.Count != 0)
         {
 
             //StartCoroutine(StopMissiles());
-          
-            if(planetTargets.Count>0)
+
+            if (planetTargets.Count > 0)
             {
                 for (int i = 0; i < TargetCount; i++)
                 {
-                    if(i<planetTargets.Count)
+                    if (i < planetTargets.Count)
                     {
                         Debug.Log("SPAWN " + i + " " + gameObject.name + " " + planetTargets.Count);
                         GameObject tmp = SimplePool.Spawn(GameManager.Instance.missile, gameObject.transform.position, Quaternion.identity);
@@ -111,7 +113,7 @@ public class Planet : MonoBehaviour {
                         pewTimer = targetCount;
                         tmp.transform.SetParent(AsteroidSpawner.Instance.transform);
                     }
-                  
+
 
                 }
 
@@ -128,7 +130,7 @@ public class Planet : MonoBehaviour {
         }
         else
             pewTimer = missileCoolDown;
-	}
+    }
 
 
     //private IEnumerator StopMissiles()
@@ -146,7 +148,7 @@ public class Planet : MonoBehaviour {
     //{
     //    //yield return new WaitForSecondsRealtime(fuseDelay);
 
-     
+
 
 
     //    foreach (GameObject go in GameObject.FindGameObjectsWithTag("Asteroid"))
@@ -172,15 +174,14 @@ public class Planet : MonoBehaviour {
         planetTargets.Clear();
 
         float distance = Mathf.Infinity;
-        float fastestAsteroidSpeed = 0;
-      
+
         //Transform target=null;
 
         //for (int i = 0; i < targetCount; i++)
         //{
         foreach (GameObject go in GameObject.FindGameObjectsWithTag("Asteroid"))
         {
-            if(planetTargets.Count == 0)
+            if (planetTargets.Count == 0)
             {
                 var diff = (go.transform.parent.position - transform.position).sqrMagnitude;
                 //var goRb = go.GetComponent<KeplerOrbitMover>().OrbitData;
@@ -189,28 +190,18 @@ public class Planet : MonoBehaviour {
                 //float angleOfAttack = Vector3.Dot(goVel, go.transform.parent.position - transform.position);
 
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-                if (diff < distance /*&& angleOfAttack < 0 && goVel.sqrMagnitude > fastestAsteroidSpeed && diff <= range*/)
-=======
-                if (diff < distance && angleOfAttack < 0 && goVel.sqrMagnitude > fastestAsteroidSpeed && diff <= range)
->>>>>>> parent of f512c58... 05.07.18
-=======
-                if (diff < distance && angleOfAttack < 0 && goVel.sqrMagnitude > fastestAsteroidSpeed && diff <= range)
->>>>>>> parent of f512c58... 05.07.18
+
+                //distance = diff;
+                //fastestAsteroidSpeed = goVel.sqrMagnitude;
+
+                if (distance < range /*&& fastestAsteroidSpeed <= goVel.sqrMagnitude*/)
                 {
-
-                    distance = diff;
-                    fastestAsteroidSpeed = goVel.sqrMagnitude;
-
-                    if (distance < range && fastestAsteroidSpeed <= goVel.sqrMagnitude)
-                    {
-                        planetTargets.Push(go.transform);
-                        //target = go.transform;
-
-                    }
+                    planetTargets.Push(go.transform);
+                    //target = go.transform;
 
                 }
+
+
             }
             else
             {
@@ -229,33 +220,29 @@ public class Planet : MonoBehaviour {
 
                 //    //if (distance < range && fastestAsteroidSpeed <= goVel.sqrMagnitude)
                 //    //{
-                        planetTargets.Push(go.transform);
-                        //target = go.transform;
+                planetTargets.Push(go.transform);
+                //target = go.transform;
 
-                    //}
+                //}
 
                 //}
             }
-               
+
 
         }
-            //if(target != null)
-            //    planetTargets.Add(target);
+        //if(target != null)
+        //    planetTargets.Add(target);
         //    yield return new WaitForSecondsRealtime(0.2f);
         ////}
-       
+
 
 
     }
 
-
-
-
-
-
-
-
 }
+
+
+
 
 
 
