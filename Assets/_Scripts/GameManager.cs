@@ -16,6 +16,10 @@ public class GameManager : Singleton<GameManager> {
     public float missileLimit = 1;
     public float missileTime = 2;
 
+    public bool shieldUp = false;
+    public GameObject shieldUI;
+    public GameObject timeUI;
+
     public Text moneyText;
     public Text scoreText;
     public Text moneyMultiplier;
@@ -122,6 +126,13 @@ public class GameManager : Singleton<GameManager> {
             LifeCount++;
             moneyMultiplier.text = string.Format("x{0}", lifeCount);
         }
+
+
+
+        //if(timeUI.activeSelf == true)
+        //{
+        //    timeUI.GetComponent<Image>().fillAmount = 1-AsteroidSpawner.Instance.lifeSlider.value;
+        //}
 	}
 
 

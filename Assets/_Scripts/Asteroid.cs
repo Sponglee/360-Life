@@ -72,14 +72,22 @@ public class Asteroid : MonoBehaviour
         {
             //collision.gameObject.SetActive(false);
             SimplePool.Spawn(AsteroidSpawner.Instance.planetExplosion, gameObject.transform.position, Quaternion.identity);
-            collision.gameObject.GetComponent<Outline>().enabled = false;
+            
 
-                
-            GameManager.Instance.LifeCount--;
-            GameManager.Instance.moneyMultiplier.text = string.Format("x{0}", GameManager.Instance.LifeCount);
-            collision.gameObject.GetComponent<Outline>().enabled = false;
-            collision.gameObject.GetComponent<Planet>().SetTag = "Planet";
+            if (!GameManager.Instance.shieldUp)
+            {
+                collision.gameObject.GetComponent<Outline>().enabled = false;
+                GameManager.Instance.LifeCount--;
+                GameManager.Instance.moneyMultiplier.text = string.Format("x{0}", GameManager.Instance.LifeCount);
+                collision.gameObject.GetComponent<Outline>().enabled = false;
+                collision.gameObject.GetComponent<Planet>().SetTag = "Planet";
 
+            }
+            else
+            {
+                GameManager.Instance.shieldUp = false;
+                GameManager.Instance.shieldUI.SetActive(false);
+            }
 
             StartCoroutine(StopDestroy());
         }

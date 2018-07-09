@@ -13,7 +13,7 @@ public class FunctionHandler : Singleton<FunctionHandler>
     public Text waveMenuText;
 
 
-
+    //Spread life
     public Text doubleLifeCostText;
     [SerializeField]
     private float doubleLifeCost;
@@ -31,6 +31,7 @@ public class FunctionHandler : Singleton<FunctionHandler>
         }
     }
 
+    //+1 missile
     public Text doubleMissileCostText;
     [SerializeField]
     private float doubleMissileCost;
@@ -47,6 +48,44 @@ public class FunctionHandler : Singleton<FunctionHandler>
             doubleMissileCostText.text = value.ToString();
         }
     }
+
+    //Double CoolDown
+    public Text doubleMissileTimeText;
+    [SerializeField]
+    private float doubleMissileTime;
+    public float DoubleMissileTime
+    {
+        get
+        {
+            return doubleMissileTime;
+        }
+
+        set
+        {
+            doubleMissileTime = value;
+            doubleMissileTimeText.text = value.ToString();
+        }
+    }
+
+    //Shield 
+    public Text doubleShieldText;
+    [SerializeField]
+    private float doubleShieldCost;
+    public float DoubleShieldCost
+    {
+        get
+        {
+            return doubleShieldCost;
+        }
+
+        set
+        {
+            doubleShieldCost = value;
+            doubleShieldText.text = value.ToString();
+        }
+    }
+
+
 
 
     public void Start()
@@ -113,6 +152,8 @@ public class FunctionHandler : Singleton<FunctionHandler>
         SceneManager.LoadScene("Tilted");
     }
 
+
+    //Spread life to next planet instantly
     public void DoubleLife()
     {
         if (GameManager.Instance.money >= DoubleLifeCost)
@@ -124,7 +165,7 @@ public class FunctionHandler : Singleton<FunctionHandler>
         }
     }
 
-
+    //+1 missiles to each planet
     public void DoubleMissiles()
     {
         if (GameManager.Instance.money >= DoubleMissileCost)
@@ -135,25 +176,30 @@ public class FunctionHandler : Singleton<FunctionHandler>
         }
     }
 
-    public void DoubleMoney()
+   
+
+    //DoubleCooldown
+    public void DoubleTime()
     {
-        if (GameManager.Instance.money >= DoubleLifeCost && GameManager.Instance.LifeCount < GameManager.Instance.lifePlanets.Count)
+        if (GameManager.Instance.money >= DoubleMissileTime && GameManager.Instance.LifeCount < GameManager.Instance.lifePlanets.Count)
         {
-            GameManager.Instance.lifeMultiplier = 2;
-            GameManager.Instance.lifeSpreadTime = 1;
-            GameManager.Instance.money -= DoubleLifeCost;
-            DoubleLifeCost *= 2f;
+            GameManager.Instance.missileTime = 0.5f;
+            GameManager.Instance.timeUI.SetActive(true);
+            GameManager.Instance.money -= DoubleMissileTime;
+            DoubleMissileTime *= 2f;
         }
     }
 
-    public void DoubleTime()
+
+    //Shield
+    public void DoubleShield()
     {
-        if (GameManager.Instance.money >= DoubleLifeCost && GameManager.Instance.LifeCount < GameManager.Instance.lifePlanets.Count)
+        if (GameManager.Instance.money >= DoubleShieldCost && GameManager.Instance.LifeCount < GameManager.Instance.lifePlanets.Count)
         {
-            GameManager.Instance.lifeMultiplier = 2;
-            GameManager.Instance.lifeSpreadTime = 1;
-            GameManager.Instance.money -= DoubleLifeCost;
-            DoubleLifeCost *= 2f;
+            GameManager.Instance.shieldUp = true;
+            GameManager.Instance.shieldUI.SetActive(true);
+            GameManager.Instance.money -= DoubleShieldCost;
+            DoubleShieldCost*= 2f;
         }
     }
 }

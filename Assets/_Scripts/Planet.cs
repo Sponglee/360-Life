@@ -120,10 +120,10 @@ public class Planet : MonoBehaviour
                 {
                     if (i < planetTargets.Count)
                     {
-                        Debug.Log("SPAWN " + i + " " + gameObject.name + " " + planetTargets.Count);
+                        //Debug.Log("SPAWN " + i + " " + gameObject.name + " " + planetTargets.Count);
                         GameObject tmp = SimplePool.Spawn(GameManager.Instance.missile, gameObject.transform.position, Quaternion.identity);
                         tmp.GetComponent<Missile>().Target = planetTargets.Pop();
-                        pewTimer = missileCoolDown;
+                        pewTimer = MissileCoolDown;
                         tmp.transform.SetParent(AsteroidSpawner.Instance.transform);
                     }
 

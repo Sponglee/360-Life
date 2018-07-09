@@ -85,7 +85,7 @@ public class AsteroidSpawner : Singleton<AsteroidSpawner>
 
                 Vector3 center = transform.position;
 
-                Vector3 spawnPosition = RandomCircle(center, Random.Range(10f, 12f));
+                Vector3 spawnPosition = RandomCircle(center, Random.Range(12f, 15f));
 
                 Quaternion spawnRotation = Quaternion.identity;
 
@@ -96,7 +96,7 @@ public class AsteroidSpawner : Singleton<AsteroidSpawner>
 
                 int rng = Random.Range(0, 3);
                 randomHazard = hazards[rng];
-                GameObject tmp = Instantiate(randomHazard, /*spawnPosition, Quaternion.identity,*/ gameObject.transform);
+                GameObject tmp = Instantiate(randomHazard, spawnPosition, Quaternion.identity, gameObject.transform);
 
                 //tmp.GetComponent<KeplerOrbitMover>().OrbitData.Position = spawnPosition;
 
@@ -116,11 +116,15 @@ public class AsteroidSpawner : Singleton<AsteroidSpawner>
             //}
 
 
-
+         
             hazardCount += 3;
          
             yield return new WaitForSeconds(waveWait);
-
+            if (GameManager.Instance.missileTime != 2)
+            {
+                GameManager.Instance.missileTime = 2;
+                GameManager.Instance.timeUI.SetActive(false);
+            }
         }
     }
 
