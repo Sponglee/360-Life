@@ -554,16 +554,16 @@ MonoBehaviour:
   waveMenuText: {fileID: 646619370}
   moneyMultiplierText: {fileID: 1639688815}
   doubleLifeCostText: {fileID: 856595534}
-  doubleLifeCost: 50
+  doubleLifeCost: 500
   missileMultiplierText: {fileID: 167785616}
   doubleMissileCostText: {fileID: 1898675160}
-  doubleMissileCost: 50
+  doubleMissileCost: 500
   doubleMissileTimeText: {fileID: 1525612835}
-  doubleMissileTime: 25
+  doubleMissileTime: 250
   doubleShieldText: {fileID: 2013391823}
-  doubleShieldCost: 50
+  doubleShieldCost: 500
   doubleMoneyText: {fileID: 856595534}
-  doubleMoneyCost: 50
+  doubleMoneyCost: 500
 --- !u!224 &96368878
 RectTransform:
   m_ObjectHideFlags: 0
@@ -660,7 +660,7 @@ GameObject:
   - component: {fileID: 122423278}
   - component: {fileID: 122423279}
   m_Layer: 0
-  m_Name: CameraController
+  m_Name: SpaceHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -837,7 +837,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 514168835}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &167785613
 GameObject:
@@ -959,7 +959,7 @@ RectTransform:
   m_Children:
   - {fileID: 989337723}
   m_Father: {fileID: 285174529}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1062,7 +1062,10 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -0}
   m_LocalScale: {x: 1.981214, y: 1.9195366, z: 1.9}
-  m_Children: []
+  m_Children:
+  - {fileID: 1341892663}
+  - {fileID: 1002157212}
+  - {fileID: 1706684881}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1171,13 +1174,13 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 285174528}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.87999976, y: 0.000001307567, z: 0.000002003368}
+  m_LocalPosition: {x: 1.2299999, y: 0.000001021342, z: 0.000001695677}
   m_LocalScale: {x: 0.27747983, y: 0.27747938, z: 0.27747938}
   m_Children:
-  - {fileID: 458170009}
   - {fileID: 206335260}
+  - {fileID: 458170009}
   m_Father: {fileID: 1932559553}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!120 &285174530
 LineRenderer:
@@ -1316,54 +1319,54 @@ MonoBehaviour:
       y: 0
       z: 0
     Position:
-      x: 0.7370214462280273
-      y: -0.0000003409732016734779
-      z: 0.0000019744043129321653
-    AttractorDistance: 0.7370214462307508
+      x: 1.0301551818847656
+      y: -0.0000003409733153603156
+      z: 0.0000016224461205638363
+    AttractorDistance: 1.0301551818860997
     AttractorMass: 50
     Velocity:
-      x: -0.0000069141387939453125
-      y: -0.000000016654666978865862
-      z: 2.604623317718506
-    SemiMinorAxis: 0.7370213834881977
-    SemiMajorAxis: 0.7370213834882007
-    FocalParameter: 0.7370213834881949
-    Eccentricity: 0.00000008853918713460001
-    EnergyTotal: -6.784063782303887
-    Period: 1.7779313815047988
-    TrueAnomaly: 0
+      x: -0.0000035762786865234375
+      y: -0.0000001358638428428094
+      z: 2.2030975818634033
+    SemiMinorAxis: 1.030155438646877
+    SemiMajorAxis: 1.0301554386469103
+    FocalParameter: 1.030155438646844
+    Eccentricity: 0.0000002538896022766155
+    EnergyTotal: -4.853636535737958
+    Period: 2.9379811329147723
+    TrueAnomaly: 6.2831853071796
     MeanAnomaly: 0
     EccentricAnomaly: 0
     SquaresConstant: 0
     Periapsis:
-      x: 0.7370214462279798
-      y: -0.00000034097320178815186
-      z: 0.00000199233816775867
-    PeriapsisDistance: 0.7370214462307515
+      x: 1.0301551818848464
+      y: -0.0000003409733122891583
+      z: 0.000001572645827949929
+    PeriapsisDistance: 1.0301551818861032
     Apoapsis:
-      x: -0.7370213207429746
-      y: 0.0000003409731435047859
-      z: -0.0000019564701219440413
-    ApoapsisDistance: 0.7370213207456503
+      x: -1.030155695406306
+      y: 0.00000034097348840311665
+      z: -0.000001672247221950225
+    ApoapsisDistance: 1.0301556954077198
     CenterPoint:
-      x: 0.00000006274250260075623
-      y: -0.0000000000000291416829745829
-      z: 0.00000001793402290731442
-    OrbitCompressionRatio: 0.9999999999999921
+      x: -0.0000002567607297235697
+      y: 0.00000000000008805697919185685
+      z: -0.00000004980069700014812
+    OrbitCompressionRatio: 0.9999999999999355
     OrbitNormal:
-      x: -0.00000046263672623258625
-      y: -0.999999999999893
-      z: -0.000000006395498957596572
+      x: -0.0000003309920886678476
+      y: -0.9999999999999435
+      z: -0.00000006166999940503667
     SemiMinorAxisBasis:
-      x: -0.0000026788966931831858
-      y: -0.0000000063942596015782566
-      z: 0.9999999999964116
+      x: -0.0000015749531430993238
+      y: -0.00000006166947810793315
+      z: 0.9999999999987578
     SemiMajorAxisBasis:
-      x: -0.9999999999963047
-      y: 0.0000004626367433638072
-      z: -0.00000267889669022468
-    Inclination: 1.5707963465394938
-    OrbitNormalDotEclipticNormal: -0.000000006395498957596572
+      x: -0.999999999998705
+      y: 0.0000003309921857947958
+      z: -0.0000015749531226871256
+    Inclination: 1.5707964018139946
+    OrbitNormalDotEclipticNormal: -0.00000006166999940503667
   LockOrbitEditing: 0
 --- !u!23 &285174533
 MeshRenderer:
@@ -2078,7 +2081,7 @@ MonoBehaviour:
   gameOver: 0
   money: 0
   scores: 0
-  mps: 1
+  mps: 10
   moneyTimer: 0
   missileLimit: 1
   missileTime: 2
@@ -2098,10 +2101,10 @@ MonoBehaviour:
   lifeSpreadTime: 15
   lifeIndex: 0
   lifeSlider: {fileID: 125738523}
+  numberOfPlanets: 3
   tmpLives:
-  - {fileID: 285174528}
-  - {fileID: 514168834}
   - {fileID: 546737867}
+  - {fileID: 514168834}
 --- !u!4 &294417534
 Transform:
   m_ObjectHideFlags: 0
@@ -2413,6 +2416,48 @@ Transform:
   m_Father: {fileID: 1892292796}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &381582990
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 257866401}
+    m_Modifications:
+    - target: {fileID: 4584924247490298, guid: c63777dcdc05d1742be944cefaa3a737, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 6.74
+      objectReference: {fileID: 0}
+    - target: {fileID: 4584924247490298, guid: c63777dcdc05d1742be944cefaa3a737, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4584924247490298, guid: c63777dcdc05d1742be944cefaa3a737, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -0.18
+      objectReference: {fileID: 0}
+    - target: {fileID: 4584924247490298, guid: c63777dcdc05d1742be944cefaa3a737, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0.27346936
+      objectReference: {fileID: 0}
+    - target: {fileID: 4584924247490298, guid: c63777dcdc05d1742be944cefaa3a737, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0.6049774
+      objectReference: {fileID: 0}
+    - target: {fileID: 4584924247490298, guid: c63777dcdc05d1742be944cefaa3a737, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0.26197475
+      objectReference: {fileID: 0}
+    - target: {fileID: 4584924247490298, guid: c63777dcdc05d1742be944cefaa3a737, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 0.70041853
+      objectReference: {fileID: 0}
+    - target: {fileID: 4584924247490298, guid: c63777dcdc05d1742be944cefaa3a737, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: c63777dcdc05d1742be944cefaa3a737, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &390585590
 GameObject:
   m_ObjectHideFlags: 0
@@ -2444,7 +2489,7 @@ RectTransform:
   m_Children:
   - {fileID: 1348868689}
   m_Father: {fileID: 546737868}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2523,6 +2568,48 @@ Canvas:
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 9930946b7c5f48e44aef1e56c2de7315, type: 2}
   m_PrefabInternal: {fileID: 1761489084}
+--- !u!1001 &454565486
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 257866401}
+    m_Modifications:
+    - target: {fileID: 4533554699910598, guid: d4edcbc516955e14694103e6c6cbca6e, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -3.99
+      objectReference: {fileID: 0}
+    - target: {fileID: 4533554699910598, guid: d4edcbc516955e14694103e6c6cbca6e, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4533554699910598, guid: d4edcbc516955e14694103e6c6cbca6e, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 6.77
+      objectReference: {fileID: 0}
+    - target: {fileID: 4533554699910598, guid: d4edcbc516955e14694103e6c6cbca6e, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0.30112183
+      objectReference: {fileID: 0}
+    - target: {fileID: 4533554699910598, guid: d4edcbc516955e14694103e6c6cbca6e, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0.3844724
+      objectReference: {fileID: 0}
+    - target: {fileID: 4533554699910598, guid: d4edcbc516955e14694103e6c6cbca6e, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0.056688763
+      objectReference: {fileID: 0}
+    - target: {fileID: 4533554699910598, guid: d4edcbc516955e14694103e6c6cbca6e, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: -0.87080014
+      objectReference: {fileID: 0}
+    - target: {fileID: 4533554699910598, guid: d4edcbc516955e14694103e6c6cbca6e, type: 2}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: d4edcbc516955e14694103e6c6cbca6e, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &458170008
 GameObject:
   m_ObjectHideFlags: 0
@@ -2545,11 +2632,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 458170008}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.000029858193, y: 7.633615, z: 8.206127}
+  m_LocalPosition: {x: -0.000015466114, y: 6.456825, z: 6.9410796}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 285174529}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &514168834
 GameObject:
@@ -2581,11 +2668,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 514168834}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.272, y: -0.00012858199, z: 0.00012220959}
+  m_LocalPosition: {x: -2.272, y: -0.00012858087, z: 0.00012221081}
   m_LocalScale: {x: 0.54274565, y: 0.54274553, z: 0.54274553}
   m_Children:
-  - {fileID: 151186877}
   - {fileID: 1796398156}
+  - {fileID: 151186877}
   m_Father: {fileID: 1892292796}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2634,52 +2721,52 @@ MonoBehaviour:
       y: 0
       z: 1
     Position:
-      x: -2.2720000743865967
-      y: -0.00017738346650730819
-      z: 0.0000019024446373805404
+      x: -2.272000074386595
+      y: -0.0001773834664992153
+      z: 0.0000019041056089644526
     AttractorDistance: 2.2720000813118855
     AttractorMass: 1000
     Velocity:
-      x: -0.0000064373016357421875
-      y: -0.00003290172026026994
-      z: -6.634330749511719
+      x: -0.000006442066728118423
+      y: -0.00003290172063229837
+      z: -6.634330749511715
     SemiMinorAxis: 2.2720135493478733
     SemiMajorAxis: 2.2720135493878115
     FocalParameter: 2.272013549307935
-    Eccentricity: 0.000005929314567866088
+    Eccentricity: 0.0000059293142797864065
     EnergyTotal: -44.01382268035367
     Period: 2.151771943954175
-    TrueAnomaly: 0.022491174248795206
-    MeanAnomaly: 0.022490907557967794
-    EccentricAnomaly: 0.02249104090318156
+    TrueAnomaly: 0.022489013457270116
+    MeanAnomaly: 0.022488746792078018
+    EccentricAnomaly: 0.02248888012447661
     SquaresConstant: 0
     Periapsis:
-      x: -2.2714254035139696
-      y: -0.00017708520443481017
-      z: 0.051097543106622526
-    PeriapsisDistance: 2.272000077904775
+      x: -2.2714255138733397
+      y: -0.00017708523738104774
+      z: 0.051092637124448496
+    PeriapsisDistance: 2.2720000779054295
     Apoapsis:
-      x: 2.271452339665152
-      y: 0.00017708730443502654
-      z: -0.05109814905702885
-    ApoapsisDistance: 2.272027020870848
+      x: 2.271452450024522
+      y: 0.00017708733738155272
+      z: -0.05109324301664681
+    ApoapsisDistance: 2.2720270208701936
     CenterPoint:
       x: 0.000013468075591333293
-      y: 0.000000001050000108175217
-      z: -0.00000030297520315954823
+      y: 0.0000000010500002524950962
+      z: -0.0000003029460991565692
     OrbitCompressionRatio: 0.9999999999648432
     OrbitNormal:
-      x: 0.00007807371020754491
+      x: 0.00007807371020760844
       y: -0.9999999969399509
       z: 0.000004959236857159727
     SemiMinorAxisBasis:
-      x: -0.02249011457745016
-      y: -0.0000067138692029827895
-      z: -0.9997470653626432
+      x: -0.02248795525438427
+      y: -0.000006713700857507297
+      z: -0.9997471139360208
     SemiMajorAxisBasis:
-      x: 0.9997470623366637
-      y: 0.00007794242885683221
-      z: -0.022490115032805978
+      x: 0.9997471109100404
+      y: 0.0000779424433577941
+      z: -0.022487955709733564
     Inclination: 3.1415144492307734
     OrbitNormalDotEclipticNormal: -0.9999999969399509
   LockOrbitEditing: 0
@@ -3374,7 +3461,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca1fdeed25a8a224a8ad1d04c15cfcd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 10
+  range: 18
 --- !u!1 &546737867
 GameObject:
   m_ObjectHideFlags: 0
@@ -3405,11 +3492,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 546737867}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.6117268, y: -0.0000054887078, z: 0.0000025007748}
-  m_LocalScale: {x: 1.1135184, y: 1.1135186, z: 1.1135186}
+  m_LocalPosition: {x: -6.6117, y: 0.04116339, z: 0.044258416}
+  m_LocalScale: {x: 0.6719228, y: 0.671923, z: 0.671923}
   m_Children:
-  - {fileID: 1102337412}
   - {fileID: 390585591}
+  - {fileID: 1102337412}
   m_Father: {fileID: 1892292796}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4096,54 +4183,54 @@ MonoBehaviour:
       y: 1
       z: 0
     Position:
-      x: -6.611726760864258
-      y: -0.0000057220458984375
-      z: -0.0000019073495423072018
-    AttractorDistance: 6.611726760867009
+      x: -6.611700057983398
+      y: -0.000005327165126800537
+      z: 0.06044197082519531
+    AttractorDistance: 6.611976322447267
     AttractorMass: 1000
     Velocity:
-      x: 0.000000476837158203125
-      y: -0.000010728836059570312
-      z: -3.8890419006347656
-    SemiMinorAxis: 6.611728823751811
-    SemiMajorAxis: 6.611728823752224
-    FocalParameter: 6.611728823751398
-    Eccentricity: 0.00000035335515901491694
-    EnergyTotal: -15.124637467113342
-    Period: 10.681996086236296
-    TrueAnomaly: 6.2831853071796
+      x: -0.03555011749267578
+      y: -0.000011123716831207275
+      z: -3.888805389404297
+    SemiMinorAxis: 6.611976254298265
+    SemiMajorAxis: 6.611976254298267
+    FocalParameter: 6.611976254298265
+    Eccentricity: 0.000000017009768200843605
+    EnergyTotal: -15.124071479402062
+    Period: 10.682595719915128
+    TrueAnomaly: 0
     MeanAnomaly: 0
     EccentricAnomaly: 0
     SquaresConstant: 0
     Periapsis:
-      x: -6.611726760864123
-      y: -0.000005722048923940124
-      z: -0.0000030040487939526
-    PeriapsisDistance: 6.611726760867281
+      x: -6.611700057165532
+      y: -0.000005327164870888344
+      z: 0.060442060291039094
+    PeriapsisDistance: 6.611976322447268
     Apoapsis:
-      x: 6.611730886634822
-      y: 0.000005722046443537325
-      z: 0.0000008106514808631883
-    ApoapsisDistance: 6.611730886637348
+      x: 6.611699922508961
+      y: 0.000005327165272899579
+      z: -0.06044188011341247
+    ApoapsisDistance: 6.611976186149269
     CenterPoint:
-      x: 0.0000020628853493782674
-      y: -0.0000000000012402013995816028
-      z: -0.000001096698656544706
-    OrbitCompressionRatio: 0.9999999999998751
+      x: -0.00000006732828530169222
+      y: 0.0000000000002010056174741307
+      z: 0.00000009008881330933303
+    OrbitCompressionRatio: 0.9999999999999997
     OrbitNormal:
-      x: 0.00000086543815912221
-      y: -0.9999999999958202
-      z: 0.00000275873511942553
+      x: 0.0000008317976398908948
+      y: -0.9999999999955846
+      z: 0.000002852841738380062
     SemiMinorAxisBasis:
-      x: 0.0000002884821767283813
-      y: -0.0000027587348697629638
-      z: -0.9999999999961531
+      x: -0.009141286638388885
+      y: -0.0000028603262403619256
+      z: -0.9999582175623206
     SemiMajorAxisBasis:
-      x: 0.9999999999995839
-      y: 0.0000008654389549647929
-      z: 0.00000028847978921274834
-    Inclination: 1.5707935814088518
-    OrbitNormalDotEclipticNormal: 0.00000275873511942553
+      x: 0.9999582175660656
+      y: 0.0000008056842412933525
+      z: -0.009141286640727738
+    Inclination: 1.570793487302232
+    OrbitNormalDotEclipticNormal: 0.000002852841738380062
   LockOrbitEditing: 0
 --- !u!23 &546737874
 MeshRenderer:
@@ -4160,7 +4247,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: b0a65e6a022dcd2479e67a756a416c7b, type: 2}
+  - {fileID: 2100000, guid: ae6e6205d7dfd6344815ec787fc51b9c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5265,7 +5352,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 14.024, y: 12.051}
+  m_SizeDelta: {x: 17.154, y: 14.741}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &989337724
 MonoBehaviour:
@@ -5382,6 +5469,11 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 998247941}
+--- !u!4 &1002157212 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4584924247490298, guid: c63777dcdc05d1742be944cefaa3a737,
+    type: 2}
+  m_PrefabInternal: {fileID: 381582990}
 --- !u!1 &1003230192
 GameObject:
   m_ObjectHideFlags: 0
@@ -6098,11 +6190,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1102337411}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0000004282257, y: -2.3788118, z: -2.5572057}
+  m_LocalPosition: {x: -0.05290804, y: -3.9419556, z: -4.2375727}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 546737868}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1107926603
 Prefab:
@@ -6252,12 +6344,54 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1129044100}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0000028467052, y: -3.996832, z: -4.2965894}
+  m_LocalPosition: {x: 0, y: -3.8725474, z: -4.162984}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1932559553}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1219045058
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 257866401}
+    m_Modifications:
+    - target: {fileID: 4961723796099312, guid: 63b373c1e34b1684792bbea48b9f0223, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -3.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 4961723796099312, guid: 63b373c1e34b1684792bbea48b9f0223, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4961723796099312, guid: 63b373c1e34b1684792bbea48b9f0223, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -5.94
+      objectReference: {fileID: 0}
+    - target: {fileID: 4961723796099312, guid: 63b373c1e34b1684792bbea48b9f0223, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0.0009808241
+      objectReference: {fileID: 0}
+    - target: {fileID: 4961723796099312, guid: 63b373c1e34b1684792bbea48b9f0223, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0.4209007
+      objectReference: {fileID: 0}
+    - target: {fileID: 4961723796099312, guid: 63b373c1e34b1684792bbea48b9f0223, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0.24881284
+      objectReference: {fileID: 0}
+    - target: {fileID: 4961723796099312, guid: 63b373c1e34b1684792bbea48b9f0223, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 0.87231517
+      objectReference: {fileID: 0}
+    - target: {fileID: 4961723796099312, guid: 63b373c1e34b1684792bbea48b9f0223, type: 2}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 63b373c1e34b1684792bbea48b9f0223, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1223071051
 GameObject:
   m_ObjectHideFlags: 0
@@ -6289,7 +6423,7 @@ RectTransform:
   m_Children:
   - {fileID: 1817682449}
   m_Father: {fileID: 1932559553}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -6488,7 +6622,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -40.9, y: -10}
+  m_AnchoredPosition: {x: -40.899902, y: -10}
   m_SizeDelta: {x: 133.38, y: 53.65}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &1319482721
@@ -6722,6 +6856,11 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1335207798}
+--- !u!4 &1341892663 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4961723796099312, guid: 63b373c1e34b1684792bbea48b9f0223,
+    type: 2}
+  m_PrefabInternal: {fileID: 1219045058}
 --- !u!1 &1346563241
 GameObject:
   m_ObjectHideFlags: 0
@@ -6826,7 +6965,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -0.0000014305115, y: 0}
-  m_SizeDelta: {x: 71.69, y: 56.27}
+  m_SizeDelta: {x: 65.079, y: 56.27}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1348868690
 MonoBehaviour:
@@ -7057,7 +7196,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1475271089}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.40000004, y: 0.45002982, z: 0.45002982}
   m_Children: []
   m_Father: {fileID: 1796398156}
@@ -7065,8 +7204,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.00000047683716, y: -0}
-  m_SizeDelta: {x: 34.236, y: 31.189}
+  m_AnchoredPosition: {x: -0.00000047683716, y: 0}
+  m_SizeDelta: {x: 39.48, y: 35.97}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1475271091
 MonoBehaviour:
@@ -7805,6 +7944,11 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1640680890}
+--- !u!4 &1706684881 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4533554699910598, guid: d4edcbc516955e14694103e6c6cbca6e,
+    type: 2}
+  m_PrefabInternal: {fileID: 454565486}
 --- !u!1 &1711171015
 GameObject:
   m_ObjectHideFlags: 0
@@ -8025,6 +8169,30 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 179.99998
       objectReference: {fileID: 0}
+    - target: {fileID: 19800002, guid: 9930946b7c5f48e44aef1e56c2de7315, type: 2}
+      propertyPath: InitialModule.startColor.minColor.r
+      value: 0.4811321
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800002, guid: 9930946b7c5f48e44aef1e56c2de7315, type: 2}
+      propertyPath: InitialModule.startColor.minColor.g
+      value: 0.4811321
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800002, guid: 9930946b7c5f48e44aef1e56c2de7315, type: 2}
+      propertyPath: InitialModule.startColor.minColor.b
+      value: 0.4811321
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800000, guid: 9930946b7c5f48e44aef1e56c2de7315, type: 2}
+      propertyPath: InitialModule.startColor.minColor.r
+      value: 0.7924528
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800000, guid: 9930946b7c5f48e44aef1e56c2de7315, type: 2}
+      propertyPath: InitialModule.startColor.minColor.g
+      value: 0.7924528
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800000, guid: 9930946b7c5f48e44aef1e56c2de7315, type: 2}
+      propertyPath: InitialModule.startColor.minColor.b
+      value: 0.7924528
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9930946b7c5f48e44aef1e56c2de7315, type: 2}
   m_IsPrefabParent: 0
@@ -8059,7 +8227,7 @@ RectTransform:
   m_Children:
   - {fileID: 1475271090}
   m_Father: {fileID: 514168835}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -8291,8 +8459,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.0000023841858, y: -0}
-  m_SizeDelta: {x: 53.35, y: 43.47}
+  m_AnchoredPosition: {x: -0.0000023841858, y: 0}
+  m_SizeDelta: {x: 49.23, y: 40.88}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1817682450
 MonoBehaviour:
@@ -8789,12 +8957,12 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1932559552}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.14, y: -0.000004092173, z: 0.0000012016717}
+  m_LocalPosition: {x: -4.41, y: 0, z: 0}
   m_LocalScale: {x: 0.8375246, y: 0.83752465, z: 0.83752465}
   m_Children:
+  - {fileID: 1223071052}
   - {fileID: 1129044101}
   - {fileID: 285174529}
-  - {fileID: 1223071052}
   m_Father: {fileID: 1892292796}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -8935,54 +9103,54 @@ MonoBehaviour:
       y: 1
       z: 0
     Position:
-      x: -4.139999866485596
-      y: -0.000003814697265625
-      z: -0.0000019073493149335263
-    AttractorDistance: 4.139999866487792
+      x: -4.409999847412109
+      y: 0
+      z: 0
+    AttractorDistance: 4.409999847412109
     AttractorMass: 1000
     Velocity:
-      x: 0.000002384185791015625
+      x: 0
       y: 0
-      z: -4.914731979370117
-    SemiMinorAxis: 4.1399998524620525
-    SemiMajorAxis: 4.139999852462054
-    FocalParameter: 4.139999852462052
-    Eccentricity: 0.000000024631719321165626
-    EnergyTotal: -24.154590592713724
-    Period: 5.292737481061932
+      z: -4.761904716491699
+    SemiMinorAxis: 4.409999544996051
+    SemiMajorAxis: 4.409999544996062
+    FocalParameter: 4.409999544996041
+    Eccentricity: 0.00000006857507439672617
+    EnergyTotal: -22.675739638926743
+    Period: 5.818856969079859
     TrueAnomaly: 0
     MeanAnomaly: 0
     EccentricAnomaly: 0
     SquaresConstant: 0
     Periapsis:
-      x: -4.139999866485646
-      y: -0.000003814697265625001
-      z: -0.0000018063431601181482
-    PeriapsisDistance: 4.1399998664877975
+      x: -4.4099998474121085
+      y: 0
+      z: -0
+    PeriapsisDistance: 4.4099998474121085
     Apoapsis:
-      x: 4.139999838434069
-      y: 0.0000038146972397776825
-      z: 0.000002008355456825241
-    ApoapsisDistance: 4.139999838436314
+      x: 4.409999242580015
+      y: -0
+      z: 0
+    ApoapsisDistance: 4.409999242580015
     CenterPoint:
-      x: -0.000000014025788130683216
-      y: -0.000000000000012923659179447487
-      z: 0.00000010100614835354626
-    OrbitCompressionRatio: 0.9999999999999994
+      x: -0.00000030241604688763344
+      y: -0
+      z: -0
+    OrbitCompressionRatio: 0.9999999999999953
     OrbitNormal:
-      x: 0.0000009214244900111037
-      y: -0.9999999999995753
-      z: 0.00000000000044699226444080577
+      x: -0
+      y: -1
+      z: -0
     SemiMinorAxisBasis:
-      x: 0.00000046071240976936056
-      y: -0.00000000000002248056722724825
-      z: -0.999999999999894
+      x: 0
+      y: 0
+      z: -1
     SemiMajorAxisBasis:
-      x: 0.9999999999994694
-      y: 0.000000921424490011212
-      z: 0.00000046071240976914425
-    Inclination: 1.5707963401435476
-    OrbitNormalDotEclipticNormal: 0.00000000000044699226444080577
+      x: 1
+      y: -0
+      z: 0
+    Inclination: 1.5707963401439946
+    OrbitNormalDotEclipticNormal: -0
   LockOrbitEditing: 0
 --- !u!23 &1932559557
 MeshRenderer:
@@ -9583,7 +9751,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca1fdeed25a8a224a8ad1d04c15cfcd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 18
+  range: 60
 --- !u!1 &1949929398
 GameObject:
   m_ObjectHideFlags: 0

@@ -117,6 +117,8 @@ public class FunctionHandler : Singleton<FunctionHandler>
         missileMultiplier = 1;
         doubleLifeCostText.text = doubleLifeCost.ToString();
         doubleMissileCostText.text = doubleMissileCost.ToString();
+        doubleShieldText.text = doubleLifeCost.ToString();
+        doubleMissileTimeText.text = doubleMissileCost.ToString();
     }
 
     public void Restart()
@@ -198,7 +200,7 @@ public class FunctionHandler : Singleton<FunctionHandler>
         {
             moneyMultiplier++;
             moneyMultiplierText.text = string.Format("x{0}", moneyMultiplier);
-            GameManager.Instance.mps += 1;
+            GameManager.Instance.mps += 10;
             //Debug.Log(GameManager.Instance.mps);
             GameManager.Instance.money -= DoubleMoneyCost;
             DoubleMoneyCost *= 2f;
@@ -245,14 +247,14 @@ public class FunctionHandler : Singleton<FunctionHandler>
 
             foreach (GameObject life in lifes)
             {
-                var tmpL = life.transform.Find("Canvas");
+                var tmpL = life.transform.GetChild(0);
                 tmpL.gameObject.SetActive(true);
             }
 
 
 
             GameManager.Instance.shieldUp = true;
-            GameManager.Instance.shieldUI.SetActive(true);
+            //GameManager.Instance.shieldUI.SetActive(true);
             GameManager.Instance.money -= DoubleShieldCost;
             DoubleShieldCost*= 2f;
         }

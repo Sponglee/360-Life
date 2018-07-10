@@ -9,7 +9,7 @@ public class GameManager : Singleton<GameManager> {
 
     public float money = 0;
     public float scores=0;
-    public float mps=1;
+    public float mps=10;
     public float moneyTimer;
 
 
@@ -41,41 +41,23 @@ public class GameManager : Singleton<GameManager> {
         get {return lifeCount;}
         set
         {
-            GameObject lifeTmp = lifePlanets.Dequeue();
+         
             lifeCount = value;
+
+
+        
             if (LifeCount<=0)
             {
-                StartCoroutine(StopGameOver());
-                
-            }
-
-            if (lifeCount < lifeIndex && lifeCount >= 0)
-            {
-                lifeIndex--;
-
-                if (lifeIndex < 0)
-                    lifeIndex = numberOfPlanets;
-            }
-            else if (lifeCount > lifeIndex && lifeCount <= numberOfPlanets)
-            {
-                while (lifeIndex >= 0 && lifeIndex < lifePlanets.Count && lifeTmp.GetComponent<Outline>().enabled != false)
-                {
-                    lifeIndex++;
-                    if (lifeIndex >= numberOfPlanets)
-                        lifeIndex = 0;
-                }
-
-
-                lifeTmp.GetComponent<Planet>().SetTag = "Life";
-                lifeTmp.GetComponent<Outline>().enabled = true;
-                if (shieldUp)
-                    lifeTmp.transform.Find("Canvas").gameObject.SetActive(true);
-
-                lifeTimer = 0;
-                lifeSpreadTime += 0.25f * lifeSpreadTime;
+                StartCoroutine(StopGameOver());   
             }
             else
-                return;
+            {
+                    GameObject[] lifes = GameObject.FindGameObjectsWithTag("Life");
+                    lifeCount = lifes.Length;
+                    return;
+            }
+
+            
           
         }
     }
@@ -86,7 +68,7 @@ public class GameManager : Singleton<GameManager> {
     public Slider lifeSlider;
 
     //public GameObject solarSystem;
-    public int numberOfPlanets = 4;
+    public int numberOfPlanets = 3;
     public Queue<GameObject> lifePlanets;
     public List<GameObject> tmpLives;
 
@@ -100,6 +82,7 @@ public class GameManager : Singleton<GameManager> {
         {
             lifePlanets.Enqueue(planet);
         }
+        //Debug.Log(lifePlanets.Count);
 
         Time.timeScale = 1f;
         moneyMultiplier.text = string.Format("x{0}", lifeCount);
@@ -113,7 +96,7 @@ public class GameManager : Singleton<GameManager> {
 
         moneyTimer += Time.deltaTime;
 
-        Debug.Log(lifePlanets.Count);
+        //Debug.Log(lifePlanets.Count);
 
         if (moneyTimer >= 1)
         {
@@ -143,6 +126,35 @@ public class GameManager : Singleton<GameManager> {
             //    lifeSpreadTime *= 1.25;
             //    lifeMultiplier = 1;
             //}
+
+
+
+            if (lifeCount < numberOfPlanets)
+            {
+                GameObject lifeTmp;
+                do
+                {
+                    if (lifePlanets.Count > 0)
+                    {
+                        lifeTmp = lifePlanets.Dequeue();
+                        //Debug.Log("do " + lifePlanets.Count + " : " + lifeTmp.CompareTag("Life"));
+                    }
+                    else lifeTmp = null;
+                }
+                while (lifeTmp == null && lifeTmp.CompareTag("Life"));
+
+
+                lifeTmp.GetComponent<Planet>().SetTag = "Life";
+                lifeTmp.GetComponent<Outline>().enabled = true;
+
+
+                lifeTimer = 0;
+                lifeSpreadTime += 0.25f * lifeSpreadTime;
+
+                if (shieldUp)
+                    lifeTmp.transform.GetChild(0).gameObject.SetActive(true);
+
+            }
             LifeCount++;
             moneyMultiplier.text = string.Format("x{0}", lifeCount);
         }

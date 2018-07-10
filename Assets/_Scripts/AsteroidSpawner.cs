@@ -85,7 +85,7 @@ public class AsteroidSpawner : Singleton<AsteroidSpawner>
 
                 Vector3 center = transform.position;
 
-                Vector3 spawnPosition = RandomCircle(center, Random.Range(12f, 15f));
+                Vector3 spawnPosition = RandomCircle(center, Random.Range(10f, 12f));
 
                 Quaternion spawnRotation = Quaternion.identity;
 

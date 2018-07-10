@@ -14,6 +14,8 @@ public class Asteroid : MonoBehaviour
     [SerializeField]
     private int scoreValue;
 
+    private bool collisionInProgress = false;
+
     void Start ()
 	{
         Rigidbody rb = GetComponent<Rigidbody>();
@@ -48,6 +50,8 @@ public class Asteroid : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Missile"))
         {
+           
+           
             SimplePool.Spawn(AsteroidSpawner.Instance.explosion, gameObject.transform.position, Quaternion.identity);
 
             //Float text spawn, rotate to camera
@@ -62,14 +66,15 @@ public class Asteroid : MonoBehaviour
             gameObject.transform.GetChild(0).gameObject.SetActive(false);
         }
 
-        if(collision.gameObject.CompareTag("Planet"))
+        if(collision.gameObject.CompareTag("Planet") && !collisionInProgress)
         {
             SimplePool.Spawn(AsteroidSpawner.Instance.explosion, gameObject.transform.position, Quaternion.identity);
             StartCoroutine(StopDestroy());
         }
        
-        if (collision.gameObject.CompareTag("Life"))
+        if (collision.gameObject.CompareTag("Life") && !collisionInProgress)
         {
+            collisionInProgress = true;
             //collision.gameObject.SetActive(false);
             SimplePool.Spawn(AsteroidSpawner.Instance.planetExplosion, gameObject.transform.position, Quaternion.identity);
             
@@ -78,26 +83,24 @@ public class Asteroid : MonoBehaviour
             {
                 collision.gameObject.GetComponent<Outline>().enabled = false;
                 GameManager.Instance.lifePlanets.Enqueue(collision.gameObject);
-                GameManager.Instance.LifeCount--;
+                Debug.Log("LIFE-- " + collision.gameObject.name);
+
                 GameManager.Instance.moneyMultiplier.text = string.Format("x{0}", GameManager.Instance.LifeCount);
                 collision.gameObject.GetComponent<Outline>().enabled = false;
                 collision.gameObject.GetComponent<Planet>().SetTag = "Planet";
+                GameManager.Instance.LifeCount--;
 
             }
             else
             {
-                GameManager.Instance.shieldUp = false;
 
                 GameObject[] lifes = GameObject.FindGameObjectsWithTag("Life");
 
                 foreach (GameObject life in lifes)
                 {
-                    foreach (Transform child in life.transform)
-                    {
-                        if (child.tag == "shield")
-                            child.gameObject.SetActive(false);
-                    }
+                    life.transform.GetChild(0).gameObject.SetActive(false);
                 }
+                GameManager.Instance.shieldUp = false;
             }
 
             StartCoroutine(StopDestroy());
@@ -108,7 +111,9 @@ public class Asteroid : MonoBehaviour
     private IEnumerator StopDestroy()
     {
         yield return new WaitForSecondsRealtime(0.5f);
+        collisionInProgress = false;
         Destroy(gameObject);
       
     }
+  
 }
