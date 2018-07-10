@@ -32,6 +32,7 @@ public class GameManager : Singleton<GameManager> {
     public float missileCost;
     public GameObject missile;
 
+    
     public float lifeMultiplier = 1;
     [SerializeField]
     private int lifeCount = 1;
@@ -40,6 +41,7 @@ public class GameManager : Singleton<GameManager> {
         get {return lifeCount;}
         set
         {
+            GameObject lifeTmp = lifePlanets.Dequeue();
             lifeCount = value;
             if (LifeCount<=0)
             {
@@ -49,26 +51,28 @@ public class GameManager : Singleton<GameManager> {
 
             if (lifeCount < lifeIndex && lifeCount >= 0)
             {
-                    lifeIndex--;
-                   
-                    if (lifeIndex < 0)
-                        lifeIndex = lifePlanets.Count;
+                lifeIndex--;
+
+                if (lifeIndex < 0)
+                    lifeIndex = numberOfPlanets;
             }
-            else if (lifeCount > lifeIndex && lifeCount<=lifePlanets.Count)
+            else if (lifeCount > lifeIndex && lifeCount <= numberOfPlanets)
             {
-                while (lifeIndex >= 0 && lifeIndex < lifePlanets.Count && lifePlanets[lifeIndex].GetComponent<Outline>().enabled != false)
+                while (lifeIndex >= 0 && lifeIndex < lifePlanets.Count && lifeTmp.GetComponent<Outline>().enabled != false)
                 {
                     lifeIndex++;
-                    if (lifeIndex >= lifePlanets.Count)
+                    if (lifeIndex >= numberOfPlanets)
                         lifeIndex = 0;
                 }
 
-                lifePlanets[lifeIndex].GetComponent<Planet>().SetTag = "Life";
-                lifePlanets[lifeIndex].GetComponent<Outline>().enabled = true;
 
+                lifeTmp.GetComponent<Planet>().SetTag = "Life";
+                lifeTmp.GetComponent<Outline>().enabled = true;
+                if (shieldUp)
+                    lifeTmp.transform.Find("Canvas").gameObject.SetActive(true);
 
                 lifeTimer = 0;
-                lifeSpreadTime += 0.5f * lifeSpreadTime;
+                lifeSpreadTime += 0.25f * lifeSpreadTime;
             }
             else
                 return;
@@ -81,10 +85,22 @@ public class GameManager : Singleton<GameManager> {
     public int lifeIndex = 0;
     public Slider lifeSlider;
 
-    public List<GameObject> lifePlanets;
+    //public GameObject solarSystem;
+    public int numberOfPlanets = 4;
+    public Queue<GameObject> lifePlanets;
+    public List<GameObject> tmpLives;
 
     private void Start()
     {
+        lifePlanets = new Queue<GameObject>();
+
+       
+
+        foreach (GameObject planet in tmpLives)
+        {
+            lifePlanets.Enqueue(planet);
+        }
+
         Time.timeScale = 1f;
         moneyMultiplier.text = string.Format("x{0}", lifeCount);
         moneyText.text = money.ToString();
@@ -97,14 +113,18 @@ public class GameManager : Singleton<GameManager> {
 
         moneyTimer += Time.deltaTime;
 
+        Debug.Log(lifePlanets.Count);
+
         if (moneyTimer >= 1)
         {
             money += mps * lifeCount;
+           // Debug.Log(">>>>" + mps * lifeCount);
+
             moneyText.text = money.ToString();
             moneyTimer = 0;
         }
 
-        if (lifeCount < lifePlanets.Count)
+        if (lifeCount < numberOfPlanets)
         {
             lifeTimer += 1 *  Time.deltaTime;
             lifeSlider.value = lifeTimer / lifeSpreadTime;
@@ -118,11 +138,11 @@ public class GameManager : Singleton<GameManager> {
         {
             
             lifeTimer = 0;
-            if(lifeMultiplier != 1)
-            {
-                lifeSpreadTime *= 2;
-                lifeMultiplier = 1;
-            }
+            //if(lifeMultiplier != 1)
+            //{
+            //    lifeSpreadTime *= 1.25;
+            //    lifeMultiplier = 1;
+            //}
             LifeCount++;
             moneyMultiplier.text = string.Format("x{0}", lifeCount);
         }
@@ -140,7 +160,7 @@ public class GameManager : Singleton<GameManager> {
     public IEnumerator StopGameOver()
     {
         gameOver = true;
-        yield return new WaitForSecondsRealtime(0.5f);
+        yield return new WaitForSecondsRealtime(1f);
         FunctionHandler.Instance.OpenMenu();
         Time.timeScale = 0f;
     }

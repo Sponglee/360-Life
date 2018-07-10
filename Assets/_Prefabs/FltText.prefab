@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 224769416584838256}
   - component: {fileID: 114160054065302696}
+  - component: {fileID: 114867282339773992}
   m_Layer: 0
   m_Name: FltText
   m_TagString: Untagged
@@ -160,6 +161,17 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &114867282339773992
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1001251165192770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e4ccb8730bc54e47ad3cb27f249ebdf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114876130706618378
 MonoBehaviour:
   m_ObjectHideFlags: 1

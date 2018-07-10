@@ -9,6 +9,7 @@ TagManager:
   - Life
   - Boundary
   - Missile
+  - shield
   layers:
   - Default
   - TransparentFX

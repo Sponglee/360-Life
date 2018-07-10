@@ -77,6 +77,7 @@ public class Asteroid : MonoBehaviour
             if (!GameManager.Instance.shieldUp)
             {
                 collision.gameObject.GetComponent<Outline>().enabled = false;
+                GameManager.Instance.lifePlanets.Enqueue(collision.gameObject);
                 GameManager.Instance.LifeCount--;
                 GameManager.Instance.moneyMultiplier.text = string.Format("x{0}", GameManager.Instance.LifeCount);
                 collision.gameObject.GetComponent<Outline>().enabled = false;
@@ -86,7 +87,17 @@ public class Asteroid : MonoBehaviour
             else
             {
                 GameManager.Instance.shieldUp = false;
-                GameManager.Instance.shieldUI.SetActive(false);
+
+                GameObject[] lifes = GameObject.FindGameObjectsWithTag("Life");
+
+                foreach (GameObject life in lifes)
+                {
+                    foreach (Transform child in life.transform)
+                    {
+                        if (child.tag == "shield")
+                            child.gameObject.SetActive(false);
+                    }
+                }
             }
 
             StartCoroutine(StopDestroy());
