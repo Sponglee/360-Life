@@ -7,8 +7,10 @@ using UnityEngine.UI;
 public class AsteroidSpawner : Singleton<AsteroidSpawner>
 {
     public GameObject[] hazards;
+    public Transform[] asteroidSpots;
+
     public Vector3 spawnValues;
-    public int hazardCount;
+    public int waveCount = 0;
     public float spawnWait;
     public float startWait;
     public float waveWait;
@@ -21,16 +23,18 @@ public class AsteroidSpawner : Singleton<AsteroidSpawner>
     private GameObject randomHazard;
 
 
-    public GameObject fltText;
 
     public Transform Sol;
 
-
+    public Transform fltTextHolder;
+    public Transform explosionHolder;
+    public Transform asteroidHolder;
+    public GameObject fltText;
     public GameObject explosion;
     public GameObject planetExplosion;
+    public Transform solarSystem;
 
-
-    public GameObject asteroids;
+    //public GameObject asteroids;
 
     float ang = 0f;
 
@@ -57,15 +61,15 @@ public class AsteroidSpawner : Singleton<AsteroidSpawner>
     {
 
         yield return new WaitForSeconds(startWait);
-        gameObject.transform.Rotate(Vector3.up, Random.Range(10f, 45f));
+        
         while (true)
         {
             nextWave++;
             waveCountText.text = nextWave.ToString();
-
+            waveCount++;
             waveTimer = 0;
 
-            waveMaxTime = hazardCount * spawnWait + waveWait;
+            waveMaxTime = waveCount * spawnWait + waveWait;
             //if (gameOver)
             //{
             //    restartText.text = "Press 'R' for Restart";
@@ -77,35 +81,26 @@ public class AsteroidSpawner : Singleton<AsteroidSpawner>
 
 
 
-            for (int i = 0; i <= hazardCount; i++)
-            {
-
-
-
-
+            //for (int i = 0; i <= hazardCount; i++)
+            //{
                 Vector3 center = transform.position;
 
-                Vector3 spawnPosition = RandomCircle(center, Random.Range(10f, 12f));
+                Vector3 spawnPosition = asteroidSpots[Random.Range(0, 4)].position;
 
                 Quaternion spawnRotation = Quaternion.identity;
 
-
-
-
-
-
                 int rng = Random.Range(0, 3);
                 randomHazard = hazards[rng];
-                GameObject tmp = Instantiate(randomHazard, spawnPosition, Quaternion.identity, gameObject.transform);
+                GameObject tmp = Instantiate(randomHazard, spawnPosition, Quaternion.identity, asteroidHolder);
 
                 //tmp.GetComponent<KeplerOrbitMover>().OrbitData.Position = spawnPosition;
 
                 //tmp.GetComponent<KeplerOrbitMover>().SetAutoCircleOrbit();
 
 
-                yield return new WaitForSeconds(spawnWait);
+            //    yield return new WaitForSeconds(spawnWait);
 
-            }
+            //}
 
 
             //if (gameOver)
@@ -117,9 +112,24 @@ public class AsteroidSpawner : Singleton<AsteroidSpawner>
 
 
          
-            hazardCount += 3;
-         
+            //hazardCount += 1;
+            
             yield return new WaitForSeconds(waveWait);
+            if(waveCount==10)
+            {
+                waveWait = Random.Range(0.5f,0.5f);
+               
+            }
+            else if (waveCount== Random.Range(3,5))
+            {
+                gameObject.transform.Rotate(Vector3.up, Random.Range(15f, 30f));
+            }
+            else if (waveCount > Random.Range(9, 31))
+            {
+                waveWait = 2f;
+                waveCount = 0;
+            }
+
             if (GameManager.Instance.missileTime != 2)
             {
                 GameManager.Instance.missileTime = 2;

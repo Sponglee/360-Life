@@ -7,8 +7,8 @@ public class GameManager : Singleton<GameManager> {
 
     public bool gameOver=false;
 
-    public float money = 0;
-    public float scores=0;
+    public float scores = 0;
+    public float money=0;
     public float mps=10;
     public float moneyTimer;
 
@@ -20,9 +20,9 @@ public class GameManager : Singleton<GameManager> {
     public GameObject shieldUI;
     public GameObject timeUI;
 
-    public Text moneyText;
     public Text scoreText;
-    public Text moneyMultiplier;
+    public Text moneyText;
+    public Text scoreMultip;
     
     public GameObject menu;
     public GameObject ui;
@@ -85,9 +85,9 @@ public class GameManager : Singleton<GameManager> {
         //Debug.Log(lifePlanets.Count);
 
         Time.timeScale = 1f;
-        moneyMultiplier.text = string.Format("x{0}", lifeCount);
-        moneyText.text = money.ToString();
+        scoreMultip.text = string.Format("x{0}", lifeCount);
         scoreText.text = scores.ToString();
+        moneyText.text = money.ToString();
     }
 
 
@@ -100,10 +100,10 @@ public class GameManager : Singleton<GameManager> {
 
         if (moneyTimer >= 1)
         {
-            money += mps * lifeCount;
+            scores += mps * lifeCount;
            // Debug.Log(">>>>" + mps * lifeCount);
 
-            moneyText.text = money.ToString();
+            scoreText.text = scores.ToString();
             moneyTimer = 0;
         }
 
@@ -156,7 +156,7 @@ public class GameManager : Singleton<GameManager> {
 
             }
             LifeCount++;
-            moneyMultiplier.text = string.Format("x{0}", lifeCount);
+            scoreMultip.text = string.Format("x{0}", lifeCount);
         }
 
 

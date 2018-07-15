@@ -1,10 +1,11 @@
 ﻿using SimpleKeplerOrbits;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Missile : MonoBehaviour
 {
-    private bool hasFired = false;
+    private bool started = false;
     [SerializeField]
     private float speed = 5;
     [SerializeField]
@@ -19,6 +20,8 @@ public class Missile : MonoBehaviour
 
     [SerializeField]
     private float fuseDelay;
+
+   
 
     [SerializeField]
     private Transform target;
@@ -35,10 +38,9 @@ public class Missile : MonoBehaviour
         }
     }
 
-
-
     private Transform home;
 
+    [SerializeField]
     private bool comingHome = false;
     //private float missileRange = 0f;
 
@@ -58,15 +60,15 @@ public class Missile : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!hasFired)
+        if (!started)
         {
             home = transform.parent;
             comingHome = false;
             //missileRange = home.GetComponent<Planet>().Range;
-          
+            transform.SetParent(AsteroidSpawner.Instance.asteroidHolder);
             homingMissile = gameObject.GetComponent<Rigidbody>();
            
-            hasFired = true;
+            started = true;
         }
 
         missileCoolDown -= Time.fixedDeltaTime;
@@ -74,29 +76,28 @@ public class Missile : MonoBehaviour
         if (missileCoolDown < 0 && Target == null)
         {
             missileCoolDown = missileLife;
-            SimplePool.Despawn(gameObject);
+            //SimplePool.Despawn(gameObject);
             //home.GetComponent<Planet>().MissileCount--;
         }
 
-        //if (!comingHome)
-
-        //else
+        //if (comingHome)
         //    target = home;
-        if (Target == null || homingMissile == null)
+
+        if (Target == null || homingMissile == null || Target.CompareTag("Planet") || !Target.gameObject.activeSelf)
         {
-            if (hasFired)
+            if (started)
             {
                 //Debug.Log("HASFIRED");
-                hasFired = false;
+                started = false;
                 SimplePool.Despawn(gameObject);
             }
             //Destroy(gameObject);
             return;
         }
-        else if (Target != null)
-        {
-            hasFired = true;
-        }
+        //else if (Target != null || Target.gameObject.activeSelf)
+        //{
+        //    started = true;
+        //}
         //else if (target != firstTarget)
         //{
         //    comingHome = true;
@@ -104,11 +105,17 @@ public class Missile : MonoBehaviour
 
 
 
-       
+        //transform.position = Vector3.MoveTowards(transform.position, Target.position, 0.1f);
 
         homingMissile.velocity = transform.forward * speed;
 
-        var targetRotation = Quaternion.LookRotation(Target.position - transform.position);
+        Vector3 diff;
+
+        diff.x = Target.position.x - transform.position.x;
+        diff.y = Target.position.y - transform.position.y;
+        diff.z = Target.position.z - transform.position.z;
+
+        var targetRotation = Quaternion.LookRotation(diff);
 
         homingMissile.MoveRotation(Quaternion.RotateTowards(transform.rotation, targetRotation, turn));
     }
@@ -117,28 +124,40 @@ public class Missile : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.CompareTag("Asteroid"))
+        if (other.gameObject.CompareTag("Debree"))
         {
-
+            //Debug.Log("HHHHHHHHHHHOOOOOOOOOOOOOOOOOMMMMMMMMMMMMMMMMEEEEEEEEEEEEEE");
             comingHome = true;
-            missileLife = 2f;
-            hasFired = false;
-            SimplePool.Despawn(gameObject);
-            Destroy(other.gameObject);
-            //home.GetComponent<Planet>().MissileCount--;
-        }
-        //else if (other.gameObject.CompareTag("Life") && comingHome)
-        //{
-        //    comingHome = false;
-        //    SimplePool.Despawn(gameObject);
+            //missileLife = 2f;
+            target = home;
            
-        //}
-        else if(other.gameObject.CompareTag("Planet"))
-        {
-            hasFired = false;
-            missileLife = 2f;
-            SimplePool.Despawn(gameObject);
-            //home.GetComponent<Planet>().MissileCount--;
+            //gameObject.transform.SetParent(AsteroidSpawner.Instance.solarSystem);
+            ////SimplePool.Despawn(gameObject);
+            //Destroy(other.gameObject);
         }
+        else if (other.gameObject.CompareTag("Life") && comingHome)
+        {
+            //Debug.Log("LLLLLLLLLLLLLIIIIIIIIIIIIIIIIIIIIFFFFFFFFFFFFFEEEEEEEEE");
+            comingHome = false;
+            started = false;
+
+
+            SimplePool.Despawn(gameObject);
+
+            //Destroy(gameObject);
+
+
+            //if(transform.Find("Debree(Clone)") != null)
+            //{
+            //    Destroy(transform.Find("Debree(Clone)").gameObject);
+            //}
+        }
+        //else if (other.gameObject.CompareTag("Planet"))
+        //{
+        //    hasFired = false;
+        //    missileLife = 2f;
+        //    SimplePool.Despawn(gameObject);
+        //    //home.GetComponent<Planet>().MissileCount--;
+        //}
     }
 }

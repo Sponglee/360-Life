@@ -10,6 +10,8 @@ TagManager:
   - Boundary
   - Missile
   - shield
+  - Debree
+  - DebreeHome
   layers:
   - Default
   - TransparentFX

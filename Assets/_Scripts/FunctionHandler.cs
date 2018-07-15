@@ -17,6 +17,8 @@ public class FunctionHandler : Singleton<FunctionHandler>
     private int moneyMultiplier;
     public Text moneyMultiplierText;
     public Text doubleLifeCostText;
+
+
     [SerializeField]
     private float doubleLifeCost;
     public float DoubleLifeCost
@@ -37,6 +39,8 @@ public class FunctionHandler : Singleton<FunctionHandler>
     private int missileMultiplier;
     public Text missileMultiplierText;
     public Text doubleMissileCostText;
+
+
     [SerializeField]
     private float doubleMissileCost;
     public float DoubleMissileCost
@@ -55,9 +59,11 @@ public class FunctionHandler : Singleton<FunctionHandler>
 
     //Double CoolDown
     public Text doubleMissileTimeText;
+
+
+
     [SerializeField]
     private float doubleMissileTime;
-
     public float DoubleMissileTime
     {
         get
@@ -130,7 +136,7 @@ public class FunctionHandler : Singleton<FunctionHandler>
     public void OpenMenu()
     {
         int menuWave = 0;
-        menuScoreText.text = GameManager.Instance.scores.ToString();
+        menuScoreText.text = GameManager.Instance.money.ToString();
 
         if (AsteroidSpawner.Instance.nextWave - 1 < 0)
             menuWave = 0;
@@ -189,7 +195,7 @@ public class FunctionHandler : Singleton<FunctionHandler>
             GameManager.Instance.lifeMultiplier = 2;
             GameManager.Instance.lifeTimer = GameManager.Instance.lifeSpreadTime;
             GameManager.Instance.money -= DoubleLifeCost;
-            DoubleLifeCost *= 2f;
+            DoubleLifeCost = Mathf.Round(DoubleLifeCost *= 2f);
         }
     }
 
@@ -203,7 +209,8 @@ public class FunctionHandler : Singleton<FunctionHandler>
             GameManager.Instance.mps += 10;
             //Debug.Log(GameManager.Instance.mps);
             GameManager.Instance.money -= DoubleMoneyCost;
-            DoubleMoneyCost *= 2f;
+            GameManager.Instance.moneyText.text = GameManager.Instance.money.ToString();
+            DoubleMoneyCost = Mathf.Round(DoubleMoneyCost *=2f);
         }
     }
 
@@ -217,7 +224,8 @@ public class FunctionHandler : Singleton<FunctionHandler>
             missileMultiplierText.text = string.Format("x{0}", missileMultiplier);
             GameManager.Instance.missileLimit += 1;
             GameManager.Instance.money -= DoubleMissileCost;
-            DoubleMissileCost *= 2f;
+            GameManager.Instance.moneyText.text = GameManager.Instance.money.ToString();
+            DoubleMissileCost = Mathf.Round(DoubleMissileCost *= 2f);
         }
     }
 
@@ -231,7 +239,8 @@ public class FunctionHandler : Singleton<FunctionHandler>
             GameManager.Instance.missileTime = 0.5f;
             GameManager.Instance.timeUI.SetActive(true);
             GameManager.Instance.money -= DoubleMissileTime;
-            DoubleMissileTime *= 2f;
+            GameManager.Instance.moneyText.text = GameManager.Instance.money.ToString();
+            DoubleMissileTime = Mathf.Round(DoubleMissileTime *= 1.25f);
         }
     }
 
@@ -256,7 +265,8 @@ public class FunctionHandler : Singleton<FunctionHandler>
             GameManager.Instance.shieldUp = true;
             //GameManager.Instance.shieldUI.SetActive(true);
             GameManager.Instance.money -= DoubleShieldCost;
-            DoubleShieldCost*= 2f;
+            GameManager.Instance.moneyText.text = GameManager.Instance.money.ToString();
+            DoubleShieldCost = Mathf.Round(DoubleShieldCost*= 1.25f);
         }
     }
 }

@@ -24,7 +24,7 @@ public class Planet : MonoBehaviour
     }
 
     private Stack<Transform> planetTargets;
-
+    [SerializeField]
     private float targetCount = 1;
     public float TargetCount
     {
@@ -113,24 +113,28 @@ public class Planet : MonoBehaviour
         {
 
             //StartCoroutine(StopMissiles());
-
+            planetTargets.Clear();
+            planetTargets = FindClosestByTag("Debree");
+            
             if (planetTargets.Count > 0)
             {
+                Debug.Log(planetTargets.Count);
                 for (int i = 0; i < TargetCount; i++)
                 {
                     if (i < planetTargets.Count)
                     {
                         //Debug.Log("SPAWN " + i + " " + gameObject.name + " " + planetTargets.Count);
-                        GameObject tmp = SimplePool.Spawn(GameManager.Instance.missile, gameObject.transform.position, Quaternion.identity);
+                        GameObject tmp = SimplePool.Spawn(GameManager.Instance.missile, gameObject.transform.position, Quaternion.LookRotation(Vector3.forward));
+                        tmp.transform.SetParent(gameObject.transform);
                         tmp.GetComponent<Missile>().Target = planetTargets.Pop();
                         pewTimer = MissileCoolDown;
-                        tmp.transform.SetParent(AsteroidSpawner.Instance.transform);
+                       
                     }
 
 
                 }
 
-                planetTargets.Clear();
+                //Debug.Log("======");
 
             }
 
@@ -139,121 +143,131 @@ public class Planet : MonoBehaviour
         else if (gameObject.CompareTag("Life"))
         {
             pewTimer -= Time.fixedDeltaTime;
-            Fire();
+            planetTargets = FindClosestByTag("Debree");
         }
         else
             pewTimer = missileCoolDown;
     }
 
 
-    //private IEnumerator StopMissiles()
-    //{
-    //    foreach (Transform pT in planetTargets)
-    //    {
-    //        GameObject tmp = SimplePool.Spawn(GameManager.Instance.missile, gameObject.transform.position, Quaternion.identity);
-    //        tmp.GetComponent<Missile>().Target = pT;
-    //        pewTimer = targetCount;
-    //        tmp.transform.SetParent(AsteroidSpawner.Instance.transform);
-    //        yield return new WaitForSecondsRealtime(0.1f);
-    //    }
-    //}
-    //private bool PrepeareFire()
-    //{
-    //    //yield return new WaitForSecondsRealtime(fuseDelay);
+    Stack<Transform> FindClosestByTag(string tag)
+    {
+        GameObject[] gos;
+        gos = GameObject.FindGameObjectsWithTag(tag);
+        Stack<Transform> closest = new Stack<Transform>();
+        float distance = Mathf.Infinity;
+        Vector3 position = transform.position;
+        foreach (GameObject go in gos)
+        {
+            Vector3 diff = go.transform.position - position;
+            float curDistance = diff.sqrMagnitude;
+            if (curDistance < distance && curDistance < Range)
+            {
+                if (go.transform.parent == null)
+                {
+                    closest.Push(go.transform);
+                    distance = curDistance;
+                }
+            }
+        }
+        return closest;
+    }
 
-
-
-
-    //    foreach (GameObject go in GameObject.FindGameObjectsWithTag("Asteroid"))
-    //    {
-    //        float diff = (go.transform.parent.position - this.transform.position).sqrMagnitude;
-
-    //       // Debug.Log(diff + " : " + distance);
-
-    //        if (diff < range)
-    //        {
-    //            planetTarget = go.transform;
-    //            return true;
-
-    //        }
-    //    }
-
-    //    return false;
-    //}
 
     private void Fire()
     {
-        //yield return new WaitForSecondsRealtime(fuseDelay);
-        planetTargets.Clear();
-
-        float distance = Mathf.Infinity;
-        float fastestAsteroidSpeed = 0;
-
-        //Transform target=null;
-
-        //for (int i = 0; i < targetCount; i++)
+        //planetTargets.Clear();
+        //if (distance < range /*&& fastestAsteroidSpeed <= goVel.sqrMagnitude*/)
         //{
-        foreach (GameObject go in GameObject.FindGameObjectsWithTag("Asteroid"))
-        {
-            if (planetTargets.Count == 0)
-            {
-                var diff = (go.transform.parent.position - transform.position).sqrMagnitude;
-                //var goRb = go.GetComponent<KeplerOrbitMover>().OrbitData;
+      
+            //target = go.transform;
 
-                //Vector3 goVel = new Vector3((float)goRb.Velocity.x, (float)goRb.Velocity.y, (float)goRb.Velocity.z);
-                //float angleOfAttack = Vector3.Dot(goVel, go.transform.parent.position - transform.position);
-
-
-                if (diff < distance /*&& angleOfAttack < 0 && goVel.sqrMagnitude > fastestAsteroidSpeed && diff <= range*/)
-                {
-
-                    distance = diff;
-                    //fastestAsteroidSpeed = goVel.sqrMagnitude;
-
-                    if (distance < range /*&& fastestAsteroidSpeed <= goVel.sqrMagnitude*/)
-                    {
-                        planetTargets.Push(go.transform);
-                        //target = go.transform;
-
-                    }
-
-                }
-            }
-            else
-            {
-                var diff = (go.transform.parent.position - transform.position).sqrMagnitude;
-                //var goRb = go.GetComponent<KeplerOrbitMover>().OrbitData;
-
-                //Vector3 goVel = new Vector3((float)goRb.Velocity.x, (float)goRb.Velocity.y, (float)goRb.Velocity.z);
-                //float angleOfAttack = Vector3.Dot(goVel, go.transform.parent.position - transform.position);
-
-
-                //if (diff >= distance && diff <= range)
-                //{
-
-                //    //distance = diff;
-                //    //fastestAsteroidSpeed = goVel.sqrMagnitude;
-
-                //    //if (distance < range && fastestAsteroidSpeed <= goVel.sqrMagnitude)
-                //    //{
-                planetTargets.Push(go.transform);
-                //target = go.transform;
-
-                //}
-
-                //}
-            }
-
-
-        }
-        //if(target != null)
-        //    planetTargets.Add(target);
-        //    yield return new WaitForSecondsRealtime(0.2f);
-        ////}
-
-
-
+        //}
     }
+
+
+
+    //private void Fire()
+    //{
+    //    //yield return new WaitForSecondsRealtime(fuseDelay);
+    //    planetTargets.Clear();
+
+    //    float distance = Mathf.Infinity;
+    //    float fastestAsteroidSpeed = 0;
+
+    //    //Transform target=null;
+
+    //    //for (int i = 0; i < targetCount; i++)
+    //    //{
+    //    foreach (GameObject go in GameObject.FindGameObjectsWithTag("Asteroid"))
+    //    {
+    //        if (planetTargets.Count == 0)
+    //        {
+
+
+    //            Vector3 tmpGoPos = go.transform.TransformPoint(go.transform.position);
+
+    //            var diff = (tmpGoPos - transform.position).sqrMagnitude;
+                
+    //            //var goRb = go.GetComponent<KeplerOrbitMover>().OrbitData;
+
+    //            //Vector3 goVel = new Vector3((float)goRb.Velocity.x, (float)goRb.Velocity.y, (float)goRb.Velocity.z);
+    //            //float angleOfAttack = Vector3.Dot(goVel, go.transform.parent.position - transform.position);
+
+
+    //            if (diff < distance /*&& angleOfAttack < 0 && goVel.sqrMagnitude > fastestAsteroidSpeed && diff <= range*/)
+    //            {
+
+    //                distance = diff;
+    //                //fastestAsteroidSpeed = goVel.sqrMagnitude;
+
+    //                if (distance < range /*&& fastestAsteroidSpeed <= goVel.sqrMagnitude*/)
+    //                {
+    //                    planetTargets.Push(go.transform);
+    //                    //target = go.transform;
+
+    //                }
+
+    //            }
+    //        }
+    //        else
+    //        {
+    //            Vector3 tmpGoPos = go.transform.TransformPoint(go.transform.position);
+
+    //            var diff = (tmpGoPos - transform.position).sqrMagnitude;
+    //            //var goRb = go.GetComponent<KeplerOrbitMover>().OrbitData;
+
+    //            //Vector3 goVel = new Vector3((float)goRb.Velocity.x, (float)goRb.Velocity.y, (float)goRb.Velocity.z);
+    //            //float angleOfAttack = Vector3.Dot(goVel, go.transform.parent.position - transform.position);
+
+
+    //            //if (diff >= distance && diff <= range)
+    //            //{
+
+    //            //    //distance = diff;
+    //            //    //fastestAsteroidSpeed = goVel.sqrMagnitude;
+
+    //            //    //if (distance < range && fastestAsteroidSpeed <= goVel.sqrMagnitude)
+    //            //    //{
+    //            planetTargets.Push(go.transform);
+    //            //Debug.Log(tmpGoPos + " : " + transform.position);
+    //            //target = go.transform;
+
+    //            //}
+
+    //            //}
+    //        }
+
+
+    //    }
+    //    //if(target != null)
+    //    //    planetTargets.Add(target);
+    //    //    yield return new WaitForSecondsRealtime(0.2f);
+    //    ////}
+
+
+
+    //}
 
 
 

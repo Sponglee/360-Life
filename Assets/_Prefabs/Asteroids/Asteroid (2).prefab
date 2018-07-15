@@ -83,7 +83,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1264119254905434}
   m_LocalRotation: {x: -0.27346936, y: 0.6049774, z: -0.26197475, w: 0.70041853}
-  m_LocalPosition: {x: 6.74, y: 0, z: -0.18}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_Children:
   - {fileID: 4096131992330776}
@@ -200,7 +200,7 @@ TrailRenderer:
   m_Time: 1.9
   m_Parameters:
     serializedVersion: 2
-    widthMultiplier: 0.27
+    widthMultiplier: 0.4
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -257,7 +257,7 @@ TrailRenderer:
     numCornerVertices: 90
     numCapVertices: 72
     alignment: 0
-    textureMode: 0
+    textureMode: 2
     generateLightingData: 0
   m_MinVertexDistance: 0
   m_Autodestruct: 1
@@ -296,7 +296,7 @@ MonoBehaviour:
     AttractorDistance: 9.419506249191134
     AttractorMass: 1000
     Velocity:
-      x: 9.455748845032879
+      x: -11
       y: -0.002293937403904128
       z: 4.062890500230058
     SemiMinorAxis: 9.398237704688723
@@ -350,10 +350,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c19560e3c6a341e48361ef8c42b3609, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tumble: 2
-  safespot: {fileID: 0}
+  tumble: 0
+  debreePref: {fileID: 1796179306407480, guid: b208fa67ed1ceef40a08b67e425e11d0, type: 2}
   speed: 0.2
-  scoreValue: 10
 --- !u!136 &136037054950621272
 CapsuleCollider:
   m_ObjectHideFlags: 1
