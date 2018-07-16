@@ -109,7 +109,7 @@ public class GameManager : Singleton<GameManager> {
 
         if (lifeCount < numberOfPlanets)
         {
-            lifeTimer += 1 *  Time.deltaTime;
+            //lifeTimer += 1 *  Time.deltaTime;
             lifeSlider.value = lifeTimer / lifeSpreadTime;
         }
         else

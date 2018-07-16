@@ -115,22 +115,23 @@ public class AsteroidSpawner : Singleton<AsteroidSpawner>
             //hazardCount += 1;
             
             yield return new WaitForSeconds(waveWait);
-            if(waveCount<=10)
+            if(waveCount<=5)
             {
-                waveWait -= Random.Range(0.05f,0.05f);
+                waveWait -= Random.Range(0.05f,0.01f);
                
             }
 
-            if (waveCount== Random.Range(3,5))
+            if (waveCount== Random.Range(3,7))
             {
                 gameObject.transform.Rotate(Vector3.up, Random.Range(15f, 30f));
             }
-            else if (waveCount > Random.Range(9, 21))
+            else if (waveCount > 5 && waveCount<16)
             {
                 waveWait = 0.5f;
+                gameObject.transform.Rotate(Vector3.up, Random.Range(15f, 30f));
                 //waveCount = 0;
             }   
-            else if (waveCount>20)
+            else if (waveCount>16)
             {
                 waveWait = 2f;
                 waveCount = 0;
