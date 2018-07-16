@@ -42,7 +42,7 @@ public class Debree : MonoBehaviour
             transform.position = homingTrans.position;
         }
     }
-    private void OnCollisionEnter(Collision other)
+    private void OnTriggerEnter (Collider other)
     {
         if (other.gameObject.CompareTag("Missile") && !homing)
         {

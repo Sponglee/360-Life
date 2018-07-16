@@ -122,13 +122,14 @@ public class Missile : MonoBehaviour
 
 
 
-    private void OnCollisionEnter(Collision other)
+    private void OnTriggerEnter (Collider other)
     {
         if (other.gameObject.CompareTag("Debree"))
         {
             //Debug.Log("HHHHHHHHHHHOOOOOOOOOOOOOOOOOMMMMMMMMMMMMMMMMEEEEEEEEEEEEEE");
             comingHome = true;
             //missileLife = 2f;
+            //other.gameObject.GetComponent<Planet>().PlanetTargets.Clear();
             target = home;
            
             //gameObject.transform.SetParent(AsteroidSpawner.Instance.solarSystem);

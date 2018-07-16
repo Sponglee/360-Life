@@ -24,6 +24,22 @@ public class Planet : MonoBehaviour
     }
 
     private Stack<Transform> planetTargets;
+    public Stack<Transform> PlanetTargets
+    {
+        get
+        {
+            return planetTargets;
+        }
+
+        set
+        {
+            planetTargets = value;
+        }
+    }
+
+
+
+
     [SerializeField]
     private float targetCount = 1;
     public float TargetCount
@@ -76,6 +92,7 @@ public class Planet : MonoBehaviour
         }
     }
 
+   
 
 
     ////number of simultaneous missiles per planet
@@ -101,34 +118,35 @@ public class Planet : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        planetTargets = new Stack<Transform>();
+        PlanetTargets = new Stack<Transform>();
         targetCount = GameManager.Instance.missileLimit;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-
-        if (gameObject.CompareTag("Life") && pewTimer <= 0 && planetTargets.Count != 0)
+     
+        if (gameObject.CompareTag("Life") && pewTimer <= 0/* && PlanetTargets.Count != 0*/)
         {
 
             //StartCoroutine(StopMissiles());
-            planetTargets.Clear();
-            planetTargets = FindClosestByTag("Debree");
+            PlanetTargets.Clear();
+            PlanetTargets = FindClosestByTag("Debree");
             
-            if (planetTargets.Count > 0)
+            if (PlanetTargets.Count > 0)
             {
-                Debug.Log(planetTargets.Count);
+                Debug.Log(PlanetTargets.Count);
                 for (int i = 0; i < TargetCount; i++)
                 {
-                    if (i < planetTargets.Count)
+                    if (i < PlanetTargets.Count)
                     {
                         //Debug.Log("SPAWN " + i + " " + gameObject.name + " " + planetTargets.Count);
                         GameObject tmp = SimplePool.Spawn(GameManager.Instance.missile, gameObject.transform.position, Quaternion.LookRotation(Vector3.forward));
                         tmp.transform.SetParent(gameObject.transform);
-                        tmp.GetComponent<Missile>().Target = planetTargets.Pop();
+                        tmp.GetComponent<Missile>().Target = PlanetTargets.Pop();
                         pewTimer = MissileCoolDown;
-                       
+                        //PlanetTargets.Clear();
+
                     }
 
 
@@ -143,7 +161,7 @@ public class Planet : MonoBehaviour
         else if (gameObject.CompareTag("Life"))
         {
             pewTimer -= Time.fixedDeltaTime;
-            planetTargets = FindClosestByTag("Debree");
+            PlanetTargets = FindClosestByTag("Debree");
         }
         else
             pewTimer = missileCoolDown;
