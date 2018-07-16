@@ -174,16 +174,16 @@ public class Planet : MonoBehaviour
     }
 
 
-    private void Fire()
-    {
-        //planetTargets.Clear();
-        //if (distance < range /*&& fastestAsteroidSpeed <= goVel.sqrMagnitude*/)
-        //{
+    //private void Fire()
+    //{
+    //    //planetTargets.Clear();
+    //    //if (distance < range /*&& fastestAsteroidSpeed <= goVel.sqrMagnitude*/)
+    //    //{
       
-            //target = go.transform;
+    //        //target = go.transform;
 
-        //}
-    }
+    //    //}
+    //}
 
 
 

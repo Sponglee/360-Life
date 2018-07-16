@@ -59,7 +59,7 @@ public class Debree : MonoBehaviour
             //Float text spawn, rotate to camera
             GameObject tmp = SimplePool.Spawn(AsteroidSpawner.Instance.fltText, gameObject.transform.position, Quaternion.identity);
             tmp.transform.LookAt(Camera.main.transform);
-            tmp.transform.GetChild(0).GetChild(0).GetComponent<Text>().text = string.Format("+{0}", scoreValue.ToString());
+            tmp.transform.GetChild(0).GetChild(0).GetComponent<Text>().text = string.Format("+{0}$", scoreValue.ToString());
 
             GameManager.Instance.money += scoreValue;
             GameManager.Instance.moneyText.text = GameManager.Instance.money.ToString();

@@ -69,7 +69,7 @@ public class AsteroidSpawner : Singleton<AsteroidSpawner>
             waveCount++;
             waveTimer = 0;
 
-            waveMaxTime = waveCount * spawnWait + waveWait;
+            waveMaxTime = waveWait;
             //if (gameOver)
             //{
             //    restartText.text = "Press 'R' for Restart";
@@ -115,12 +115,13 @@ public class AsteroidSpawner : Singleton<AsteroidSpawner>
             //hazardCount += 1;
             
             yield return new WaitForSeconds(waveWait);
-            if(waveCount==10)
+            if(waveCount<=10)
             {
-                waveWait = Random.Range(0.5f,0.5f);
+                waveWait -= Random.Range(0.05f,0.05f);
                
             }
-            else if (waveCount== Random.Range(3,5))
+
+            if (waveCount== Random.Range(3,5))
             {
                 gameObject.transform.Rotate(Vector3.up, Random.Range(15f, 30f));
             }

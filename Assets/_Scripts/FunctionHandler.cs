@@ -124,7 +124,7 @@ public class FunctionHandler : Singleton<FunctionHandler>
         doubleLifeCostText.text = doubleLifeCost.ToString();
         doubleMissileCostText.text = doubleMissileCost.ToString();
         doubleShieldText.text = doubleLifeCost.ToString();
-        doubleMissileTimeText.text = doubleMissileCost.ToString();
+        //doubleMissileTimeText.text = doubleMissileCost.ToString();
     }
 
     public void Restart()
@@ -136,7 +136,7 @@ public class FunctionHandler : Singleton<FunctionHandler>
     public void OpenMenu()
     {
         int menuWave = 0;
-        menuScoreText.text = GameManager.Instance.money.ToString();
+        menuScoreText.text = GameManager.Instance.scores.ToString();
 
         if (AsteroidSpawner.Instance.nextWave - 1 < 0)
             menuWave = 0;
@@ -195,7 +195,7 @@ public class FunctionHandler : Singleton<FunctionHandler>
             GameManager.Instance.lifeMultiplier = 2;
             GameManager.Instance.lifeTimer = GameManager.Instance.lifeSpreadTime;
             GameManager.Instance.money -= DoubleLifeCost;
-            DoubleLifeCost = Mathf.Round(DoubleLifeCost *= 2f);
+            DoubleLifeCost = Mathf.Round(DoubleLifeCost *= 1.25f);
         }
     }
 
@@ -269,4 +269,8 @@ public class FunctionHandler : Singleton<FunctionHandler>
             DoubleShieldCost = Mathf.Round(DoubleShieldCost*= 1.25f);
         }
     }
+
+
+
+
 }

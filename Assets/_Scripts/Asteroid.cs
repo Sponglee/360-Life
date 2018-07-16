@@ -43,7 +43,43 @@ public class Asteroid : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (!collision.gameObject.CompareTag("Missile") && !collision.gameObject.CompareTag("Debree") && !collisionInProgress)
+        if (collision.gameObject.CompareTag("Life"))
+        {
+
+            //collision.gameObject.SetActive(false);
+            SimplePool.Spawn(AsteroidSpawner.Instance.planetExplosion, gameObject.transform.position, Quaternion.identity);
+            Instantiate(debreePref, transform.position, Quaternion.identity);
+
+            if (!GameManager.Instance.shieldUp)
+            {
+                collision.gameObject.GetComponent<Outline>().enabled = false;
+                GameManager.Instance.lifePlanets.Enqueue(collision.gameObject);
+                Debug.Log("LIFE-- " + collision.gameObject.name);
+
+
+                collision.gameObject.GetComponent<Outline>().enabled = false;
+                collision.gameObject.GetComponent<Planet>().SetTag = "Planet";
+                GameManager.Instance.LifeCount--;
+                GameManager.Instance.scoreMultip.text = string.Format("x{0}", GameManager.Instance.LifeCount);
+
+
+            }
+            else
+            {
+               
+
+                GameObject[] lifes = GameObject.FindGameObjectsWithTag("Life");
+
+                foreach (GameObject life in lifes)
+                {
+                    life.transform.GetChild(0).gameObject.SetActive(false);
+                }
+                GameManager.Instance.shieldUp = false;
+            }
+
+            StartCoroutine(StopDestroy());
+        }
+        else if (!collision.gameObject.CompareTag("Missile") && !collision.gameObject.CompareTag("Debree") && !collisionInProgress)
         {
             collisionInProgress = true;
 
@@ -52,50 +88,18 @@ public class Asteroid : MonoBehaviour
                 
 
             StartCoroutine(StopDestroy());
-            gameObject.transform.GetChild(0).gameObject.SetActive(false);
+            //gameObject.transform.GetChild(0).gameObject.SetActive(false);
 
 
 
-            if (collision.gameObject.CompareTag("Life"))
-            {
-                
-                //collision.gameObject.SetActive(false);
-                SimplePool.Spawn(AsteroidSpawner.Instance.planetExplosion, gameObject.transform.position, Quaternion.identity);
-
-
-                if (!GameManager.Instance.shieldUp)
-                {
-                    collision.gameObject.GetComponent<Outline>().enabled = false;
-                    GameManager.Instance.lifePlanets.Enqueue(collision.gameObject);
-                    Debug.Log("LIFE-- " + collision.gameObject.name);
-
-                   
-                    collision.gameObject.GetComponent<Outline>().enabled = false;
-                    collision.gameObject.GetComponent<Planet>().SetTag = "Planet";
-                    GameManager.Instance.LifeCount--;
-                    GameManager.Instance.scoreMultip.text = string.Format("x{0}", GameManager.Instance.LifeCount);
-
-
-                }
-                else
-                {
-
-                    GameObject[] lifes = GameObject.FindGameObjectsWithTag("Life");
-
-                    foreach (GameObject life in lifes)
-                    {
-                        life.transform.GetChild(0).gameObject.SetActive(false);
-                    }
-                    GameManager.Instance.shieldUp = false;
-                }
-
-                StartCoroutine(StopDestroy());
-            }
+           
 
 
 
 
         }
+        
+        
 
         //if (collision.gameObject.CompareTag("Planet") && !collisionInProgress)
         //{
