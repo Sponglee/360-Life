@@ -85,32 +85,32 @@ public class Asteroid : MonoBehaviour
 
             SimplePool.Spawn(AsteroidSpawner.Instance.explosion, gameObject.transform.position, Quaternion.identity);
             Instantiate(debreePref, transform.position, Quaternion.identity);
-                
+
 
             StartCoroutine(StopDestroy());
             //gameObject.transform.GetChild(0).gameObject.SetActive(false);
 
 
 
-           
+
 
 
 
 
         }
-        
-        
+
+
 
         //if (collision.gameObject.CompareTag("Planet") && !collisionInProgress)
         //{
         //    SimplePool.Spawn(AsteroidSpawner.Instance.explosion, gameObject.transform.position, Quaternion.identity);
         //    StartCoroutine(StopDestroy());
         //}
-       
-        
+
+
     }
 
-    private IEnumerator StopDestroy()
+        private IEnumerator StopDestroy()
     {
         yield return new WaitForSecondsRealtime(0.5f);
         collisionInProgress = false;

@@ -125,12 +125,16 @@ public class AsteroidSpawner : Singleton<AsteroidSpawner>
             {
                 gameObject.transform.Rotate(Vector3.up, Random.Range(15f, 30f));
             }
-            else if (waveCount > Random.Range(9, 31))
+            else if (waveCount > Random.Range(9, 21))
+            {
+                waveWait = 0.5f;
+                //waveCount = 0;
+            }   
+            else if (waveCount>20)
             {
                 waveWait = 2f;
                 waveCount = 0;
             }
-
             if (GameManager.Instance.missileTime != 2)
             {
                 GameManager.Instance.missileTime = 2;

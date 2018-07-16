@@ -10592,6 +10592,12 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 212026410604940680, guid: 9f4b354caafd4d9429883f5e28664ab2,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 35313af049b4a2f42a0325330c51d74a,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9f4b354caafd4d9429883f5e28664ab2, type: 2}
   m_IsPrefabParent: 0
@@ -14281,7 +14287,7 @@ GameObject:
   - component: {fileID: 2043344187}
   - component: {fileID: 2043344188}
   m_Layer: 0
-  m_Name: Baundary
+  m_Name: Boundary
   m_TagString: Boundary
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
