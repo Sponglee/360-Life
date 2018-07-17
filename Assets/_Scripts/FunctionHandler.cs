@@ -136,12 +136,12 @@ public class FunctionHandler : Singleton<FunctionHandler>
     public void OpenMenu()
     {
         int menuWave = 0;
-        menuScoreText.text = GameManager.Instance.scores.ToString();
+        //menuScoreText.text = GameManager.Instance.scores.ToString();
 
-        if (AsteroidSpawner.Instance.nextWave - 1 < 0)
-            menuWave = 0;
-        else
-            menuWave = AsteroidSpawner.Instance.nextWave - 1;
+        //if (AsteroidSpawner.Instance.nextWave - 1 < 0)
+        //    menuWave = 0;
+        //else
+        //    menuWave = AsteroidSpawner.Instance.nextWave - 1;
 
         waveMenuText.text = string.Format("Waves: {0}", menuWave.ToString());
 
@@ -190,11 +190,11 @@ public class FunctionHandler : Singleton<FunctionHandler>
     //Spread life to next planet instantly
     public void DoubleLife()
     {
-        if (GameManager.Instance.money >= DoubleLifeCost)
+        if (GameManager.Instance.Money >= DoubleLifeCost)
         {
             GameManager.Instance.lifeMultiplier = 2;
             GameManager.Instance.lifeTimer = GameManager.Instance.lifeSpreadTime;
-            GameManager.Instance.money -= DoubleLifeCost;
+            GameManager.Instance.Money -= DoubleLifeCost;
             DoubleLifeCost = Mathf.Round(DoubleLifeCost *= 1.25f);
         }
     }
@@ -202,14 +202,14 @@ public class FunctionHandler : Singleton<FunctionHandler>
     //Spread life to next planet instantly
     public void DoubleMoney()
     {
-        if (GameManager.Instance.money >= DoubleMoneyCost)
+        if (GameManager.Instance.Money >= DoubleMoneyCost)
         {
             moneyMultiplier++;
             moneyMultiplierText.text = string.Format("x{0}", moneyMultiplier);
-            GameManager.Instance.mps += 10;
+            //GameManager.Instance.mps += 10;
             //Debug.Log(GameManager.Instance.mps);
-            GameManager.Instance.money -= DoubleMoneyCost;
-            GameManager.Instance.moneyText.text = GameManager.Instance.money.ToString();
+            GameManager.Instance.Money -= DoubleMoneyCost;
+            GameManager.Instance.moneyText.text = GameManager.Instance.Money.ToString();
             DoubleMoneyCost = Mathf.Round(DoubleMoneyCost *=2f);
         }
     }
@@ -218,13 +218,13 @@ public class FunctionHandler : Singleton<FunctionHandler>
     //+1 missiles to each planet
     public void DoubleMissiles()
     {
-        if (GameManager.Instance.money >= DoubleMissileCost)
+        if (GameManager.Instance.Money >= DoubleMissileCost)
         {
             missileMultiplier++;
             missileMultiplierText.text = string.Format("x{0}", missileMultiplier);
             GameManager.Instance.missileLimit += 1;
-            GameManager.Instance.money -= DoubleMissileCost;
-            GameManager.Instance.moneyText.text = GameManager.Instance.money.ToString();
+            GameManager.Instance.Money -= DoubleMissileCost;
+            GameManager.Instance.moneyText.text = GameManager.Instance.Money.ToString();
             DoubleMissileCost = Mathf.Round(DoubleMissileCost *= 2f);
         }
     }
@@ -234,12 +234,12 @@ public class FunctionHandler : Singleton<FunctionHandler>
     //DoubleCooldown
     public void DoubleTime()
     {
-        if (GameManager.Instance.money >= DoubleMissileTime && GameManager.Instance.missileTime != 0.5)
+        if (GameManager.Instance.Money >= DoubleMissileTime && GameManager.Instance.missileTime != 0.5)
         {
             GameManager.Instance.missileTime = 0.5f;
             GameManager.Instance.timeUI.SetActive(true);
-            GameManager.Instance.money -= DoubleMissileTime;
-            GameManager.Instance.moneyText.text = GameManager.Instance.money.ToString();
+            GameManager.Instance.Money -= DoubleMissileTime;
+            GameManager.Instance.moneyText.text = GameManager.Instance.Money.ToString();
             DoubleMissileTime = Mathf.Round(DoubleMissileTime *= 1.25f);
         }
     }
@@ -248,7 +248,7 @@ public class FunctionHandler : Singleton<FunctionHandler>
     //Shield
     public void DoubleShield()
     {
-        if (GameManager.Instance.money >= DoubleShieldCost && !GameManager.Instance.shieldUp)
+        if (GameManager.Instance.Money >= DoubleShieldCost && !GameManager.Instance.shieldUp)
         {
 
 
@@ -264,13 +264,16 @@ public class FunctionHandler : Singleton<FunctionHandler>
 
             GameManager.Instance.shieldUp = true;
             //GameManager.Instance.shieldUI.SetActive(true);
-            GameManager.Instance.money -= DoubleShieldCost;
-            GameManager.Instance.moneyText.text = GameManager.Instance.money.ToString();
+            GameManager.Instance.Money -= DoubleShieldCost;
+            GameManager.Instance.moneyText.text = GameManager.Instance.Money.ToString();
             DoubleShieldCost = Mathf.Round(DoubleShieldCost*= 1.25f);
         }
     }
 
-
+    public void ResetAll()
+    {
+        PlayerPrefs.DeleteAll();
+    }
 
 
 }

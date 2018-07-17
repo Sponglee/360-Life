@@ -61,8 +61,8 @@ public class Debree : MonoBehaviour
             tmp.transform.LookAt(Camera.main.transform);
             tmp.transform.GetChild(0).GetChild(0).GetComponent<Text>().text = string.Format("+{0}$", scoreValue.ToString());
 
-            GameManager.Instance.money += scoreValue;
-            GameManager.Instance.moneyText.text = GameManager.Instance.money.ToString();
+            GameManager.Instance.Money += scoreValue;
+            GameManager.Instance.moneyText.text = GameManager.Instance.Money.ToString();
 
 
             homing = false;

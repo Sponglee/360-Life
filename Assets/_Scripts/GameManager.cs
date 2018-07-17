@@ -1,16 +1,50 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : Singleton<GameManager> {
 
-    public bool gameOver=false;
+    
 
-    public float scores = 0;
-    public float money=0;
-    public float mps=10;
-    public float moneyTimer;
+
+    public bool gameOver=false;
+    public Text moneyText;
+    public Text moneyGoalTxt;
+
+    public Slider moneySlider;
+
+    public float moneyGoal;
+    private float money = 0;
+    public float Money
+    {
+        get
+        {
+            return money;
+        }
+
+        set
+        {
+            money = value;
+            moneySlider.value = money / moneyGoal;
+            if(money>=moneyGoal)
+            {
+                int lvlIndex = PlayerPrefs.GetInt("LevelIndex", 0);
+                lvlIndex++;
+                PlayerPrefs.SetInt("LevelIndex", lvlIndex);
+                PlayerPrefs.SetFloat("MoneyGoal", moneyGoal + 10);
+
+                SceneManager.LoadScene("Main");
+            }
+        }
+    }
+
+    
+
+    //public float scores = 0;
+    //public float mps=10;
+    //public float moneyTimer;
 
 
     public float missileLimit = 1;
@@ -20,9 +54,10 @@ public class GameManager : Singleton<GameManager> {
     public GameObject shieldUI;
     public GameObject timeUI;
 
-    public Text scoreText;
-    public Text moneyText;
-    public Text scoreMultip;
+   
+
+    //public Text scoreMultip;
+    //public Text scoreText;
     
     public GameObject menu;
     public GameObject ui;
@@ -62,110 +97,150 @@ public class GameManager : Singleton<GameManager> {
         }
     }
 
+   
+
     public float lifeTimer;
     public float lifeSpreadTime;
     public int lifeIndex = 0;
-    public Slider lifeSlider;
+
 
     //public GameObject solarSystem;
     public int numberOfPlanets = 3;
-    public Queue<GameObject> lifePlanets;
-    public List<GameObject> tmpLives;
+    //public List<GameObject> lifePlanets;
+    public List<GameObject> tmpPlanets;
+
+
+    //From levelManager
+    public Transform earth;
+    public GameObject backGround;
+    public GameObject star;
 
     private void Start()
     {
-        lifePlanets = new Queue<GameObject>();
+        //lifePlanets = new Queue<GameObject>();
 
-       
-
-        foreach (GameObject planet in tmpLives)
-        {
-            lifePlanets.Enqueue(planet);
-        }
+        //foreach (GameObject planet in tmpLives)
+        //{
+        //    lifePlanets.Enqueue(planet);
+        //}
         //Debug.Log(lifePlanets.Count);
 
+        //scoreMultip.text = string.Format("x{0}", lifeCount);
+        //scoreText.text = scores.ToString();
+
+        //earth = tmpPlanets[Random.Range(0, tmpPlanets.Count)].transform;
+
+        
+        /*RANDOMISER==========================================*/
+        earth = tmpPlanets[Random.Range(0, tmpPlanets.Count)].transform;
+
+        earth.gameObject.GetComponent<Outline>().enabled = true;
+        earth.gameObject.tag = "Life";
+
+        earth.GetChild(1).GetComponent<Renderer>().material = LevelManager.Instance.lvlData.earthMat;
+        backGround.GetComponent<SpriteRenderer>().sprite = LevelManager.Instance.lvlData.backGround;
+
+        star.GetComponent<Star>().baseStarColor = LevelManager.Instance.lvlData.starColor;
+
+
+
+        /*RANDOMISER==========================================*/
+
+    moneyGoal = PlayerPrefs.GetFloat
+        ("MoneyGoal", 10);
         Time.timeScale = 1f;
-        scoreMultip.text = string.Format("x{0}", lifeCount);
-        scoreText.text = scores.ToString();
-        moneyText.text = money.ToString();
+        moneyText.text = Money.ToString();
+        moneyGoalTxt.text = moneyGoal.ToString();
+        moneySlider.value = 0;
     }
 
 
-    // Update is called once per frame
-    void FixedUpdate() {
+ //   // Update is called once per frame
+ //   void FixedUpdate() {
 
-        moneyTimer += Time.deltaTime;
 
-        //Debug.Log(lifePlanets.Count);
 
-        if (moneyTimer >= 1)
-        {
-            scores += mps * lifeCount;
-           // Debug.Log(">>>>" + mps * lifeCount);
-
-            scoreText.text = scores.ToString();
-            moneyTimer = 0;
-        }
-
-        if (lifeCount < numberOfPlanets)
-        {
-            //lifeTimer += 1 *  Time.deltaTime;
-            lifeSlider.value = lifeTimer / lifeSpreadTime;
-        }
-        else
-        {
-            lifeTimer = 0;
-            lifeSlider.value = lifeTimer / lifeSpreadTime;
-        }
-        if (lifeTimer>= lifeSpreadTime )
-        {
+ //       //if (shieldUp)
             
-            lifeTimer = 0;
-            //if(lifeMultiplier != 1)
-            //{
-            //    lifeSpreadTime *= 1.25;
-            //    lifeMultiplier = 1;
-            //}
+            
+
+
+ //       //moneyTimer += Time.deltaTime;
+
+ //       //Debug.Log(lifePlanets.Count);
+
+ //       //if (moneyTimer >= 1)
+ //       //{
+ //       //    scores += mps * lifeCount;
+ //       //   // Debug.Log(">>>>" + mps * lifeCount);
+
+ //       //    scoreText.text = scores.ToString();
+ //       //    moneyTimer = 0;
+ //       //}
 
 
 
-            if (lifeCount < numberOfPlanets)
-            {
-                GameObject lifeTmp;
-                do
-                {
-                    if (lifePlanets.Count > 0)
-                    {
-                        lifeTmp = lifePlanets.Dequeue();
-                        //Debug.Log("do " + lifePlanets.Count + " : " + lifeTmp.CompareTag("Life"));
-                    }
-                    else lifeTmp = null;
-                }
-                while (lifeTmp == null && lifeTmp.CompareTag("Life"));
-
-
-                lifeTmp.GetComponent<Planet>().SetTag = "Life";
-                lifeTmp.GetComponent<Outline>().enabled = true;
-
-
-                lifeTimer = 0;
-                lifeSpreadTime += 0.25f * lifeSpreadTime;
-
-                if (shieldUp)
-                    lifeTmp.transform.GetChild(0).gameObject.SetActive(true);
-
-            }
-            LifeCount++;
-            scoreMultip.text = string.Format("x{0}", lifeCount);
-        }
 
 
 
-        //if(timeUI.activeSelf == true)
-        //{
-        //    timeUI.GetComponent<Image>().fillAmount = 1-AsteroidSpawner.Instance.lifeSlider.value;
-        //}
-	}
+
+ //       //if (lifeCount < numberOfPlanets)
+ //       //{
+ //       //    //lifeTimer += 1 *  Time.deltaTime;
+ //       //    lifeSlider.value = lifeTimer / lifeSpreadTime;
+ //       //}
+ //       //else
+ //       //{
+ //       //    lifeTimer = 0;
+ //       //    lifeSlider.value = lifeTimer / lifeSpreadTime;
+ //       //}
+ //       //if (lifeTimer>= lifeSpreadTime )
+ //       //{
+
+ //       //    lifeTimer = 0;
+ //       //    //if(lifeMultiplier != 1)
+ //       //    //{
+ //       //    //    lifeSpreadTime *= 1.25;
+ //       //    //    lifeMultiplier = 1;
+ //       //    //}
+
+ //       //if (lifeCount < numberOfPlanets)
+ //       //    {
+ //       //        GameObject lifeTmp;
+ //       //        do
+ //       //        {
+ //       //            if (lifePlanets.Count > 0)
+ //       //            {
+ //       //                lifeTmp = lifePlanets.Dequeue();
+ //       //                //Debug.Log("do " + lifePlanets.Count + " : " + lifeTmp.CompareTag("Life"));
+ //       //            }
+ //       //            else lifeTmp = null;
+ //       //        }
+ //       //        while (lifeTmp == null && lifeTmp.CompareTag("Life"));
+
+
+ //       //        lifeTmp.GetComponent<Planet>().SetTag = "Life";
+ //       //        lifeTmp.GetComponent<Outline>().enabled = true;
+
+
+ //       //        lifeTimer = 0;
+ //       //        lifeSpreadTime += 0.25f * lifeSpreadTime;
+
+ //       //        if (shieldUp)
+ //       //            lifeTmp.transform.GetChild(0).gameObject.SetActive(true);
+
+ //       //    }
+ //           //LifeCount++;
+ //           //scoreMultip.text = string.Format("x{0}", lifeCount);
+ //       //}
+
+
+
+ //       //if(timeUI.activeSelf == true)
+ //       //{
+ //       //    timeUI.GetComponent<Image>().fillAmount = 1-AsteroidSpawner.Instance.lifeSlider.value;
+ //       //}
+	//}
 
 
 

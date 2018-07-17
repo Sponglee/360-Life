@@ -53,14 +53,14 @@ public class Asteroid : MonoBehaviour
             if (!GameManager.Instance.shieldUp)
             {
                 collision.gameObject.GetComponent<Outline>().enabled = false;
-                GameManager.Instance.lifePlanets.Enqueue(collision.gameObject);
+                //GameManager.Instance.lifePlanets.Enqueue(collision.gameObject);
                 Debug.Log("LIFE-- " + collision.gameObject.name);
 
 
                 collision.gameObject.GetComponent<Outline>().enabled = false;
                 collision.gameObject.GetComponent<Planet>().SetTag = "Planet";
                 GameManager.Instance.LifeCount--;
-                GameManager.Instance.scoreMultip.text = string.Format("x{0}", GameManager.Instance.LifeCount);
+                //GameManager.Instance.scoreMultip.text = string.Format("x{0}", GameManager.Instance.LifeCount);
 
 
             }

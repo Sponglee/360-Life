@@ -17,9 +17,9 @@ public class AsteroidSpawner : Singleton<AsteroidSpawner>
 
     public float waveMaxTime;
     public float waveTimer = 0;
-    public Slider lifeSlider;
-    public Text waveCountText;
-    public int nextWave = 0;
+    //public Slider lifeSlider;
+    //public Text waveCountText;
+    //public int nextWave = 0;
     private GameObject randomHazard;
 
 
@@ -43,20 +43,20 @@ public class AsteroidSpawner : Singleton<AsteroidSpawner>
 
     public void Start()
     {
-        nextWave = 0;
+        //nextWave = 0;
         waveMaxTime = 0;
-        waveCountText.text = nextWave.ToString();
-
+        //waveCountText.text = nextWave.ToString();
+        hazards = LevelManager.Instance.hazardPrefs;
         StartCoroutine(SpawnWaves());
     }
 
 
 
-    private void Update()
-    {
-        waveTimer += Time.fixedDeltaTime;
-        lifeSlider.value = waveTimer / waveMaxTime;
-    }
+    //private void Update()
+    //{
+    //    waveTimer += Time.fixedDeltaTime;
+    //    lifeSlider.value = waveTimer / waveMaxTime;
+    //}
     IEnumerator SpawnWaves()
     {
 
@@ -64,8 +64,8 @@ public class AsteroidSpawner : Singleton<AsteroidSpawner>
         
         while (true)
         {
-            nextWave++;
-            waveCountText.text = nextWave.ToString();
+            //nextWave++;
+            //waveCountText.text = nextWave.ToString();
             waveCount++;
             waveTimer = 0;
 

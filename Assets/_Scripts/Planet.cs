@@ -135,7 +135,7 @@ public class Planet : MonoBehaviour
             
             if (PlanetTargets.Count > 0)
             {
-                Debug.Log(PlanetTargets.Count);
+                //Debug.Log(PlanetTargets.Count);
                 for (int i = 0; i < TargetCount; i++)
                 {
                     if (i < PlanetTargets.Count)
