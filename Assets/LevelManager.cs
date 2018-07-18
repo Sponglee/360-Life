@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelManager : Singleton<LevelManager>{
 
@@ -64,7 +65,7 @@ public class LevelManager : Singleton<LevelManager>{
         Debug.Log(levelIndex + " : " + currentLevel);
         Debug.Log(PlayerPrefs.GetString("LevelInfo", "0,0,0"));
 
-        if (currentLevel != levelIndex || currentLevel == 0)
+        if (SceneManager.GetActiveScene().name == "Main" && (currentLevel != levelIndex || currentLevel == 0))
         {
             RandomiseStuff();
         }

@@ -8,6 +8,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Main.unity
     guid: 617db0975d4721d4aa9f09de12deec94
+  - enabled: 1
+    path: Assets/CREDITS.unity
+    guid: 9f1283ff4f8c0bf4b8cce3e84b50a8ea
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000

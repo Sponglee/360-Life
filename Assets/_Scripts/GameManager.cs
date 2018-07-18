@@ -35,7 +35,7 @@ public class GameManager : Singleton<GameManager> {
                 PlayerPrefs.SetInt("LevelIndex", lvlIndex);
                 PlayerPrefs.SetFloat("MoneyGoal", moneyGoal + 10);
 
-                SceneManager.LoadScene("Main");
+                SceneManager.LoadScene("Credits");
             }
         }
     }
@@ -115,6 +115,12 @@ public class GameManager : Singleton<GameManager> {
     public GameObject backGround;
     public GameObject star;
 
+
+
+    private void Awake()
+    {
+       
+    }
     private void Start()
     {
         //lifePlanets = new Queue<GameObject>();
@@ -130,11 +136,10 @@ public class GameManager : Singleton<GameManager> {
 
         //earth = tmpPlanets[Random.Range(0, tmpPlanets.Count)].transform;
 
-        
         /*RANDOMISER==========================================*/
         earth = tmpPlanets[Random.Range(0, tmpPlanets.Count)].transform;
-
-        earth.gameObject.GetComponent<Outline>().enabled = true;
+        if (earth.GetComponent<Outline>() != null)
+            earth.gameObject.GetComponent<Outline>().enabled = true;
         earth.gameObject.tag = "Life";
 
         earth.GetChild(1).GetComponent<Renderer>().material = LevelManager.Instance.lvlData.earthMat;
@@ -146,7 +151,8 @@ public class GameManager : Singleton<GameManager> {
 
         /*RANDOMISER==========================================*/
 
-    moneyGoal = PlayerPrefs.GetFloat
+
+        moneyGoal = PlayerPrefs.GetFloat
         ("MoneyGoal", 10);
         Time.timeScale = 1f;
         moneyText.text = Money.ToString();
