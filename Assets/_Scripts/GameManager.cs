@@ -37,7 +37,7 @@ public class GameManager : Singleton<GameManager> {
                 Debug.Log(PlayerPrefs.GetInt("LevelIndex", -1));
                 PlayerPrefs.SetFloat("MoneyGoal", moneyGoal + 10);
 
-                SceneManager.LoadScene("Credits");
+                StartCoroutine(MenuScreen.Instance.FadeOut("Credits"));
             }
         }
     }

@@ -7,10 +7,11 @@ public class sceneLoader : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("YAY");
-        if(other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player"))
         {
-            SceneManager.LoadScene("Main");
+            StartCoroutine(MenuScreen.Instance.FadeOut("Main"));
         }
     }
+
+
 }
