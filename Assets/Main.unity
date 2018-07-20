@@ -2212,7 +2212,7 @@ MonoBehaviour:
   moneyText: {fileID: 1319482721}
   moneyGoalTxt: {fileID: 2021031399}
   moneySlider: {fileID: 55580164}
-  moneyGoal: 0
+  moneyGoal: 50
   missileLimit: 1
   missileTime: 2
   shieldUp: 0
@@ -2220,7 +2220,7 @@ MonoBehaviour:
   timeUI: {fileID: 959136216}
   menu: {fileID: 838276381}
   ui: {fileID: 1527854353}
-  missileCost: 10
+  missileCost: 100
   missile: {fileID: 1066230717441396, guid: 0aba9e5ad62e6f745a02caae3c7c9862, type: 2}
   lifeMultiplier: 1
   lifeCount: 1

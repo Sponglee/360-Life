@@ -53,20 +53,30 @@ public class LevelManager : Singleton<LevelManager>{
 
     public int currentLevel;
     public int levelIndex;
+    public bool firstLaunch = true;
 
 	// Use this for initialization
 	void Awake   () {
 
-        //DontDestroyOnLoad(gameObject);
 
-        levelIndex = PlayerPrefs.GetInt("LevelIndex", 0);
-        currentLevel = PlayerPrefs.GetInt("CurrentLevel", 0);
+
+        //if (firstLaunch)
+        //{
+        //    firstLaunch = false;
+        //    RandomiseStuff();
+        //}
 
         Debug.Log(levelIndex + " : " + currentLevel);
-        Debug.Log(PlayerPrefs.GetString("LevelInfo", "0,0,0"));
-
-        if (SceneManager.GetActiveScene().name == "Main" && (currentLevel != levelIndex || currentLevel == 0))
+        //DontDestroyOnLoad(gameObject);
+        if (SceneManager.GetActiveScene().name == "Main" && currentLevel != 0)
         {
+            levelIndex = PlayerPrefs.GetInt("LevelIndex", 0);
+            currentLevel = PlayerPrefs.GetInt("CurrentLevel", 0);
+
+            Debug.Log(levelIndex + " : " + currentLevel);
+            Debug.Log(PlayerPrefs.GetString("LevelInfo", "0,0,0"));
+
+       
             RandomiseStuff();
         }
 

@@ -32,7 +32,9 @@ public class GameManager : Singleton<GameManager> {
             {
                 int lvlIndex = PlayerPrefs.GetInt("LevelIndex", 0);
                 lvlIndex++;
+                Debug.Log(lvlIndex);
                 PlayerPrefs.SetInt("LevelIndex", lvlIndex);
+                Debug.Log(PlayerPrefs.GetInt("LevelIndex", -1));
                 PlayerPrefs.SetFloat("MoneyGoal", moneyGoal + 10);
 
                 SceneManager.LoadScene("Credits");
@@ -152,8 +154,7 @@ public class GameManager : Singleton<GameManager> {
         /*RANDOMISER==========================================*/
 
 
-        moneyGoal = PlayerPrefs.GetFloat
-        ("MoneyGoal", 10);
+        moneyGoal = PlayerPrefs.GetFloat("MoneyGoal", 50);
         Time.timeScale = 1f;
         moneyText.text = Money.ToString();
         moneyGoalTxt.text = moneyGoal.ToString();

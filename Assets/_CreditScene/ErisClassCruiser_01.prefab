@@ -39,9 +39,11 @@ GameObject:
   - component: {fileID: 4976823946689292}
   - component: {fileID: 96367744576739994}
   - component: {fileID: 95067110640102026}
+  - component: {fileID: 136506729080297486}
+  - component: {fileID: 54937452433247240}
   m_Layer: 0
   m_Name: ErisClassCruiser_01
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -220,6 +222,21 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1805691583771392}
   m_Mesh: {fileID: 4300000, guid: 7f7b19c91f9d3454688aad44dd81e35f, type: 3}
+--- !u!54 &54937452433247240
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1651509829508450}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!64 &64074259903516228
 MeshCollider:
   m_ObjectHideFlags: 1
@@ -366,6 +383,19 @@ TrailRenderer:
     generateLightingData: 0
   m_MinVertexDistance: 0.1
   m_Autodestruct: 1
+--- !u!136 &136506729080297486
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1651509829508450}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 11.3
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: -18, y: 0, z: 0}
 --- !u!198 &198470867962926762
 ParticleSystem:
   m_ObjectHideFlags: 1
