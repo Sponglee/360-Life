@@ -1,7 +1,7 @@
-﻿using System.Collections;
+﻿
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : Singleton<GameManager> {
@@ -14,6 +14,7 @@ public class GameManager : Singleton<GameManager> {
     public Text moneyGoalTxt;
 
     public Slider moneySlider;
+    public Animator launchAnim;
 
     public float moneyGoal;
     private float money = 0;
@@ -28,18 +29,22 @@ public class GameManager : Singleton<GameManager> {
         {
             money = value;
             moneySlider.value = money / moneyGoal;
-            if(money>=moneyGoal)
+            moneyGoalTxt.text = string.Format("{0}/{1}", money.ToString(), moneyGoal.ToString());
+            if (money >= moneyGoal)
             {
-                int lvlIndex = PlayerPrefs.GetInt("LevelIndex", 0);
-                lvlIndex++;
-                Debug.Log(lvlIndex);
-                PlayerPrefs.SetInt("LevelIndex", lvlIndex);
-                Debug.Log(PlayerPrefs.GetInt("LevelIndex", -1));
-                PlayerPrefs.SetFloat("MoneyGoal", moneyGoal + 10);
-
-                StartCoroutine(MenuScreen.Instance.FadeOut("Credits"));
+                launchAnim.SetBool("CanLaunch", true);
             }
-        }
+
+                //    int lvlIndex = PlayerPrefs.GetInt("LevelIndex", 0);
+                //    lvlIndex++;
+                //    Debug.Log(lvlIndex);
+                //    PlayerPrefs.SetInt("LevelIndex", lvlIndex);
+                //    Debug.Log(PlayerPrefs.GetInt("LevelIndex", -1));
+                //    PlayerPrefs.SetFloat("MoneyGoal", moneyGoal + 10);
+
+                //    //StartCoroutine(MenuScreen.Instance.FadeOut("Credits"));
+                //}
+            }
     }
 
     
@@ -156,8 +161,8 @@ public class GameManager : Singleton<GameManager> {
 
         moneyGoal = PlayerPrefs.GetFloat("MoneyGoal", 50);
         Time.timeScale = 1f;
-        moneyText.text = Money.ToString();
-        moneyGoalTxt.text = moneyGoal.ToString();
+        //moneyText.text = Money.ToString();
+        moneyGoalTxt.text = string.Format("{0}/{1}", money.ToString(), moneyGoal.ToString());
         moneySlider.value = 0;
     }
 

@@ -68,7 +68,7 @@ public class LevelManager : Singleton<LevelManager>{
 
         Debug.Log(levelIndex + " : " + currentLevel);
         //DontDestroyOnLoad(gameObject);
-        if (SceneManager.GetActiveScene().name == "Main" && currentLevel != 0)
+        if (SceneManager.GetActiveScene().name == "Main")
         {
             levelIndex = PlayerPrefs.GetInt("LevelIndex", 0);
             currentLevel = PlayerPrefs.GetInt("CurrentLevel", 0);
@@ -76,8 +76,8 @@ public class LevelManager : Singleton<LevelManager>{
             Debug.Log(levelIndex + " : " + currentLevel);
             Debug.Log(PlayerPrefs.GetString("LevelInfo", "0,0,0"));
 
-       
-            RandomiseStuff();
+            if (levelIndex != 0 && currentLevel != levelIndex)
+                RandomiseStuff();
         }
 
 

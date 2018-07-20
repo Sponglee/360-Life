@@ -10,11 +10,13 @@ public class MenuScreen : Singleton<MenuScreen> {
     private CanvasGroup fadeGroup;
 
     private float fadeInSpeed = 0.33f;
+    private bool isFadingOut = false;
 
 
-	// Use this for initialization
-	private void Start ()
+    // Use this for initialization
+    private void Start ()
     {
+        isFadingOut = false;
         gameObject.SetActive(true);
         fadeGroup = FindObjectOfType<CanvasGroup>();
         fadeGroup.alpha = 1;
@@ -23,7 +25,7 @@ public class MenuScreen : Singleton<MenuScreen> {
     // Update is called once per frame
     void Update () {
         //FadeIn
-        if(fadeGroup.alpha > 0)
+        if(fadeGroup.alpha > 0 && !isFadingOut)
             fadeGroup.alpha = 1 - Time.timeSinceLevelLoad;
     }
 
@@ -31,6 +33,7 @@ public class MenuScreen : Singleton<MenuScreen> {
 
     public IEnumerator FadeOut(string sceneName)
     {
+        isFadingOut = true;
         while(fadeGroup.alpha < 1)
         {
             fadeGroup.alpha = 1 + Time.deltaTime;

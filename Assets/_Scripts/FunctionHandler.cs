@@ -177,13 +177,30 @@ public class FunctionHandler : Singleton<FunctionHandler>
 
     public void PlainScene()
     {
-        SceneManager.LoadScene("Main");
-
+       
+        StartCoroutine(MenuScreen.Instance.FadeOut("Main"));
     }
 
     public void TiltScene()
     {
+
         SceneManager.LoadScene("Tilted");
+    }
+
+    public void CreditsScene()
+    {
+        if (GameManager.Instance.Money >= GameManager.Instance.moneyGoal)
+        {
+            int lvlIndex = PlayerPrefs.GetInt("LevelIndex", 0);
+            lvlIndex++;
+
+            PlayerPrefs.SetInt("LevelIndex", lvlIndex);
+
+            PlayerPrefs.SetFloat("MoneyGoal", GameManager.Instance.moneyGoal + 10);
+
+            //StartCoroutine(MenuScreen.Instance.FadeOut("Credits"));
+            StartCoroutine(MenuScreen.Instance.FadeOut("Credits"));
+        }
     }
 
 
