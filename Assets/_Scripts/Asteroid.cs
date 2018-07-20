@@ -2,6 +2,7 @@
 using System.Collections;
 using SimpleKeplerOrbits;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Asteroid : MonoBehaviour 
 {
@@ -84,7 +85,9 @@ public class Asteroid : MonoBehaviour
             collisionInProgress = true;
 
             SimplePool.Spawn(AsteroidSpawner.Instance.explosion, gameObject.transform.position, Quaternion.identity);
-            Instantiate(debreePref, transform.position, Quaternion.identity);
+
+            if(SceneManager.GetActiveScene().name == "Main")
+                Instantiate(debreePref, transform.position, Quaternion.identity);
 
 
             StartCoroutine(StopDestroy());
