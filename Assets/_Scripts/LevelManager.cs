@@ -72,7 +72,7 @@ public class LevelManager : Singleton<LevelManager>{
 	// Use this for initialization
 	void Awake() {
 
-
+        Debug.Log("REEEEEEEEEEEEE");
 
         //if (firstLaunch)
         //{

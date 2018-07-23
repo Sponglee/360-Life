@@ -8,14 +8,15 @@ public class SplashScreen : MonoBehaviour {
     private CanvasGroup fadeGroup;
     private float loadTime;
     private float minimumLogoTime = 3.0f; //Minimum logo time;
-    public GameObject solidHInken;
+    public GameObject solidHinken;
+    public string nextScene;
 
     private void Start()
     {
 
         fadeGroup = FindObjectOfType<CanvasGroup>();
 
-        fadeGroup.alpha = 1;
+        fadeGroup.alpha = 0.99f;
 
 
         //Get a timestep of a completion time
@@ -38,11 +39,11 @@ public class SplashScreen : MonoBehaviour {
         //FadeOut
         if (Time.time > minimumLogoTime && loadTime != 0)
         {
-            solidHInken.SetActive(true);
+            //solidHinken.SetActive(false);
             fadeGroup.alpha = Time.time - minimumLogoTime;
             if (fadeGroup.alpha>=1)
             {
-                SceneManager.LoadScene("TITLE");
+                SceneManager.LoadScene(nextScene);
             }
         }
             
