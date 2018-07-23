@@ -34,6 +34,8 @@ public class AsteroidSpawner : Singleton<AsteroidSpawner>
     public GameObject planetExplosion;
     public Transform solarSystem;
 
+    //to apply on spawn
+    public Material hazMat;
     //public GameObject asteroids;
 
     float ang = 0f;
@@ -47,6 +49,9 @@ public class AsteroidSpawner : Singleton<AsteroidSpawner>
         waveMaxTime = 0;
         //waveCountText.text = nextWave.ToString();
         hazards = LevelManager.Instance.hazardPrefs;
+
+        hazMat = LevelManager.Instance.lvlData.hazardMat;
+
         StartCoroutine(SpawnWaves());
     }
 
@@ -92,10 +97,11 @@ public class AsteroidSpawner : Singleton<AsteroidSpawner>
                 int rng = Random.Range(0, 3);
                 randomHazard = hazards[rng];
                 GameObject tmp = Instantiate(randomHazard, spawnPosition, Quaternion.identity, asteroidHolder);
+            
+                tmp.GetComponentInChildren<Renderer>().materials[0] = hazMat;
+            //tmp.GetComponent<KeplerOrbitMover>().OrbitData.Position = spawnPosition;
 
-                //tmp.GetComponent<KeplerOrbitMover>().OrbitData.Position = spawnPosition;
-
-                //tmp.GetComponent<KeplerOrbitMover>().SetAutoCircleOrbit();
+            //tmp.GetComponent<KeplerOrbitMover>().SetAutoCircleOrbit();
 
 
             //    yield return new WaitForSeconds(spawnWait);
@@ -111,9 +117,9 @@ public class AsteroidSpawner : Singleton<AsteroidSpawner>
             //}
 
 
-         
+
             //hazardCount += 1;
-            
+
             yield return new WaitForSeconds(waveWait);
             if(waveCount<=5)
             {

@@ -374,6 +374,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cbc134347eebe7488b0638fa67d475b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 0.2
 --- !u!1 &55580162
 GameObject:
   m_ObjectHideFlags: 0
@@ -929,7 +930,7 @@ Transform:
   - {fileID: 2043344186}
   - {fileID: 434872038}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &122423279
 MonoBehaviour:
@@ -1373,7 +1374,7 @@ Transform:
   - {fileID: 1849975570}
   - {fileID: 58758596}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &257866402
 MonoBehaviour:
@@ -1407,6 +1408,7 @@ MonoBehaviour:
   explosion: {fileID: 100004, guid: 2857e183f4cd3df4e9096e5b578bd32f, type: 2}
   planetExplosion: {fileID: 100008, guid: a93496017806b7740910df5fd946f306, type: 2}
   solarSystem: {fileID: 1892292796}
+  hazMat: {fileID: 0}
 --- !u!212 &257866403
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2348,6 +2350,7 @@ MonoBehaviour:
   earth: {fileID: 0}
   backGround: {fileID: 1421730839}
   star: {fileID: 885611652}
+  frontLight: {fileID: 0}
 --- !u!4 &294417534
 Transform:
   m_ObjectHideFlags: 0
@@ -2534,7 +2537,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &373972051
 MonoBehaviour:
@@ -2611,6 +2614,8 @@ MonoBehaviour:
   - {fileID: 1625281178362394, guid: d4edcbc516955e14694103e6c6cbca6e, type: 2}
   - {fileID: 1625281178362394, guid: c89265cc3135e9142a4dca6359ce7bff, type: 2}
   - {fileID: 1625281178362394, guid: 3f03051bc5fd2bb49ac18c84de39d933, type: 2}
+  logoPlanets: []
+  levelNumberText: {fileID: 0}
   currentLevel: 0
   levelIndex: 0
   firstLaunch: 1
@@ -6813,6 +6818,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cbc134347eebe7488b0638fa67d475b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 0.2
 --- !u!23 &703848712
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -13451,7 +13457,7 @@ Transform:
   - {fileID: 1421730840}
   - {fileID: 523661145}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 59.36, y: 47.8, z: 0}
 --- !u!1 &1129044100
 GameObject:
@@ -19545,6 +19551,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cbc134347eebe7488b0638fa67d475b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 0.2
 --- !u!1 &1449254590
 GameObject:
   m_ObjectHideFlags: 0

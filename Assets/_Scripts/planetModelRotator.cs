@@ -4,13 +4,10 @@ using UnityEngine;
 
 public class planetModelRotator : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-        gameObject.transform.Rotate(Vector3.up, 0.2f);
+    public float speed = 0.2f;
+
+    // Update is called once per frame
+    void Update () {
+        gameObject.transform.Rotate(Vector3.up, speed);
 	}
 }

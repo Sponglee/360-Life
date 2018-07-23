@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class LevelManager : Singleton<LevelManager>{
 
-
+    /*******STRUCT PREFS **********/
     public GameObject[] planetPrefs;
 
     public Sprite[] backGrounds;
@@ -24,6 +25,11 @@ public class LevelManager : Singleton<LevelManager>{
 
     public GameObject[] hazardPrefs;
 
+    public Sprite[] logoPlanets;
+    /*******STRUCT PREFS **********/
+
+
+    public Text levelNumberText;
 
     LevelInfo lvlInfo;
     public struct LevelInfo 
@@ -35,6 +41,7 @@ public class LevelManager : Singleton<LevelManager>{
         public int[] planetColor;
         public int hazardMat;
         public int shipColor;
+        public int logoPlanet;
 
     }
 
@@ -48,6 +55,7 @@ public class LevelManager : Singleton<LevelManager>{
         public Color[] planetColor;
         public Material hazardMat;
         public Color shipColor;
+        public Sprite logoPlanet;
 
     }
 
@@ -68,27 +76,28 @@ public class LevelManager : Singleton<LevelManager>{
 
         Debug.Log(levelIndex + " : " + currentLevel);
         //DontDestroyOnLoad(gameObject);
-        if (SceneManager.GetActiveScene().name == "Main")
+        if (SceneManager.GetActiveScene().name == "TITLE")
         {
             levelIndex = PlayerPrefs.GetInt("LevelIndex", 0);
             currentLevel = PlayerPrefs.GetInt("CurrentLevel", 0);
+            if (levelIndex > 0)
+            {
+                levelNumberText.gameObject.SetActive(true);
+                levelNumberText.text = (levelIndex + 1).ToString();
+            }
 
             Debug.Log(levelIndex + " : " + currentLevel);
-            Debug.Log(PlayerPrefs.GetString("LevelInfo", "0,0,0"));
+            Debug.Log(PlayerPrefs.GetString("LevelInfo", "0,0,0,0"));
 
             if (levelIndex != 0 && currentLevel != levelIndex)
                 RandomiseStuff();
         }
 
 
-        LoadStuff(PlayerPrefs.GetString("LevelInfo", "0,0,0"));
+        LoadStuff(PlayerPrefs.GetString("LevelInfo", "0,0,0,0"));
     }
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
+	
 
 
 
@@ -97,9 +106,9 @@ public class LevelManager : Singleton<LevelManager>{
         lvlInfo.earthMat = Random.Range(0, earthMats.Length);
         lvlInfo.backGround = Random.Range(0, backGrounds.Length);
         lvlInfo.starColor = Random.Range(0, starColors.Length);
+        lvlInfo.hazardMat = Random.Range(0, hazardMats.Length);
 
-
-        string saveString = lvlInfo.earthMat.ToString() + "," + lvlInfo.backGround.ToString() + "," + lvlInfo.starColor.ToString();
+        string saveString = lvlInfo.earthMat.ToString() + "," + lvlInfo.backGround.ToString() + "," + lvlInfo.starColor.ToString() + "," + lvlInfo.hazardMat.ToString() /*+ "," + lvlInfo.starColor.ToString()*/;
 
         PlayerPrefs.SetString("LevelInfo", saveString);
     }
@@ -111,7 +120,7 @@ public class LevelManager : Singleton<LevelManager>{
         lvlData.earthMat = earthMats[int.Parse(tokens[0])];
         lvlData.backGround = backGrounds[int.Parse(tokens[1])];
         lvlData.starColor = starColors[int.Parse(tokens[2])];
-
+        lvlData.hazardMat = hazardMats[int.Parse(tokens[3])];
         PlayerPrefs.SetInt("CurrentLevel",levelIndex);
     }
 

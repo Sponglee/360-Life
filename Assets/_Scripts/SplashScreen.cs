@@ -41,7 +41,7 @@ public class SplashScreen : MonoBehaviour {
             fadeGroup.alpha = Time.time - minimumLogoTime;
             if (fadeGroup.alpha>=1)
             {
-                SceneManager.LoadScene("Main");
+                SceneManager.LoadScene("TITLE");
             }
         }
             

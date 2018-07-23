@@ -121,13 +121,9 @@ public class GameManager : Singleton<GameManager> {
     public Transform earth;
     public GameObject backGround;
     public GameObject star;
+    public GameObject frontLight;
 
 
-
-    private void Awake()
-    {
-       
-    }
     private void Start()
     {
         //lifePlanets = new Queue<GameObject>();
@@ -143,20 +139,24 @@ public class GameManager : Singleton<GameManager> {
 
         //earth = tmpPlanets[Random.Range(0, tmpPlanets.Count)].transform;
 
-        /*RANDOMISER==========================================*/
+
+
+
+        /*INITIALIZER==========================================*/
+
         earth = tmpPlanets[Random.Range(0, tmpPlanets.Count)].transform;
         if (earth.GetComponent<Outline>() != null)
             earth.gameObject.GetComponent<Outline>().enabled = true;
         earth.gameObject.tag = "Life";
 
+
         earth.GetChild(1).GetComponent<Renderer>().material = LevelManager.Instance.lvlData.earthMat;
         backGround.GetComponent<SpriteRenderer>().sprite = LevelManager.Instance.lvlData.backGround;
-
         star.GetComponent<Star>().baseStarColor = LevelManager.Instance.lvlData.starColor;
+        //frontLight.GetComponent<Light>().color = LevelManager.Instance.lvlData.starColor;
 
+        /*INITIALIZER==========================================*/
 
-
-        /*RANDOMISER==========================================*/
 
 
         moneyGoal = PlayerPrefs.GetFloat("MoneyGoal", 50);

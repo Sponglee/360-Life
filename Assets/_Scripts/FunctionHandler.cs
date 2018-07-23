@@ -181,10 +181,10 @@ public class FunctionHandler : Singleton<FunctionHandler>
         StartCoroutine(MenuScreen.Instance.FadeOut("Main"));
     }
 
-    public void TiltScene()
+    public void TilteScene()
     {
 
-        SceneManager.LoadScene("Tilted");
+        SceneManager.LoadScene("TITLE");
     }
 
     public void CreditsScene()
