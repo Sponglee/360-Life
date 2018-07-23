@@ -411,7 +411,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -3.6, y: -4.299988}
+  m_AnchoredPosition: {x: -3.6, y: -4.2999268}
   m_SizeDelta: {x: 160, y: 46.22}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &55580164
@@ -1477,7 +1477,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &285174529
 Transform:
   m_ObjectHideFlags: 0
@@ -1491,7 +1491,7 @@ Transform:
   - {fileID: 206335260}
   - {fileID: 458170009}
   m_Father: {fileID: 1932559553}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!120 &285174530
 LineRenderer:
@@ -2525,7 +2525,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &373972050
 Transform:
   m_ObjectHideFlags: 0
@@ -2584,11 +2584,11 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 5d606b76c34a9264f92229371f4efc89, type: 2}
   - {fileID: 2100000, guid: 7090d714eda76844b864ed3cba0dab45, type: 2}
   planetColors:
-  - {r: 0, g: 0, b: 0, a: 0}
-  - {r: 0, g: 0, b: 0, a: 0}
-  - {r: 0, g: 0, b: 0, a: 0}
-  - {r: 0, g: 0, b: 0, a: 0}
-  - {r: 0, g: 0, b: 0, a: 0}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 0.9339623, g: 0.14538093, b: 0.14538093, a: 1}
+  - {r: 0.040236473, g: 1, b: 0, a: 1}
+  - {r: 0.8207547, g: 0, b: 0.70552236, a: 1}
+  - {r: 0, g: 0.67760414, b: 0.8018868, a: 1}
   hazardMats:
   - {fileID: 2100000, guid: 1f4efa1e58cc15c40b5495623687af61, type: 2}
   - {fileID: 2100000, guid: eaf032c49f41b5747958740daf887ddd, type: 2}
@@ -2854,7 +2854,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &428075459
 Transform:
   m_ObjectHideFlags: 0
@@ -2868,7 +2868,7 @@ Transform:
   - {fileID: 407302602}
   - {fileID: 1615727764}
   m_Father: {fileID: 546737868}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: -39.722, y: 0, z: 0}
 --- !u!54 &428075460
 Rigidbody:
@@ -3927,7 +3927,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &503053345
 Transform:
   m_ObjectHideFlags: 0
@@ -4761,7 +4761,7 @@ GameObject:
   - component: {fileID: 514168843}
   - component: {fileID: 514168844}
   m_Layer: 0
-  m_Name: Mercury
+  m_Name: Venus
   m_TagString: Planet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5674,8 +5674,8 @@ Transform:
   m_Children:
   - {fileID: 390585591}
   - {fileID: 703848710}
-  - {fileID: 1102337412}
   - {fileID: 428075459}
+  - {fileID: 1102337412}
   m_Father: {fileID: 1892292796}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -13439,7 +13439,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 546737868}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1107926604
 Transform:
@@ -13485,7 +13485,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1932559553}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1223071051
 GameObject:
@@ -26555,8 +26555,8 @@ Transform:
   m_Children:
   - {fileID: 1223071052}
   - {fileID: 1439677043}
-  - {fileID: 1129044101}
   - {fileID: 285174529}
+  - {fileID: 1129044101}
   m_Father: {fileID: 1892292796}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

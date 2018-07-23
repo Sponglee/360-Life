@@ -8,7 +8,7 @@ public class SplashScreen : MonoBehaviour {
     private CanvasGroup fadeGroup;
     private float loadTime;
     private float minimumLogoTime = 3.0f; //Minimum logo time;
-
+    public GameObject solidHInken;
 
     private void Start()
     {
@@ -38,6 +38,7 @@ public class SplashScreen : MonoBehaviour {
         //FadeOut
         if (Time.time > minimumLogoTime && loadTime != 0)
         {
+            solidHInken.SetActive(true);
             fadeGroup.alpha = Time.time - minimumLogoTime;
             if (fadeGroup.alpha>=1)
             {

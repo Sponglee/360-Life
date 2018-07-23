@@ -121,9 +121,9 @@ public class FunctionHandler : Singleton<FunctionHandler>
     {
         moneyMultiplier = 1;
         missileMultiplier = 1;
-        doubleLifeCostText.text = doubleLifeCost.ToString();
-        doubleMissileCostText.text = doubleMissileCost.ToString();
-        doubleShieldText.text = doubleLifeCost.ToString();
+        //doubleLifeCostText.text = doubleLifeCost.ToString();
+        //doubleMissileCostText.text = doubleMissileCost.ToString();
+        //doubleShieldText.text = doubleLifeCost.ToString();
         //doubleMissileTimeText.text = doubleMissileCost.ToString();
     }
 

@@ -42,7 +42,7 @@ public class LevelManager : Singleton<LevelManager>{
         public int hazardMat;
         public int shipColor;
         public int logoPlanet;
-
+        public int earthIndex;
     }
 
     public LevelData lvlData;
@@ -63,8 +63,14 @@ public class LevelManager : Singleton<LevelManager>{
     public int levelIndex;
     public bool firstLaunch = true;
 
+    void Start()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
+
+
 	// Use this for initialization
-	void Awake   () {
+	void Awake() {
 
 
 
@@ -107,10 +113,18 @@ public class LevelManager : Singleton<LevelManager>{
         lvlInfo.backGround = Random.Range(0, backGrounds.Length);
         lvlInfo.starColor = Random.Range(0, starColors.Length);
         lvlInfo.hazardMat = Random.Range(0, hazardMats.Length);
+        lvlInfo.earthIndex = Random.Range(0, 3);
 
-        string saveString = lvlInfo.earthMat.ToString() + "," + lvlInfo.backGround.ToString() + "," + lvlInfo.starColor.ToString() + "," + lvlInfo.hazardMat.ToString() /*+ "," + lvlInfo.starColor.ToString()*/;
+        string saveString = lvlInfo.earthMat.ToString() + "," + lvlInfo.backGround.ToString() + "," 
+            + lvlInfo.starColor.ToString() + "," + lvlInfo.hazardMat.ToString() /*+ "," + lvlInfo.starColor.ToString()*/;
 
         PlayerPrefs.SetString("LevelInfo", saveString);
+
+        //Earth position per lvl
+        PlayerPrefs.SetInt("EarthIndex", Random.Range(0, 3));
+        //Randomise other planet colors
+        PlayerPrefs.SetInt("VenusColor", Random.Range(0, planetColors.Length));
+        PlayerPrefs.SetInt("MarsColor", Random.Range(0, planetColors.Length));
     }
 
     public void LoadStuff(string info)

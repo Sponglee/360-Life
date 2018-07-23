@@ -230,7 +230,7 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 6.05
+        time: 5.35
         value: 1
         inSlope: Infinity
         outSlope: Infinity
@@ -242,7 +242,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_IsActive
-    path: Thrusters
+    path: modelHolder/Thrusters
     classID: 1
     script: {fileID: 0}
   m_PPtrCurves: []
@@ -275,7 +275,7 @@ AnimationClip:
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 714571079
+      path: 4185989730
       attribute: 2086281974
       script: {fileID: 0}
       typeID: 1
@@ -946,7 +946,7 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 6.05
+        time: 5.35
         value: 1
         inSlope: Infinity
         outSlope: Infinity
@@ -958,7 +958,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_IsActive
-    path: Thrusters
+    path: modelHolder/Thrusters
     classID: 1
     script: {fileID: 0}
   m_EulerEditorCurves:
