@@ -97,7 +97,8 @@ public class AsteroidSpawner : Singleton<AsteroidSpawner>
                 int rng = Random.Range(0, 3);
                 randomHazard = hazards[rng];
                 GameObject tmp = Instantiate(randomHazard, spawnPosition, Quaternion.identity, asteroidHolder);
-            
+
+                tmp.transform.GetComponent<Renderer>().material.color = hazColor;
                 tmp.transform.GetChild(0).GetComponent<Renderer>().material = hazMat;
             //tmp.GetComponent<KeplerOrbitMover>().OrbitData.Position = spawnPosition;
 
