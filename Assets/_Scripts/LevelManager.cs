@@ -68,11 +68,8 @@ public class LevelManager : Singleton<LevelManager>{
         DontDestroyOnLoad(gameObject);
     }
 
-
-	// Use this for initialization
-	void Awake() {
-
-        Debug.Log("REEEEEEEEEEEEE");
+    private void OnLevelWasLoaded(int level)
+    {
 
         //if (firstLaunch)
         //{
@@ -88,7 +85,7 @@ public class LevelManager : Singleton<LevelManager>{
             currentLevel = PlayerPrefs.GetInt("CurrentLevel", 0);
             if (levelIndex > 0)
             {
-                levelNumberText.gameObject.SetActive(true);
+                levelNumberText = GameObject.FindGameObjectWithTag("titleNumber").GetComponent<Text>();
                 levelNumberText.text = (levelIndex + 1).ToString();
             }
 
@@ -102,7 +99,8 @@ public class LevelManager : Singleton<LevelManager>{
 
         LoadStuff(PlayerPrefs.GetString("LevelInfo", "0,0,0,0"));
     }
-	
+
+  
 	
 
 

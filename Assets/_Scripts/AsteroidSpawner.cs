@@ -43,7 +43,7 @@ public class AsteroidSpawner : Singleton<AsteroidSpawner>
 
 
 
-    public void Start()
+    void Start()
     {
         //nextWave = 0;
         waveMaxTime = 0;
@@ -98,7 +98,7 @@ public class AsteroidSpawner : Singleton<AsteroidSpawner>
                 randomHazard = hazards[rng];
                 GameObject tmp = Instantiate(randomHazard, spawnPosition, Quaternion.identity, asteroidHolder);
             
-                tmp.GetComponentInChildren<Renderer>().materials[0] = hazMat;
+                tmp.transform.GetChild(0).GetComponent<Renderer>().material = hazMat;
             //tmp.GetComponent<KeplerOrbitMover>().OrbitData.Position = spawnPosition;
 
             //tmp.GetComponent<KeplerOrbitMover>().SetAutoCircleOrbit();

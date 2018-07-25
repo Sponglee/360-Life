@@ -646,6 +646,118 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &900844219
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 900844221}
+  - component: {fileID: 900844220}
+  m_Layer: 0
+  m_Name: LevelManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &900844220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 900844219}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b53a02e9ad310f141bf91ae4e496a6fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  planetPrefs:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  backGrounds:
+  - {fileID: 21300000, guid: ddcac1fac1f5c8943a30c2ef6b724062, type: 3}
+  - {fileID: 21300000, guid: d9b31ebd60af68c469212c1a9f513e74, type: 3}
+  - {fileID: 21300000, guid: 35313af049b4a2f42a0325330c51d74a, type: 3}
+  - {fileID: 21300000, guid: 67b7b7a86e4d238439b50388753a5155, type: 3}
+  backColors:
+  - {r: 0, g: 0, b: 0, a: 0}
+  - {r: 0, g: 0, b: 0, a: 0}
+  - {r: 0, g: 0, b: 0, a: 0}
+  - {r: 0, g: 0, b: 0, a: 0}
+  - {r: 0, g: 0, b: 0, a: 0}
+  starColors:
+  - {r: 1, g: 0.7607844, b: 0, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 0.9339623, g: 0.14538093, b: 0.14538093, a: 1}
+  - {r: 0.12246352, g: 0.48938674, b: 0.6037736, a: 1}
+  - {r: 0.5875141, g: 0.38781595, b: 0.7830189, a: 1}
+  - {r: 0.8584906, g: 0.20652366, b: 0.49394253, a: 1}
+  - {r: 0.64888257, g: 1, b: 0.4481132, a: 1}
+  - {r: 0.4470588, g: 1, b: 0.9388131, a: 1}
+  - {r: 0.6698113, g: 0.66930735, b: 0.66665184, a: 1}
+  - {r: 0.8396226, g: 0.38844958, b: 0.07524917, a: 1}
+  earthMats:
+  - {fileID: 2100000, guid: 0cec200b33a30a14191be5d07bf20d94, type: 2}
+  - {fileID: 2100000, guid: 38009bf7f2c7b3648b7dfd25116206a6, type: 2}
+  - {fileID: 2100000, guid: a3f57465fc7f881408ca8ea2aad82663, type: 2}
+  - {fileID: 2100000, guid: 20e9c215d7f8fd644a1ec661c5299c34, type: 2}
+  - {fileID: 2100000, guid: 5d606b76c34a9264f92229371f4efc89, type: 2}
+  - {fileID: 2100000, guid: 7090d714eda76844b864ed3cba0dab45, type: 2}
+  planetColors:
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 0.70980406, g: 0, b: 1, a: 0}
+  - {r: 0, g: 1, b: 0.19541812, a: 0}
+  - {r: 0, g: 0.50650287, b: 1, a: 0}
+  - {r: 1, g: 0, b: 0.38890076, a: 0}
+  - {r: 1, g: 0.6367696, b: 0, a: 0}
+  - {r: 1, g: 0.34509805, b: 0.3254902, a: 1}
+  - {r: 0.053416938, g: 0.5588235, b: 0.053416938, a: 1}
+  hazardMats:
+  - {fileID: 2100000, guid: 1f4efa1e58cc15c40b5495623687af61, type: 2}
+  - {fileID: 2100000, guid: eaf032c49f41b5747958740daf887ddd, type: 2}
+  - {fileID: 2100000, guid: 0f3481fca58f7054da2f618aa0be4406, type: 2}
+  - {fileID: 2100000, guid: ba0ae9743b3377f4787edeae66a1b087, type: 2}
+  - {fileID: 2100000, guid: 2a3f4131afcb7e247b53942e1b6d87de, type: 2}
+  - {fileID: 2100000, guid: 311bdcea6069d384bacf70272da99d77, type: 2}
+  - {fileID: 2100000, guid: d3cf21d18986b854cb9dc2ae367e29c1, type: 2}
+  - {fileID: 2100000, guid: 944cc8709bce31d4da1c743a83338818, type: 2}
+  - {fileID: 2100000, guid: e1cac9f87fda27445ac6a54ade344d63, type: 2}
+  - {fileID: 2100000, guid: 039221bbc258f6b40ad389bcebd288e8, type: 2}
+  - {fileID: 2100000, guid: 816eca2bca813da4883bad3b376c4dbc, type: 2}
+  - {fileID: 2100000, guid: 9bac37301d657d7469483ce592ff8125, type: 2}
+  - {fileID: 2100000, guid: 91340e2d778d0e14b8b74ab70fcf37bc, type: 2}
+  - {fileID: 2100000, guid: d38522e27867d1449835bd63ad4ce146, type: 2}
+  - {fileID: 2100000, guid: c7b4c629917e6be40ac76307a08f09a4, type: 2}
+  - {fileID: 2100000, guid: 4b5bc9001f8ba434780657af146909c2, type: 2}
+  - {fileID: 2100000, guid: 685afee8f6d2b934fa946c8e55218cc9, type: 2}
+  shipColors: []
+  hazardPrefs:
+  - {fileID: 1527138969229840, guid: 63b373c1e34b1684792bbea48b9f0223, type: 2}
+  - {fileID: 1264119254905434, guid: c63777dcdc05d1742be944cefaa3a737, type: 2}
+  - {fileID: 1625281178362394, guid: d4edcbc516955e14694103e6c6cbca6e, type: 2}
+  - {fileID: 1625281178362394, guid: c89265cc3135e9142a4dca6359ce7bff, type: 2}
+  - {fileID: 1625281178362394, guid: 3f03051bc5fd2bb49ac18c84de39d933, type: 2}
+  logoPlanets: []
+  levelNumberText: {fileID: 0}
+  currentLevel: 0
+  levelIndex: 0
+  firstLaunch: 1
+--- !u!4 &900844221
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 900844219}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1233839615
 GameObject:
   m_ObjectHideFlags: 0

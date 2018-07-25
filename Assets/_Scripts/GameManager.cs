@@ -125,7 +125,7 @@ public class GameManager : Singleton<GameManager> {
     public GameObject frontLight;
 
 
-    private void Start()
+    void Start()
     {
      
 

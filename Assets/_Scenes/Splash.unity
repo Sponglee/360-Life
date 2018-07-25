@@ -262,97 +262,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 22038387}
---- !u!1 &94373342
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 94373344}
-  - component: {fileID: 94373343}
-  m_Layer: 0
-  m_Name: AudioManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &94373343
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 94373342}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 725f497d71a0c2c43a2c09da66b32727, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sounds:
-  - name: rotationClick
-    clip: {fileID: 8300000, guid: 40664f0bb3261334189b457209de1eab, type: 3}
-    volume: 0.7
-    pitch: 1
-    randomPitch: 0.1
-  - name: merge
-    clip: {fileID: 8300000, guid: 5ff39fa577af0a14ca7ea4b222c9a018, type: 3}
-    volume: 0.7
-    pitch: 1
-    randomPitch: 0.1
-  - name: powerup
-    clip: {fileID: 8300000, guid: efbaa3f326f58e844abd6b747d43de25, type: 3}
-    volume: 0.7
-    pitch: 1
-    randomPitch: 0.1
-  - name: 256
-    clip: {fileID: 8300000, guid: 778348845073e56479f76d0e528fcf8a, type: 3}
-    volume: 0.7
-    pitch: 1
-    randomPitch: 0.1
-  - name: end
-    clip: {fileID: 8300000, guid: 8ccf53f53d656ab4bbb23fdba578e3d9, type: 3}
-    volume: 0.7
-    pitch: 1
-    randomPitch: 0.1
-  - name: swoop
-    clip: {fileID: 8300000, guid: 5ff39fa577af0a14ca7ea4b222c9a018, type: 3}
-    volume: 0.7
-    pitch: 1
-    randomPitch: 0.1
-  - name: lightning
-    clip: {fileID: 8300000, guid: 20f9977cc0c32674689963fca7c0af9f, type: 3}
-    volume: 0.7
-    pitch: 1
-    randomPitch: 0.1
-  - name: bump
-    clip: {fileID: 8300000, guid: e697608909d812c498c76312ff4ba00e, type: 3}
-    volume: 1
-    pitch: 1
-    randomPitch: 0.1
-  - name: highscore
-    clip: {fileID: 8300000, guid: 58c74312302c3bf408347cdf07edb098, type: 3}
-    volume: 0.7
-    pitch: 1
-    randomPitch: 0.1
-  - name: stop
-    clip: {fileID: 8300000, guid: 59ab68c8ed34d874da5a9e4ea15b53ef, type: 3}
-    volume: 0.75
-    pitch: 1
-    randomPitch: 0.1
---- !u!4 &94373344
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 94373342}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -7.03, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &443984528
 GameObject:
   m_ObjectHideFlags: 0
@@ -515,7 +424,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &558493665
 GameObject:
@@ -645,7 +554,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1233839615
 GameObject:
@@ -827,7 +736,7 @@ RectTransform:
   - {fileID: 1899909949}
   - {fileID: 5607303}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -885,7 +794,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1626248504
 GameObject:
@@ -926,7 +835,7 @@ RectTransform:
   m_Children:
   - {fileID: 1673950807}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}

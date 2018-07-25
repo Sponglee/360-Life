@@ -17,11 +17,11 @@ public class Asteroid : MonoBehaviour
     private bool collisionInProgress = false;
     private bool start = true;
 
-    void Start ()
-	{
+    void Start()
+    {
         Rigidbody rb = GetComponent<Rigidbody>();
 
-
+        
         gameObject.GetComponent<KeplerOrbitMover>().AttractorSettings.AttractorObject = AsteroidSpawner.Instance.Sol;
 
 
