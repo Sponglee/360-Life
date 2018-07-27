@@ -706,6 +706,8 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 20e9c215d7f8fd644a1ec661c5299c34, type: 2}
   - {fileID: 2100000, guid: 5d606b76c34a9264f92229371f4efc89, type: 2}
   - {fileID: 2100000, guid: 7090d714eda76844b864ed3cba0dab45, type: 2}
+  - {fileID: 2100000, guid: 2ac98c5f17753df4ab5aa45fc90dfdb4, type: 2}
+  - {fileID: 2100000, guid: 6a104940c38025e49ac6c62d8ebc9092, type: 2}
   planetColors:
   - {r: 1, g: 1, b: 1, a: 1}
   - {r: 0.70980406, g: 0, b: 1, a: 0}
@@ -733,6 +735,24 @@ MonoBehaviour:
   - {fileID: 2100000, guid: c7b4c629917e6be40ac76307a08f09a4, type: 2}
   - {fileID: 2100000, guid: 4b5bc9001f8ba434780657af146909c2, type: 2}
   - {fileID: 2100000, guid: 685afee8f6d2b934fa946c8e55218cc9, type: 2}
+  hazardColors:
+  - {r: 0.9705882, g: 0.8166328, b: 0.4852941, a: 0.5176471}
+  - {r: 0.5754717, g: 0.5754717, b: 0.5754717, a: 0.50980395}
+  - {r: 1, g: 1, b: 1, a: 0.50980395}
+  - {r: 0.12941177, g: 0.29411766, b: 0.63529414, a: 0.50980395}
+  - {r: 0.4039216, g: 0.60784316, b: 0.34509805, a: 0.50980395}
+  - {r: 0.6627451, g: 0.34901962, b: 0.34901962, a: 0.50980395}
+  - {r: 0.5411765, g: 0.41176474, b: 0.7411765, a: 0.50980395}
+  - {r: 0.9705882, g: 0.8166328, b: 0.4852941, a: 0.5176471}
+  - {r: 0.12941177, g: 0.29411766, b: 0.63529414, a: 0.50980395}
+  - {r: 0.4039216, g: 0.60784316, b: 0.34509805, a: 0.50980395}
+  - {r: 0.6627451, g: 0.34901962, b: 0.34901962, a: 0.50980395}
+  - {r: 0.69411767, g: 0.5254902, b: 0.91372555, a: 0.50980395}
+  - {r: 0.12941177, g: 0.29411766, b: 0.63529414, a: 0.50980395}
+  - {r: 0.4039216, g: 0.60784316, b: 0.34509805, a: 0.50980395}
+  - {r: 0.9705882, g: 0.8166328, b: 0.4852941, a: 0.5176471}
+  - {r: 0.9705882, g: 0.8166328, b: 0.4852941, a: 0.5176471}
+  - {r: 0.6627451, g: 0.34901962, b: 0.34901962, a: 0.50980395}
   shipColors: []
   hazardPrefs:
   - {fileID: 1527138969229840, guid: 63b373c1e34b1684792bbea48b9f0223, type: 2}
@@ -740,7 +760,21 @@ MonoBehaviour:
   - {fileID: 1625281178362394, guid: d4edcbc516955e14694103e6c6cbca6e, type: 2}
   - {fileID: 1625281178362394, guid: c89265cc3135e9142a4dca6359ce7bff, type: 2}
   - {fileID: 1625281178362394, guid: 3f03051bc5fd2bb49ac18c84de39d933, type: 2}
-  logoPlanets: []
+  logoPlanets:
+  - {fileID: 21300000, guid: 7fd37ac138fced546a89a75d728d0710, type: 3}
+  - {fileID: 21300000, guid: 4f98fdc086f0e534aa159f3230263ec2, type: 3}
+  - {fileID: 21300000, guid: 2bed99daade80374692348a8299459cb, type: 3}
+  - {fileID: 21300000, guid: 4dc75a220dfadec47be9a6b70272c152, type: 3}
+  - {fileID: 21300000, guid: a11c432b67c633f4dbd20598771446b0, type: 3}
+  - {fileID: 21300000, guid: 2ac0db94ff1d5c041bafd13526beb3c4, type: 3}
+  - {fileID: 21300000, guid: f61845ff0fcabb149af7e9f6d8b660ea, type: 3}
+  - {fileID: 21300000, guid: aff35f74e4d308545a00e273b618c84e, type: 3}
+  - {fileID: 21300000, guid: e649371ffe68bfa4c8a5f18c1e0186f3, type: 3}
+  - {fileID: 21300000, guid: 1869fb7484aa0c143afc697469c77982, type: 3}
+  - {fileID: 21300000, guid: 946c2d6c1621c1449b842ae06de460b2, type: 3}
+  - {fileID: 21300000, guid: 71ac7bd0a112e0445a75d4cf6d697128, type: 3}
+  - {fileID: 21300000, guid: ecf7b80712cebd042820b11f9a6f3049, type: 3}
+  - {fileID: 21300000, guid: 5c7b6fcdc51c1ec4eb1e4d66c3943700, type: 3}
   levelNumberText: {fileID: 0}
   currentLevel: 0
   levelIndex: 0

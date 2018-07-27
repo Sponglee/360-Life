@@ -36,6 +36,7 @@ public class AsteroidSpawner : Singleton<AsteroidSpawner>
 
     //to apply on spawn
     public Material hazMat;
+    public Color32 hazColor;
     //public GameObject asteroids;
 
     float ang = 0f;
@@ -51,7 +52,7 @@ public class AsteroidSpawner : Singleton<AsteroidSpawner>
         hazards = LevelManager.Instance.hazardPrefs;
 
         hazMat = LevelManager.Instance.lvlData.hazardMat;
-
+        hazColor = LevelManager.Instance.lvlData.hazardCol;
         StartCoroutine(SpawnWaves());
     }
 
@@ -98,8 +99,9 @@ public class AsteroidSpawner : Singleton<AsteroidSpawner>
                 randomHazard = hazards[rng];
                 GameObject tmp = Instantiate(randomHazard, spawnPosition, Quaternion.identity, asteroidHolder);
 
-                tmp.transform.GetComponent<Renderer>().material.color = hazColor;
-                tmp.transform.GetChild(0).GetComponent<Renderer>().material = hazMat;
+                tmp.transform.GetComponent<Renderer>().material.SetColor("_TintColor", hazColor);
+
+            tmp.transform.GetChild(0).GetComponent<Renderer>().material = hazMat;
             //tmp.GetComponent<KeplerOrbitMover>().OrbitData.Position = spawnPosition;
 
             //tmp.GetComponent<KeplerOrbitMover>().SetAutoCircleOrbit();

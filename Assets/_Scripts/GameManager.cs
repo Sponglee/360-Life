@@ -119,11 +119,12 @@ public class GameManager : Singleton<GameManager> {
 
 
     //From levelManager
+    public Image titlePlanet;
     public Transform earth;
     public GameObject backGround;
     public GameObject star;
     public GameObject frontLight;
-
+    public GameObject starExplosion;
 
     void Start()
     {
@@ -151,10 +152,19 @@ public class GameManager : Singleton<GameManager> {
             Time.timeScale = 1f;
         }
 
-
+        //Grab logoPlanet 
+        if (titlePlanet != null)
+            titlePlanet.sprite = LevelManager.Instance.lvlData.logoPlanet;
+        if (starExplosion != null)
+            starExplosion.GetComponent<Renderer>().material.SetColor("_TintColor", LevelManager.Instance.lvlData.starColor);
+        //Grab Earth material
         earth.GetChild(1).GetComponent<Renderer>().material = LevelManager.Instance.lvlData.earthMat;
+        //Grab backGround
         backGround.GetComponent<SpriteRenderer>().sprite = LevelManager.Instance.lvlData.backGround;
+        //Grab StarColor
         star.GetComponent<Star>().baseStarColor = LevelManager.Instance.lvlData.starColor;
+
+        ////Grab light color
         //frontLight.GetComponent<Light>().color = LevelManager.Instance.lvlData.starColor;
 
         /*INITIALIZER==========================================*/

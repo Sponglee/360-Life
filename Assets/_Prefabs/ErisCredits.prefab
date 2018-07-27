@@ -745,7 +745,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 1.94
+  m_Time: 1
   m_Parameters:
     serializedVersion: 2
     widthMultiplier: 0.94
@@ -820,8 +820,8 @@ Light:
   m_Type: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 10
-  m_Range: 8.634102
-  m_SpotAngle: 51.3488
+  m_Range: 6.811318
+  m_SpotAngle: 105.900665
   m_CookieSize: 10
   m_Shadows:
     m_Type: 0

@@ -5359,6 +5359,9 @@ MonoBehaviour:
   planetExplosion: {fileID: 100008, guid: a93496017806b7740910df5fd946f306, type: 2}
   solarSystem: {fileID: 0}
   hazMat: {fileID: 0}
+  hazColor:
+    serializedVersion: 2
+    rgba: 0
 --- !u!4 &292415785
 Transform:
   m_ObjectHideFlags: 0
@@ -5433,10 +5436,12 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  titlePlanet: {fileID: 0}
   earth: {fileID: 400397814}
   backGround: {fileID: 2010703134}
   star: {fileID: 885611652}
   frontLight: {fileID: 0}
+  starExplosion: {fileID: 1376060393}
 --- !u!4 &294417534
 Transform:
   m_ObjectHideFlags: 0
@@ -5700,6 +5705,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: c7b4c629917e6be40ac76307a08f09a4, type: 2}
   - {fileID: 2100000, guid: 4b5bc9001f8ba434780657af146909c2, type: 2}
   - {fileID: 2100000, guid: 685afee8f6d2b934fa946c8e55218cc9, type: 2}
+  hazardColors: []
   shipColors: []
   hazardPrefs:
   - {fileID: 1527138969229840, guid: 63b373c1e34b1684792bbea48b9f0223, type: 2}
@@ -13151,7 +13157,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 19800000, guid: 0ac53a594a4c2420982f877e49310386, type: 2}
       propertyPath: startDelay.scalar
-      value: 10
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 19800000, guid: 0ac53a594a4c2420982f877e49310386, type: 2}
       propertyPath: ColorModule.gradient.maxGradient.key0.r
@@ -13231,6 +13237,42 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 0ac53a594a4c2420982f877e49310386, type: 2}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 19900000, guid: 0ac53a594a4c2420982f877e49310386, type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c9386fd37103dcb479f09e942849a1ce, type: 2}
+    - target: {fileID: 19800000, guid: 0ac53a594a4c2420982f877e49310386, type: 2}
+      propertyPath: lengthInSec
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800000, guid: 0ac53a594a4c2420982f877e49310386, type: 2}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800000, guid: 0ac53a594a4c2420982f877e49310386, type: 2}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 41.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800000, guid: 0ac53a594a4c2420982f877e49310386, type: 2}
+      propertyPath: SizeModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800000, guid: 0ac53a594a4c2420982f877e49310386, type: 2}
+      propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[1].time
+      value: 0.98321533
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800000, guid: 0ac53a594a4c2420982f877e49310386, type: 2}
+      propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[1].value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800000, guid: 0ac53a594a4c2420982f877e49310386, type: 2}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800000, guid: 0ac53a594a4c2420982f877e49310386, type: 2}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].cycleCount
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -13239,6 +13281,10 @@ Prefab:
 --- !u!4 &1376060392 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 0ac53a594a4c2420982f877e49310386, type: 2}
+  m_PrefabInternal: {fileID: 1376060391}
+--- !u!1 &1376060393 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100000, guid: 0ac53a594a4c2420982f877e49310386, type: 2}
   m_PrefabInternal: {fileID: 1376060391}
 --- !u!4 &1456293373 stripped
 Transform:
@@ -13656,16 +13702,6 @@ Prefab:
     - target: {fileID: 4979372119493248, guid: 37e4eecf20f8c2a44b18839c4aaaabbc, type: 2}
       propertyPath: m_RootOrder
       value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 108038480330859428, guid: 37e4eecf20f8c2a44b18839c4aaaabbc,
-        type: 2}
-      propertyPath: m_SpotAngle
-      value: 105.900665
-      objectReference: {fileID: 0}
-    - target: {fileID: 108038480330859428, guid: 37e4eecf20f8c2a44b18839c4aaaabbc,
-        type: 2}
-      propertyPath: m_Range
-      value: 6.811318
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 37e4eecf20f8c2a44b18839c4aaaabbc, type: 2}

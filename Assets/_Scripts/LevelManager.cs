@@ -20,12 +20,16 @@ public class LevelManager : Singleton<LevelManager>{
     public Color[] planetColors;
 
     public Material[] hazardMats;
-    
+
+    public Color[] hazardColors;
+
     public Color[] shipColors;
 
     public GameObject[] hazardPrefs;
 
     public Sprite[] logoPlanets;
+
+    
     /*******STRUCT PREFS **********/
 
 
@@ -54,6 +58,7 @@ public class LevelManager : Singleton<LevelManager>{
         public Material earthMat;
         public Color[] planetColor;
         public Material hazardMat;
+        public Color32 hazardCol;
         public Color shipColor;
         public Sprite logoPlanet;
 
@@ -90,14 +95,14 @@ public class LevelManager : Singleton<LevelManager>{
             }
 
             Debug.Log(levelIndex + " : " + currentLevel);
-            Debug.Log(PlayerPrefs.GetString("LevelInfo", "0,0,0,0"));
+            Debug.Log(PlayerPrefs.GetString("LevelInfo", "0,0,0,0,0"));
 
             if (levelIndex != 0 && currentLevel != levelIndex)
                 RandomiseStuff();
         }
 
-
-        LoadStuff(PlayerPrefs.GetString("LevelInfo", "0,0,0,0"));
+        /*earthMaterial, backGround, starColor, hazardsMaterial, logoPlanet*/
+        LoadStuff(PlayerPrefs.GetString("LevelInfo", "0,0,0,0,0"));
     }
 
   
@@ -112,9 +117,10 @@ public class LevelManager : Singleton<LevelManager>{
         lvlInfo.starColor = Random.Range(0, starColors.Length);
         lvlInfo.hazardMat = Random.Range(0, hazardMats.Length);
         lvlInfo.earthIndex = Random.Range(0, 3);
+        lvlInfo.logoPlanet = Random.Range(0, logoPlanets.Length);
 
         string saveString = lvlInfo.earthMat.ToString() + "," + lvlInfo.backGround.ToString() + "," 
-            + lvlInfo.starColor.ToString() + "," + lvlInfo.hazardMat.ToString() /*+ "," + lvlInfo.starColor.ToString()*/;
+            + lvlInfo.starColor.ToString() + "," + lvlInfo.hazardMat.ToString() + "," + lvlInfo.logoPlanet.ToString()/*+ "," + lvlInfo.starColor.ToString()*/;
 
         PlayerPrefs.SetString("LevelInfo", saveString);
 
@@ -133,6 +139,8 @@ public class LevelManager : Singleton<LevelManager>{
         lvlData.backGround = backGrounds[int.Parse(tokens[1])];
         lvlData.starColor = starColors[int.Parse(tokens[2])];
         lvlData.hazardMat = hazardMats[int.Parse(tokens[3])];
+        lvlData.hazardCol = hazardColors[int.Parse(tokens[3])];
+        lvlData.logoPlanet = logoPlanets[int.Parse(tokens[4])];
         PlayerPrefs.SetInt("CurrentLevel",levelIndex);
     }
 
