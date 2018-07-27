@@ -7,12 +7,13 @@ using UnityEngine.SceneManagement;
 public class Asteroid : MonoBehaviour 
 {
 	public float tumble;
-    public GameObject debreePref;
+    public GameObject[] debreePrefs;
     private float parentCoolDown = 0.5f;
 
+    public float powerUpPercent = 20;
     public float speed=2f;
 
-
+    private int debreeIndex = 0;
 
     private bool collisionInProgress = false;
     private bool start = true;
@@ -47,15 +48,23 @@ public class Asteroid : MonoBehaviour
         if (collision.gameObject.CompareTag("Life"))
         {
 
-            //collision.gameObject.SetActive(false);
+            //Check if it's a powerUp
+            DebreePowerUpCheck();
+
             SimplePool.Spawn(AsteroidSpawner.Instance.planetExplosion, gameObject.transform.position, Quaternion.identity);
-            Instantiate(debreePref, transform.position, Quaternion.identity);
+            GameObject tmp = Instantiate(debreePrefs[debreeIndex], transform.position, Quaternion.identity);
+
+            if (debreeIndex == 1)
+            {
+                tmp.GetComponent<Debree>().IsPowerUp = true;
+            }
+
 
             if (!GameManager.Instance.shieldUp)
             {
                 collision.gameObject.GetComponent<Outline>().enabled = false;
                 //GameManager.Instance.lifePlanets.Enqueue(collision.gameObject);
-                Debug.Log("LIFE-- " + collision.gameObject.name);
+                //Debug.Log("LIFE-- " + collision.gameObject.name);
 
 
                 collision.gameObject.GetComponent<Outline>().enabled = false;
@@ -87,7 +96,21 @@ public class Asteroid : MonoBehaviour
             SimplePool.Spawn(AsteroidSpawner.Instance.explosion, gameObject.transform.position, Quaternion.identity);
 
             if(SceneManager.GetActiveScene().name == "Main")
-                Instantiate(debreePref, transform.position, Quaternion.identity);
+            {
+
+                //Check if it's a powerUp
+                DebreePowerUpCheck();
+
+                GameObject tmp = Instantiate(debreePrefs[debreeIndex], transform.position, Quaternion.identity);
+
+                if (debreeIndex == 1)
+                {
+                    tmp.GetComponent<Debree>().IsPowerUp = true;
+                }
+
+               
+               
+            }
 
 
             StartCoroutine(StopDestroy());
@@ -121,4 +144,22 @@ public class Asteroid : MonoBehaviour
       
     }
   
+
+
+    public void DebreePowerUpCheck()
+    {
+        //If there's no powerUp and shield
+        if (!GameManager.Instance.PowerUpEnabled && !GameManager.Instance.shieldUp && !GameManager.Instance.moneyUp)
+        {
+            //PowerUp randomizer
+            if (Random.Range(0, 100) <= powerUpPercent)
+            {
+                debreeIndex = 1;
+            }
+            else
+                debreeIndex = 0;
+        }
+        else
+            debreeIndex = 0;
+    }
 }

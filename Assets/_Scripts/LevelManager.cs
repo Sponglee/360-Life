@@ -82,20 +82,25 @@ public class LevelManager : Singleton<LevelManager>{
         //    RandomiseStuff();
         //}
 
-        Debug.Log(levelIndex + " : " + currentLevel);
+        //Debug.Log(levelIndex + " : " + currentLevel);
         //DontDestroyOnLoad(gameObject);
         if (SceneManager.GetActiveScene().name == "TITLE")
         {
             levelIndex = PlayerPrefs.GetInt("LevelIndex", 0);
-            currentLevel = PlayerPrefs.GetInt("CurrentLevel", 0);
+
+            //Enable tutorial
+            if (levelIndex == 0)
+                PlayerPrefs.SetInt("TutorialTrigger", 0);
+
+            //currentLevel = PlayerPrefs.GetInt("CurrentLevel", 0);
             if (levelIndex > 0)
             {
                 levelNumberText = GameObject.FindGameObjectWithTag("titleNumber").GetComponent<Text>();
                 levelNumberText.text = (levelIndex + 1).ToString();
             }
 
-            Debug.Log(levelIndex + " : " + currentLevel);
-            Debug.Log(PlayerPrefs.GetString("LevelInfo", "0,0,0,0,0"));
+            //Debug.Log(levelIndex + " : " + currentLevel);
+            //Debug.Log(PlayerPrefs.GetString("LevelInfo", "0,0,0,0,0"));
 
             if (levelIndex != 0 && currentLevel != levelIndex)
                 RandomiseStuff();
@@ -112,12 +117,12 @@ public class LevelManager : Singleton<LevelManager>{
 
     public void RandomiseStuff()
     {
-        lvlInfo.earthMat = Random.Range(0, earthMats.Length);
-        lvlInfo.backGround = Random.Range(0, backGrounds.Length);
-        lvlInfo.starColor = Random.Range(0, starColors.Length);
-        lvlInfo.hazardMat = Random.Range(0, hazardMats.Length);
-        lvlInfo.earthIndex = Random.Range(0, 3);
-        lvlInfo.logoPlanet = Random.Range(0, logoPlanets.Length);
+        lvlInfo.earthMat = SmartRandomizer(earthMats.Length, lvlInfo.earthMat);
+        lvlInfo.backGround = SmartRandomizer(backGrounds.Length, lvlInfo.backGround);
+        lvlInfo.starColor = SmartRandomizer(starColors.Length, lvlInfo.starColor);
+        lvlInfo.hazardMat = SmartRandomizer(hazardMats.Length, lvlInfo.hazardMat);
+        lvlInfo.earthIndex = SmartRandomizer(3, lvlInfo.earthIndex);
+        lvlInfo.logoPlanet = SmartRandomizer(logoPlanets.Length, lvlInfo.logoPlanet);
 
         string saveString = lvlInfo.earthMat.ToString() + "," + lvlInfo.backGround.ToString() + "," 
             + lvlInfo.starColor.ToString() + "," + lvlInfo.hazardMat.ToString() + "," + lvlInfo.logoPlanet.ToString()/*+ "," + lvlInfo.starColor.ToString()*/;
@@ -127,8 +132,8 @@ public class LevelManager : Singleton<LevelManager>{
         //Earth position per lvl
         PlayerPrefs.SetInt("EarthIndex", Random.Range(0, 3));
         //Randomise other planet colors
-        PlayerPrefs.SetInt("VenusColor", Random.Range(0, planetColors.Length));
-        PlayerPrefs.SetInt("MarsColor", Random.Range(0, planetColors.Length));
+        PlayerPrefs.SetInt("VenusColor", SmartRandomizer(planetColors.Length, PlayerPrefs.GetInt("VenusColor",0)));
+        PlayerPrefs.SetInt("MarsColor", SmartRandomizer(planetColors.Length, PlayerPrefs.GetInt("MarsColor", 0)));
     }
 
     public void LoadStuff(string info)
@@ -144,4 +149,17 @@ public class LevelManager : Singleton<LevelManager>{
         PlayerPrefs.SetInt("CurrentLevel",levelIndex);
     }
 
+
+    public int SmartRandomizer(int length, int lastValue)
+    {
+        int result = 0;
+        do
+        {
+            result = Random.Range(0, length);
+
+        }
+        while (result == lastValue);
+
+        return result;
+    }
 }

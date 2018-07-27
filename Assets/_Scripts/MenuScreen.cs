@@ -12,6 +12,8 @@ public class MenuScreen : Singleton<MenuScreen> {
     private float fadeInSpeed = 0.33f;
     private bool isFadingOut = false;
 
+    //for tutorial timeFreeze
+    private bool bringTimeBack = false;
 
     // Use this for initialization
     private void Start ()
@@ -25,8 +27,21 @@ public class MenuScreen : Singleton<MenuScreen> {
     // Update is called once per frame
     void Update () {
         //FadeIn
-        if(fadeGroup.alpha > 0 && !isFadingOut)
+        if (fadeGroup.alpha > 0 && !isFadingOut)
+        {
+            if (Time.timeScale == 0)
+            {
+                bringTimeBack = true;
+                Time.timeScale = 1;
+            }
             fadeGroup.alpha = 1 - Time.timeSinceLevelLoad;
+        }
+        else if(bringTimeBack)
+        {
+            Time.timeScale = 0;
+            bringTimeBack = false;
+        }
+       
     }
 
 
@@ -36,7 +51,7 @@ public class MenuScreen : Singleton<MenuScreen> {
         isFadingOut = true;
         while(fadeGroup.alpha < 1)
         {
-            fadeGroup.alpha = 1 + Time.deltaTime;
+            fadeGroup.alpha = 1 + Time.fixedUnscaledDeltaTime;
             yield return null;
         }
 

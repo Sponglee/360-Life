@@ -124,7 +124,7 @@ public class Missile : MonoBehaviour
 
     private void OnTriggerEnter (Collider other)
     {
-        if (other.gameObject.CompareTag("Debree"))
+        if (other.gameObject.CompareTag("Debree") || other.gameObject.CompareTag("PowerUp"))
         {
             //Debug.Log("HHHHHHHHHHHOOOOOOOOOOOOOOOOOMMMMMMMMMMMMMMMMEEEEEEEEEEEEEE");
             comingHome = true;

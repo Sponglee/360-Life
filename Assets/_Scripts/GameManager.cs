@@ -7,11 +7,13 @@ using UnityEngine.UI;
 
 public class GameManager : Singleton<GameManager> {
 
-    
 
+    public bool PowerUpEnabled = false;
+    public GameObject PowerUpImg;
+    public GameObject PowerUpMissileImg;
+    public int scoreValue = 10;
 
     public bool gameOver=false;
-    public Text moneyText;
     public Text moneyGoalTxt;
 
     public Slider moneySlider;
@@ -59,6 +61,8 @@ public class GameManager : Singleton<GameManager> {
     public float missileTime = 2;
 
     public bool shieldUp = false;
+    public bool moneyUp = false;
+
     public GameObject shieldUI;
     public GameObject timeUI;
 
@@ -125,12 +129,18 @@ public class GameManager : Singleton<GameManager> {
     public GameObject star;
     public GameObject frontLight;
     public GameObject starExplosion;
+    public GameObject erisShip;
 
     void Start()
     {
-     
+
 
         /*INITIALIZER==========================================*/
+        missileLimit = 1;
+        PowerUpEnabled = false;
+        moneyUp = false;
+        shieldUp = false;   
+
         if (SceneManager.GetActiveScene().name == "Main")
         {
             //pick earth location
@@ -152,15 +162,27 @@ public class GameManager : Singleton<GameManager> {
             Time.timeScale = 1f;
         }
 
+
         //Grab logoPlanet 
         if (titlePlanet != null)
             titlePlanet.sprite = LevelManager.Instance.lvlData.logoPlanet;
+
+        //Grab star Explosion color
         if (starExplosion != null)
             starExplosion.GetComponent<Renderer>().material.SetColor("_TintColor", LevelManager.Instance.lvlData.starColor);
+
+        //Grab whether ship is there or not
+        if (erisShip != null && PlayerPrefs.GetInt("LevelIndex", 0) == 0)
+            erisShip.SetActive(false);
+        else if(erisShip != null)
+            erisShip.SetActive(true);
+
         //Grab Earth material
         earth.GetChild(1).GetComponent<Renderer>().material = LevelManager.Instance.lvlData.earthMat;
+
         //Grab backGround
         backGround.GetComponent<SpriteRenderer>().sprite = LevelManager.Instance.lvlData.backGround;
+
         //Grab StarColor
         star.GetComponent<Star>().baseStarColor = LevelManager.Instance.lvlData.starColor;
 

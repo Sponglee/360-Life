@@ -47,6 +47,7 @@ public class Planet : MonoBehaviour
         get
         {
             targetCount = GameManager.Instance.missileLimit;
+            Debug.Log("MISSILE CHECK "+ targetCount);
             return targetCount;
         }
 
@@ -131,26 +132,30 @@ public class Planet : MonoBehaviour
 
             //StartCoroutine(StopMissiles());
             PlanetTargets.Clear();
-            PlanetTargets = FindClosestByTag("Debree");
+            //Look for a PowerUp
+            PlanetTargets = FindClosestByTag("PowerUp");
+            //If nothing there - Get a Debree
+            if(PlanetTargets.Count == 0)
+                PlanetTargets = FindClosestByTag("Debree");
             
             if (PlanetTargets.Count > 0)
             {
                 //Debug.Log(PlanetTargets.Count);
-                for (int i = 0; i < TargetCount; i++)
-                {
-                    if (i < PlanetTargets.Count)
-                    {
-                        //Debug.Log("SPAWN " + i + " " + gameObject.name + " " + planetTargets.Count);
+                //for (int i = 0; i < TargetCount; i++)
+                //{
+                    //if (i < PlanetTargets.Count)
+                    //{
+                        //Debug.Log("SPAWN " + planetTargets.Count);
                         GameObject tmp = SimplePool.Spawn(GameManager.Instance.missile, gameObject.transform.position, Quaternion.LookRotation(Vector3.forward));
                         tmp.transform.SetParent(gameObject.transform);
                         tmp.GetComponent<Missile>().Target = PlanetTargets.Pop();
                         pewTimer = MissileCoolDown;
                         //PlanetTargets.Clear();
 
-                    }
+                    //}
 
 
-                }
+                //}
 
                 //Debug.Log("======");
 
@@ -161,7 +166,11 @@ public class Planet : MonoBehaviour
         else if (gameObject.CompareTag("Life"))
         {
             pewTimer -= Time.fixedDeltaTime;
-            PlanetTargets = FindClosestByTag("Debree");
+            //Look for a PowerUp
+            PlanetTargets = FindClosestByTag("PowerUp");
+            //If nothing there - Get a Debree
+            if (PlanetTargets.Count == 0)
+                PlanetTargets = FindClosestByTag("Debree");
         }
         else
             pewTimer = missileCoolDown;
@@ -188,6 +197,7 @@ public class Planet : MonoBehaviour
                 }
             }
         }
+        //Debug.Log("LECLOSEST" + closest.Count);
         return closest;
     }
 

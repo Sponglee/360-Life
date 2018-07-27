@@ -121,6 +121,7 @@ public class FunctionHandler : Singleton<FunctionHandler>
     {
         moneyMultiplier = 1;
         missileMultiplier = 1;
+        
         //doubleLifeCostText.text = doubleLifeCost.ToString();
         //doubleMissileCostText.text = doubleMissileCost.ToString();
         //doubleShieldText.text = doubleLifeCost.ToString();
@@ -203,69 +204,20 @@ public class FunctionHandler : Singleton<FunctionHandler>
         }
     }
 
-
-    //Spread life to next planet instantly
-    public void DoubleLife()
+    public void StartAnim()
     {
-        if (GameManager.Instance.Money >= DoubleLifeCost)
-        {
-            GameManager.Instance.lifeMultiplier = 2;
-            GameManager.Instance.lifeTimer = GameManager.Instance.lifeSpreadTime;
-            GameManager.Instance.Money -= DoubleLifeCost;
-            DoubleLifeCost = Mathf.Round(DoubleLifeCost *= 1.25f);
-        }
+        GameObject canvas = GameObject.FindGameObjectWithTag("titleCanvas");
+
+        canvas.GetComponent<Animator>().SetTrigger("titleStart");
     }
 
-    //Spread life to next planet instantly
-    public void DoubleMoney()
-    {
-        if (GameManager.Instance.Money >= DoubleMoneyCost)
-        {
-            moneyMultiplier++;
-            moneyMultiplierText.text = string.Format("x{0}", moneyMultiplier);
-            //GameManager.Instance.mps += 10;
-            //Debug.Log(GameManager.Instance.mps);
-            GameManager.Instance.Money -= DoubleMoneyCost;
-            GameManager.Instance.moneyText.text = GameManager.Instance.Money.ToString();
-            DoubleMoneyCost = Mathf.Round(DoubleMoneyCost *=2f);
-        }
-    }
-
-
-    //+1 missiles to each planet
-    public void DoubleMissiles()
-    {
-        if (GameManager.Instance.Money >= DoubleMissileCost)
-        {
-            missileMultiplier++;
-            missileMultiplierText.text = string.Format("x{0}", missileMultiplier);
-            GameManager.Instance.missileLimit += 1;
-            GameManager.Instance.Money -= DoubleMissileCost;
-            GameManager.Instance.moneyText.text = GameManager.Instance.Money.ToString();
-            DoubleMissileCost = Mathf.Round(DoubleMissileCost *= 2f);
-        }
-    }
-
-   
-
-    //DoubleCooldown
-    public void DoubleTime()
-    {
-        if (GameManager.Instance.Money >= DoubleMissileTime && GameManager.Instance.missileTime != 0.5)
-        {
-            GameManager.Instance.missileTime = 0.5f;
-            GameManager.Instance.timeUI.SetActive(true);
-            GameManager.Instance.Money -= DoubleMissileTime;
-            GameManager.Instance.moneyText.text = GameManager.Instance.Money.ToString();
-            DoubleMissileTime = Mathf.Round(DoubleMissileTime *= 1.25f);
-        }
-    }
+    /*************************PANEL FUNCTIONS **************************************/
 
 
     //Shield
     public void DoubleShield()
     {
-        if (GameManager.Instance.Money >= DoubleShieldCost && !GameManager.Instance.shieldUp)
+        if (GameManager.Instance.PowerUpEnabled && !GameManager.Instance.shieldUp && !GameManager.Instance.moneyUp)
         {
 
 
@@ -281,12 +233,98 @@ public class FunctionHandler : Singleton<FunctionHandler>
 
             GameManager.Instance.shieldUp = true;
             //GameManager.Instance.shieldUI.SetActive(true);
-            GameManager.Instance.Money -= DoubleShieldCost;
-            GameManager.Instance.moneyText.text = GameManager.Instance.Money.ToString();
-            DoubleShieldCost = Mathf.Round(DoubleShieldCost*= 1.25f);
+
+            GameManager.Instance.PowerUpEnabled = false;
+
+            GameManager.Instance.PowerUpImg.SetActive(false);
+            GameManager.Instance.PowerUpMissileImg.SetActive(false);
+            //DoubleShieldCost = Mathf.Round(DoubleShieldCost*= 1.25f);
         }
     }
 
+    //+1 missiles to each planet
+    public void DoubleMoney()
+    {
+        if (GameManager.Instance.PowerUpEnabled && !GameManager.Instance.shieldUp && !GameManager.Instance.moneyUp)
+        {
+
+            GameManager.Instance.scoreValue = 20;
+
+            GameManager.Instance.moneyUp = true;
+
+            GameManager.Instance.PowerUpEnabled = false;
+
+            GameManager.Instance.PowerUpImg.SetActive(false);
+            GameManager.Instance.PowerUpMissileImg.SetActive(false);
+            moneyMultiplierText.gameObject.SetActive(true);
+            //GameManager.Instance.Money -= DoubleMissileCost;
+            //GameManager.Instance.moneyText.text = GameManager.Instance.Money.ToString();
+            //DoubleMissileCost = Mathf.Round(DoubleMissileCost *= 2f);
+        }
+    }
+
+    /*************************PANEL FUNCTIONS **************************************/
+
+
+
+    ////+1 missiles to each planet
+    //public void DoubleMissiles()
+    //{
+    //    if (GameManager.Instance.PowerUpEnabled && !GameManager.Instance.shieldUp && !GameManager.Instance.missileUp)
+    //    {
+    //        missileMultiplier++;
+    //        missileMultiplierText.gameObject.SetActive(true);
+    //        GameManager.Instance.missileLimit += 1;
+
+    //        GameManager.Instance.missileUp = true;
+
+    //        GameManager.Instance.PowerUpEnabled = false;
+
+    //        GameManager.Instance.PowerUpImg.SetActive(false);
+    //        GameManager.Instance.PowerUpMissileImg.SetActive(false);
+
+    //        //GameManager.Instance.Money -= DoubleMissileCost;
+    //        //GameManager.Instance.moneyText.text = GameManager.Instance.Money.ToString();
+    //        //DoubleMissileCost = Mathf.Round(DoubleMissileCost *= 2f);
+    //    }
+    //}
+
+
+
+    //Spread life to next planet instantly
+    public void DoubleLife()
+    {
+        if (GameManager.Instance.Money >= DoubleLifeCost)
+        {
+            GameManager.Instance.lifeMultiplier = 2;
+            GameManager.Instance.lifeTimer = GameManager.Instance.lifeSpreadTime;
+            GameManager.Instance.Money -= DoubleLifeCost;
+            DoubleLifeCost = Mathf.Round(DoubleLifeCost *= 1.25f);
+        }
+    }
+
+  
+
+
+  
+
+   
+
+    //DoubleCooldown
+    public void DoubleTime()
+    {
+        if (GameManager.Instance.Money >= DoubleMissileTime && GameManager.Instance.missileTime != 0.5)
+        {
+            GameManager.Instance.missileTime = 0.5f;
+            GameManager.Instance.timeUI.SetActive(true);
+            GameManager.Instance.Money -= DoubleMissileTime;
+            //GameManager.Instance.moneyText.text = GameManager.Instance.Money.ToString();
+            DoubleMissileTime = Mathf.Round(DoubleMissileTime *= 1.25f);
+        }
+    }
+
+
+   
     public void ResetAll()
     {
         PlayerPrefs.DeleteAll();
