@@ -336,7 +336,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: b0a65e6a022dcd2479e67a756a416c7b, type: 2}
+  - {fileID: 2100000, guid: 974e0d2d32f97c448b91eb290b6dbefa, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1408,6 +1408,9 @@ MonoBehaviour:
   planetExplosion: {fileID: 100008, guid: a93496017806b7740910df5fd946f306, type: 2}
   solarSystem: {fileID: 1892292796}
   hazMat: {fileID: 0}
+  hazColor:
+    serializedVersion: 2
+    rgba: 0
 --- !u!212 &257866403
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1476,22 +1479,22 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &285174529
 Transform:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 285174528}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.063, y: 0.000000017044371, z: 0.000000018322682}
+  m_LocalRotation: {x: 0.3629142, y: -0, z: -0, w: 0.9318226}
+  m_LocalPosition: {x: 1.063, y: 0.00000031628795, z: -0.00000019813781}
   m_LocalScale: {x: 0.27747983, y: 0.2774794, z: 0.2774794}
   m_Children:
   - {fileID: 206335260}
   - {fileID: 458170009}
   m_Father: {fileID: 1932559553}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 42.559002, y: 0, z: 0}
 --- !u!120 &285174530
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -1630,53 +1633,53 @@ MonoBehaviour:
       z: 0
     Position:
       x: 0.8902885913848877
-      y: 0.000000014275087778514717
-      z: 0.00000001534569094019389
-    AttractorDistance: 0.8902885913848879
+      y: 0.0000002648989720910322
+      z: -0.00000016594530904967542
+    AttractorDistance: 0.8902885913849425
     AttractorMass: 50
     Velocity:
       x: 0
-      y: 1.6141103506088257
-      z: 1.7351670265197754
-    SemiMinorAxis: 0.8902886416170377
-    SemiMajorAxis: 0.8902886416170394
-    FocalParameter: 0.890288641617036
-    Eccentricity: 0.00000006113657306276578
-    EnergyTotal: -5.616156200110854
-    Period: 2.360429925160483
+      y: 0.015363289974629879
+      z: 2.369793653488159
+    SemiMinorAxis: 0.8902888250165055
+    SemiMajorAxis: 0.8902888250165514
+    FocalParameter: 0.8902888250164598
+    Eccentricity: 0.0000003207673936364299
+    EnergyTotal: -5.616155043182588
+    Period: 2.360430654533573
     TrueAnomaly: 6.2831853071796
     MeanAnomaly: 0
     EccentricAnomaly: 0
     SquaresConstant: 0
     Periapsis:
-      x: 0.8902885913848878
-      y: 0.000000028550170052506105
-      z: 0.000000030691390231040974
-    PeriapsisDistance: 0.8902885913848888
+      x: 0.8902885913848877
+      y: 0.0000002638343319971958
+      z: -0.0000003301664714301818
+    PeriapsisDistance: 0.8902885913849881
     Apoapsis:
-      x: -0.8902886918491905
-      y: -0.000000000000007115390592569248
-      z: 0.000000000000006618974092679036
-    ApoapsisDistance: 0.8902886918491905
+      x: -0.8902890586481056
+      y: -0.000000265963751215681
+      z: 0.0000000017242337646792103
+    ApoapsisDistance: 0.8902890586481453
     CenterPoint:
-      x: -0.00000005023215135569957
-      y: 0.000000014275081468557756
-      z: 0.000000015345698425007533
-    OrbitCompressionRatio: 0.9999999999999962
+      x: -0.0000002336316089039203
+      y: -0.0000000010647096092425843
+      z: -0.00000016422111883275129
+    OrbitCompressionRatio: 0.9999999999998971
     OrbitNormal:
-      x: 0.000000000000010915564878624145
-      y: -0.7321864248838008
-      z: 0.6811042792523612
+      x: 0.00000029874492744483605
+      y: -0.9999789862429348
+      z: 0.006482829047825953
     SemiMinorAxisBasis:
-      x: -0.000000023541501219193895
-      y: 0.681104279252361
-      z: 0.7321864248838006
+      x: 0.0000001844621269478299
+      y: 0.006482829047881237
+      z: 0.999978986242962
     SemiMajorAxisBasis:
-      x: -0.9999999999999998
-      y: -0.000000016034225212646065
-      z: -0.000000017236760179441267
-    Inclination: 0.8215265609338052
-    OrbitNormalDotEclipticNormal: 0.6811042792523612
+      x: -0.9999999999999385
+      y: -0.00000029754281325671323
+      z: 0.00000018639496299905304
+    Inclination: 1.5643134656311624
+    OrbitNormalDotEclipticNormal: 0.006482829047825953
   LockOrbitEditing: 0
 --- !u!23 &285174533
 MeshRenderer:
@@ -2346,10 +2349,12 @@ MonoBehaviour:
   - {fileID: 514168834}
   - {fileID: 1932559552}
   - {fileID: 546737867}
+  titlePlanet: {fileID: 0}
   earth: {fileID: 0}
   backGround: {fileID: 1421730839}
   star: {fileID: 885611652}
   frontLight: {fileID: 0}
+  starExplosion: {fileID: 0}
 --- !u!4 &294417534
 Transform:
   m_ObjectHideFlags: 0
@@ -2591,6 +2596,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: c7b4c629917e6be40ac76307a08f09a4, type: 2}
   - {fileID: 2100000, guid: 4b5bc9001f8ba434780657af146909c2, type: 2}
   - {fileID: 2100000, guid: 685afee8f6d2b934fa946c8e55218cc9, type: 2}
+  hazardColors: []
   shipColors: []
   hazardPrefs:
   - {fileID: 1527138969229840, guid: 63b373c1e34b1684792bbea48b9f0223, type: 2}
@@ -14512,7 +14518,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 974e0d2d32f97c448b91eb290b6dbefa, type: 2}
+  - {fileID: 2100000, guid: b0a65e6a022dcd2479e67a756a416c7b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
