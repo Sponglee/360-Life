@@ -52,6 +52,8 @@ public class Debree : MonoBehaviour
   
     private void Start()
     {
+        if (GameObject.FindGameObjectsWithTag("PowerUp").Length>1)
+            Destroy(gameObject);
         if (isPowerUp)
         {
             gameObject.tag = "PowerUp";

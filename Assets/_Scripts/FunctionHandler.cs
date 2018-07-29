@@ -128,6 +128,33 @@ public class FunctionHandler : Singleton<FunctionHandler>
         //doubleMissileTimeText.text = doubleMissileCost.ToString();
     }
 
+   
+
+    /*VOLUME CONTROLLER*/
+
+    public Sprite volumeIcon;
+    public Sprite volumeMute;
+
+    public GameObject volumeUI;
+
+
+    public void VolumeHandler(float value)
+    {
+        PlayerPrefs.SetFloat("Volume", value);
+        AudioManager.Instance.VolumeChange(value);
+
+        volumeUI = GameObject.FindGameObjectWithTag("volume");
+
+        if (value == 0)
+        {
+            volumeUI.GetComponent<Image>().sprite = volumeMute;
+        }
+        else
+            volumeUI.GetComponent<Image>().sprite = volumeIcon;
+
+    }
+
+  
     public void Restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
@@ -136,7 +163,7 @@ public class FunctionHandler : Singleton<FunctionHandler>
 
     public void OpenMenu()
     {
-        int menuWave = 0;
+        //int menuWave = 0;
         //menuScoreText.text = GameManager.Instance.scores.ToString();
 
         //if (AsteroidSpawner.Instance.nextWave - 1 < 0)
@@ -144,18 +171,28 @@ public class FunctionHandler : Singleton<FunctionHandler>
         //else
         //    menuWave = AsteroidSpawner.Instance.nextWave - 1;
 
-        waveMenuText.text = string.Format("Waves: {0}", menuWave.ToString());
+        //waveMenuText.text = string.Format("Waves: {0}", menuWave.ToString());
 
         if (GameManager.Instance.gameOver)
             gameOverText.SetActive(true);
-        else
+        else if(gameOverText != null)
             gameOverText.SetActive(false);
 
         Time.timeScale = 0f;
         GameManager.Instance.menu.SetActive(true);
-        GameManager.Instance.ui.SetActive(false);
+        if(GameManager.Instance.ui != null)
+            GameManager.Instance.ui.SetActive(false);
 
+        Slider volumeSlider = GameObject.FindGameObjectWithTag("volumeSlider").GetComponent<Slider>();
+        volumeSlider.value = PlayerPrefs.GetFloat("Volume", 0.5f);
+
+        if(SceneManager.GetActiveScene().name != "TITLE")
+        {
+            GameObject.FindGameObjectWithTag("titleLogo").GetComponent<Image>().sprite = LevelManager.Instance.lvlData.logoPlanet;
+            GameObject.FindGameObjectWithTag("titleNumber").GetComponent<Text>().text = PlayerPrefs.GetInt("LevelIndex", 0).ToString();
+        }
     }
+
 
     public void CloseMenu()
     {
@@ -163,7 +200,8 @@ public class FunctionHandler : Singleton<FunctionHandler>
         {
             Time.timeScale = 1f;
             GameManager.Instance.menu.SetActive(false);
-            GameManager.Instance.ui.SetActive(true);
+            if (GameManager.Instance.ui != null)
+                GameManager.Instance.ui.SetActive(true);
         }
 
     }
@@ -197,7 +235,7 @@ public class FunctionHandler : Singleton<FunctionHandler>
 
             PlayerPrefs.SetInt("LevelIndex", lvlIndex);
 
-            PlayerPrefs.SetFloat("MoneyGoal", GameManager.Instance.moneyGoal + GameManager.Instance.moneyGoal/3);
+            PlayerPrefs.SetFloat("MoneyGoal", GameManager.Instance.moneyGoal + 20);
 
             //StartCoroutine(MenuScreen.Instance.FadeOut("Credits"));
             StartCoroutine(MenuScreen.Instance.FadeOut("Credits"));
@@ -325,11 +363,13 @@ public class FunctionHandler : Singleton<FunctionHandler>
     }
 
 
-   
+
     public void ResetAll()
     {
         PlayerPrefs.DeleteAll();
+        SceneManager.LoadScene("TITLE");
     }
+
 
 
 }

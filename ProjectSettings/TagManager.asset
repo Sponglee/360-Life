@@ -17,6 +17,9 @@ TagManager:
   - titleCanvas
   - FxTemporaire
   - PowerUp
+  - volume
+  - volumeSlider
+  - titleLogo
   layers:
   - Default
   - TransparentFX

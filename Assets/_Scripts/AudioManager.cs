@@ -1,5 +1,6 @@
 ﻿
 using UnityEngine;
+using UnityEngine.UI;
 
 //audio manager object class on scene load
 [System.Serializable]
@@ -69,6 +70,14 @@ public class AudioManager : Singleton<AudioManager>
         }
     }
 
+    private void OnLevelWasLoaded(int level)
+    {
+        VolumeChange(PlayerPrefs.GetFloat("Volume", 0.5f));
+        Debug.Log(PlayerPrefs.GetFloat("Volume", 0.5f));
+    }
+
+
+
     public void PlaySound(string _name, bool solo = false)
     {
         for (int i = 0; i < sounds.Length; i++)
@@ -93,13 +102,28 @@ public class AudioManager : Singleton<AudioManager>
         Debug.Log("AudioManager: no sounds like that " + _name);
     }
 
-
+    //Change volume while keeping seperate volume levels
     public void VolumeChange (float value)
     {
-        PlayerPrefs.SetFloat("Volume", value);
-        for (int i = 0; i < sounds.Length; i++)
+      
+        for (int i = 0; i < transform.childCount; i++)
         {
-            sounds[i].volume = value;
+            if (value == 0)
+                transform.GetChild(i).GetComponent<AudioSource>().mute = true;
+            else if (value>0.5)
+            {
+                transform.GetChild(i).GetComponent<AudioSource>().mute = false;
+                transform.GetChild(i).GetComponent<AudioSource>().volume = sounds[i].volume + (value - 0.5f);
+            }
+            else if (value <= 0.5)
+            {
+                transform.GetChild(i).GetComponent<AudioSource>().mute = false;
+                transform.GetChild(i).GetComponent<AudioSource>().volume = sounds[i].volume - (0.5f -value);
+            }
+
+            PlayerPrefs.SetFloat("Volume", value);
+
         }
+
     }
 }

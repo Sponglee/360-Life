@@ -7,8 +7,7 @@ using UnityEngine.UI;
 
 public class GameManager : Singleton<GameManager> {
 
-    int year = 2030;
-
+   
     public bool PowerUpEnabled = false;
     public GameObject powerUpPanel;
     public GameObject PowerUpImg;
@@ -172,29 +171,39 @@ public class GameManager : Singleton<GameManager> {
             /******INTRO BRIEFING INITIALIZER****/
             #region titleString
             string planetName;
-            string again;
-            string again1;
+            string two;
+            string three;
+            string four;
+            string five;
+
+            int year;
             if (PlayerPrefs.GetInt("LevelIndex", 0) != 0)
             {
                 planetName = PlayerPrefs.GetString("PlanetName", "Earth");
-                year = 2030 + Random.Range(1000, 2000);
-                again = "yet again";
-                again1 = "again ";
+                year = PlayerPrefs.GetInt("Year", 2030);
+                year = year + Random.Range(1000, 2000);
+                PlayerPrefs.SetInt("Year", year);
+                two = "once more";
+                three = "again";
+                four = "repair";
+                five = " .... again";
 
             }
             else
             {
                 planetName = "Earth";
                 year = 2030;
-                again = "";
-                again1 = "";
+                two = "";
+                three = "";
+                four = "build";
+                five = "";
             }
 
 
-            briefing.text = string.Format("Planet <color=green>{0}</color>, {1}. Mankind has discovered extraordinary activity in space surrounding the planet {2}. " +
-                "unseen asteroid activity is threatening our survival. Whole world has united to build a spaceship " +
-                "to set sails to another part of our galaxy {3}in order to survive. The only way " +
-                "to succeed is to gather rare compounds found in asteroids to build that colony ship. Help humanity presevere {4}.", planetName, year.ToString(), again, again1, again);
+            briefing.text = string.Format("Planet <color=green>{0}</color>, year {1}. " +
+                "Mankind has discovered a suspicious activity in space {2}. Unseen asteroid flow is threatening species survival. Civilization has united {3} to " +
+                "build a spaceship and set sails to another part of galaxy. The only way to succeed is to gather rare compounds " +
+                "from asteroids to {4} a colony ship. Help humanity stay alive {5}.", planetName, year.ToString(), two, three,four,five);
             #endregion stringManager;
 
             /*******INTRO BRIEFING ******/
@@ -205,30 +214,23 @@ public class GameManager : Singleton<GameManager> {
 
             /******INTRO BRIEFING INITIALIZER****/
             #region creditString
-            string planetName;
-          
-            string again;
-            string again1;
-            if (PlayerPrefs.GetInt("LevelIndex", 0) != 0)
-            {
-                planetName = PlayerPrefs.GetString("PlanetName", "Earth");
-                year += Random.Range(1000, 5000);
-                again = " yet again";
-                again1 = " again";
 
-            }
-            else
+            List<string> actors = new List<string>();
+
+            for (int i = 0; i < 5; i++)
             {
-                planetName = "Earth";
-                year = 2030;
-                again = "";
-                again1 = "";
+                actors.Add(LevelManager.Instance.actorNamesPrefs[Random.Range(0, LevelManager.Instance.actorNamesPrefs.Length)]);
             }
 
+           
+           
 
-            briefing.text = string.Format("With unprecedened effort population of <color=green>{0}</color> has managed to build a " +
-                "colony ship to ascend to another star, away from deadly asteroids. Hopefuly  humanity will find and settle on a better planet{1}. " +
-                "Life will live on and prosper, until the history repeats itself...{2}.", planetName, again, again1);
+            briefing.text = string.Format("Directed by\nSolid Hinken\n\n" +
+                "Story\nSolid Hinken\n\n" +
+                "Music\nDL-sounds\nMarcin Klosowski\n\n" +
+                "Cast\n{0}\n\n{1}\n\n{2}\n\n{3}\n\n{4}\n\n" +
+                "Director of photography\nSolid Hinken\n\n" +
+                "Camera\nSolid Hinken\n\n\n\n\nTo Be Continued....", actors[0], actors[1], actors[2],actors[3],actors[4]);
             #endregion creditString
 
             /*******INTRO BRIEFING ******/

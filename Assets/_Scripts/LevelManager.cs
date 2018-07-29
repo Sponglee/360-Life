@@ -31,6 +31,8 @@ public class LevelManager : Singleton<LevelManager>{
 
     public string[] planetNamesPrefs;
 
+    public string[] actorNamesPrefs;
+
     public string[] subtitlePrefabs;
     /*******STRUCT PREFS **********/
 
@@ -67,6 +69,7 @@ public class LevelManager : Singleton<LevelManager>{
         //public Color shipColor;
         public Sprite logoPlanet;
         public string subtitle;
+        
     }
 
 
@@ -86,6 +89,12 @@ public class LevelManager : Singleton<LevelManager>{
         "Nabia Prime,Abassi,Zariah, New Earth,Bellataine Prime,Churchill,Gilgamesh,Eden,Xanthondo,Mete,Zoogee,Telenet,Nicotte 6,Kosmikox-wing," +
         "Protogee,Runomics -x,Optimonyes,Memmibolt,Brutenico,Thametro,Mortatronium,Geonance -x,Radisonic 10,Zeronaut,Zephelake 3,Systemaphile,Calypho VI,Outernakko";
     #endregion
+
+
+    public string actorNames = "Robert Downey Jr.,Tom Cruise,Matt Damon,Bradley Cooper,Jennifer Lawrence,Kristen Stewart,Johnny Depp," +
+        "Leonardo DiCaprio,Christian Bale,Mark Wahlberg,Keanu Reeves,Denzel Washington,Will Smith,Hugh Jackman,Matthew McConnaughney,Tom Hanks,George Clooney,Daniel Craig,Ben Stiller," +
+        "Ben Affleck,Vin Diesel,Chris Pratt,Liam Neeson,Angelina Jolie,Michael Fassbender,Russell Crowe,Ryan Gosling,Ben Affleck,Margot Robbie,Emma Stone,Natalie Portman,Tom Hanks,"
+        + "Denzel Washington,Mark Wahlberg,Matt Damon,Samuel L.Jackson,Johnny Depp,Christian Bale,Matthew McConaughey,Morgan Freeman,Jake Gyllenhaal,Jeremy Renner,Dwayne Johnson";
     /********STRUCT PREFS **********/
 
 
@@ -97,6 +106,7 @@ public class LevelManager : Singleton<LevelManager>{
     void Start()
     {
         planetNamesPrefs = planetNames.Split(',');
+        actorNamesPrefs = actorNames.Split(',');
         subtitlePrefabs = subtitlestring.Split(',');
         DontDestroyOnLoad(gameObject);
     }
@@ -190,6 +200,8 @@ public class LevelManager : Singleton<LevelManager>{
         lvlData.logoPlanet = logoPlanets[int.Parse(tokens[4])];
         lvlData.subtitle = subtitlePrefabs[int.Parse(tokens[5])];
         PlayerPrefs.SetInt("CurrentLevel",levelIndex);
+
+       
     }
 
 

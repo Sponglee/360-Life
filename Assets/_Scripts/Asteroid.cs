@@ -136,7 +136,7 @@ public class Asteroid : MonoBehaviour
 
     }
 
-        private IEnumerator StopDestroy()
+    private IEnumerator StopDestroy()
     {
         yield return new WaitForSecondsRealtime(0.5f);
         collisionInProgress = false;
