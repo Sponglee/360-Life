@@ -35,7 +35,7 @@ public class SplashScreen : MonoBehaviour {
     {
         //FadeIn
         if (Time.timeSinceLevelLoad < minimumLogoTime)
-             fadeGroup.alpha = 1 - Time.time;
+             fadeGroup.alpha = 1 - Time.timeSinceLevelLoad;
         //FadeOut
         if (Time.timeSinceLevelLoad > minimumLogoTime && loadTime != 0)
         {

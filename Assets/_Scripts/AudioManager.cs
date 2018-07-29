@@ -24,21 +24,23 @@ public class Sound
         source.clip = clip;
     }
 
+    public void Stop()
+    {
+        source.Stop();   
+    }
+
+
     public void Play(bool rotClick = false, bool powUp = false)
     {
         source.volume = volume;
         source.pitch = pitch * (1 + Random.Range(-randomPitch / 2, randomPitch / 2));
-        if (rotClick)
-            source.PlayScheduled(0.1f);
-        if (powUp)
-            source.PlayScheduled(0.1f);
-        else
-            source.Play();
+
+        source.Play();
         //if(!source.isPlaying)
         //{
         //    source.Play();
         //}
-        
+
     }
 }
 
@@ -67,31 +69,29 @@ public class AudioManager : Singleton<AudioManager>
         }
     }
 
-    public void PlaySound(string _name)
+    public void PlaySound(string _name, bool solo = false)
     {
         for (int i = 0; i < sounds.Length; i++)
         {
             if (sounds[i].name == _name)
             {
-                if (sounds[i].name == "rotationClick" || sounds[i].name == "256")
+                if (solo)
                 {
-                    sounds[i].Play(true);
-                }
-                else if (sounds[i].name == "powerup")
-                {
-                    sounds[i].Play(true);
+                    foreach(Sound sound in sounds)
+                    {
+                        sound.Stop();
+                    }
+                    sounds[i].Play();
                 }
                 else
                     sounds[i].Play();
-                
                 return;
+                    
             }
         }
         //no sounds with that name
         Debug.Log("AudioManager: no sounds like that " + _name);
     }
-
-
 
 
     public void VolumeChange (float value)

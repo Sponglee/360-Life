@@ -7,8 +7,10 @@ using UnityEngine.UI;
 
 public class GameManager : Singleton<GameManager> {
 
+    int year = 2030;
 
     public bool PowerUpEnabled = false;
+    public GameObject powerUpPanel;
     public GameObject PowerUpImg;
     public GameObject PowerUpMissileImg;
     public int scoreValue = 10;
@@ -130,6 +132,7 @@ public class GameManager : Singleton<GameManager> {
     public GameObject frontLight;
     public GameObject starExplosion;
     public GameObject erisShip;
+    public Text briefing;
 
     void Start()
     {
@@ -139,12 +142,15 @@ public class GameManager : Singleton<GameManager> {
         missileLimit = 1;
         PowerUpEnabled = false;
         moneyUp = false;
-        shieldUp = false;   
+        shieldUp = false;
 
         if (SceneManager.GetActiveScene().name == "Main")
         {
+           
+
+            AudioManager.Instance.PlaySound("mainMusic",true);
             //pick earth location
-            earth = tmpPlanets[PlayerPrefs.GetInt("EarthIndex",1)].transform;
+            earth = tmpPlanets[PlayerPrefs.GetInt("EarthIndex", 1)].transform;
             //enable moon
             earth.GetChild(2).gameObject.SetActive(true);
             if (earth.GetComponent<Outline>() != null)
@@ -161,6 +167,76 @@ public class GameManager : Singleton<GameManager> {
             moneySlider.value = 0;
             Time.timeScale = 1f;
         }
+        else if (SceneManager.GetActiveScene().name == "TITLE")
+        {
+            /******INTRO BRIEFING INITIALIZER****/
+            #region titleString
+            string planetName;
+            string again;
+            string again1;
+            if (PlayerPrefs.GetInt("LevelIndex", 0) != 0)
+            {
+                planetName = PlayerPrefs.GetString("PlanetName", "Earth");
+                year = 2030 + Random.Range(1000, 2000);
+                again = "yet again";
+                again1 = "again ";
+
+            }
+            else
+            {
+                planetName = "Earth";
+                year = 2030;
+                again = "";
+                again1 = "";
+            }
+
+
+            briefing.text = string.Format("Planet <color=green>{0}</color>, {1}. Mankind has discovered extraordinary activity in space surrounding the planet {2}. " +
+                "unseen asteroid activity is threatening our survival. Whole world has united to build a spaceship " +
+                "to set sails to another part of our galaxy {3}in order to survive. The only way " +
+                "to succeed is to gather rare compounds found in asteroids to build that colony ship. Help humanity presevere {4}.", planetName, year.ToString(), again, again1, again);
+            #endregion stringManager;
+
+            /*******INTRO BRIEFING ******/
+            AudioManager.Instance.PlaySound("titleMusic",true);
+        }
+        else if (SceneManager.GetActiveScene().name == "CREDITS")
+        {
+
+            /******INTRO BRIEFING INITIALIZER****/
+            #region creditString
+            string planetName;
+          
+            string again;
+            string again1;
+            if (PlayerPrefs.GetInt("LevelIndex", 0) != 0)
+            {
+                planetName = PlayerPrefs.GetString("PlanetName", "Earth");
+                year += Random.Range(1000, 5000);
+                again = " yet again";
+                again1 = " again";
+
+            }
+            else
+            {
+                planetName = "Earth";
+                year = 2030;
+                again = "";
+                again1 = "";
+            }
+
+
+            briefing.text = string.Format("With unprecedened effort population of <color=green>{0}</color> has managed to build a " +
+                "colony ship to ascend to another star, away from deadly asteroids. Hopefuly  humanity will find and settle on a better planet{1}. " +
+                "Life will live on and prosper, until the history repeats itself...{2}.", planetName, again, again1);
+            #endregion creditString
+
+            /*******INTRO BRIEFING ******/
+            AudioManager.Instance.PlaySound("creditsMusic",true);
+        }
+
+
+
 
 
         //Grab logoPlanet 
@@ -174,7 +250,7 @@ public class GameManager : Singleton<GameManager> {
         //Grab whether ship is there or not
         if (erisShip != null && PlayerPrefs.GetInt("LevelIndex", 0) == 0)
             erisShip.SetActive(false);
-        else if(erisShip != null)
+        else if (erisShip != null)
             erisShip.SetActive(true);
 
         //Grab Earth material
@@ -183,6 +259,14 @@ public class GameManager : Singleton<GameManager> {
         //Grab backGround
         backGround.GetComponent<SpriteRenderer>().sprite = LevelManager.Instance.lvlData.backGround;
 
+        //Check if it's grey and has color
+        int backGrndCheck = PlayerPrefs.GetInt("BackColor", 0);
+        if (backGrndCheck != 0)
+        {
+            backGround.GetComponent<SpriteRenderer>().color = LevelManager.Instance.backColors[backGrndCheck];
+            //Reset color index again
+            PlayerPrefs.SetInt("BackColor", 0);
+        }
         //Grab StarColor
         star.GetComponent<Star>().baseStarColor = LevelManager.Instance.lvlData.starColor;
 

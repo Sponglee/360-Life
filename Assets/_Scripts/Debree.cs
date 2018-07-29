@@ -100,6 +100,7 @@ public class Debree : MonoBehaviour
                         GameManager.Instance.PowerUpEnabled = true;
                         GameManager.Instance.PowerUpImg.SetActive(true);
                         GameManager.Instance.PowerUpMissileImg.SetActive(true);
+                        GameManager.Instance.powerUpPanel.SetActive(true);
                     }
                   
             }

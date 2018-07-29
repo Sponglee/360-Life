@@ -6,7 +6,7 @@ public class TutorialManager : MonoBehaviour {
 
     public GameObject firstStep;
     public GameObject secondStep;
-
+    public GameObject thirdStep;
 
     public int tutorialActive = -1;
 
@@ -14,7 +14,7 @@ public class TutorialManager : MonoBehaviour {
     void Start() {
         tutorialActive = PlayerPrefs.GetInt("TutorialTrigger", 0);
 
-        if(tutorialActive == 0)
+        if(tutorialActive <= 2)
         {
             transform.GetChild(0).gameObject.SetActive(true);
             Time.timeScale = 0;
@@ -30,10 +30,16 @@ public class TutorialManager : MonoBehaviour {
             secondStep.SetActive(true);
             
         }
+        else if (first == 2)
+        {
+            secondStep.SetActive(false);
+            thirdStep.SetActive(true);
+
+        }
         else
         {
-            PlayerPrefs.SetInt("TutorialTrigger", 1);
-            secondStep.SetActive(false);
+            PlayerPrefs.SetInt("TutorialTrigger",3);
+            thirdStep.SetActive(false);
             Time.timeScale = 1;
             transform.GetChild(0).gameObject.SetActive(false);
         }

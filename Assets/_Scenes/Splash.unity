@@ -289,7 +289,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 725f497d71a0c2c43a2c09da66b32727, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sounds: []
+  sounds:
+  - name: titleMusic
+    clip: {fileID: 8300000, guid: e407e375d298fb04fb8fe18e9a423704, type: 3}
+    volume: 0.14
+    pitch: 1
+    randomPitch: 0
+  - name: creditsMusic
+    clip: {fileID: 8300000, guid: 1b5d6c299b6311c4489f710fb8fbcc7b, type: 3}
+    volume: 0.115
+    pitch: 1
+    randomPitch: 0
+  - name: mainMusic
+    clip: {fileID: 8300000, guid: a8effdb5101f1cb40891a2431affd522, type: 3}
+    volume: 0.118
+    pitch: 1
+    randomPitch: 0
+  - name: explosion_asteroid
+    clip: {fileID: 8300000, guid: 3dc7455402dfa462b89a4bbd513955e9, type: 3}
+    volume: 0.502
+    pitch: 1
+    randomPitch: 0.15
+  - name: 
+    clip: {fileID: 0}
+    volume: 0
+    pitch: 0
+    randomPitch: 0
 --- !u!4 &433105785
 Transform:
   m_ObjectHideFlags: 0
@@ -634,11 +659,13 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 35313af049b4a2f42a0325330c51d74a, type: 3}
   - {fileID: 21300000, guid: 67b7b7a86e4d238439b50388753a5155, type: 3}
   backColors:
-  - {r: 0, g: 0, b: 0, a: 0}
-  - {r: 0, g: 0, b: 0, a: 0}
-  - {r: 0, g: 0, b: 0, a: 0}
-  - {r: 0, g: 0, b: 0, a: 0}
-  - {r: 0, g: 0, b: 0, a: 0}
+  - {r: 0.960153, g: 0.990566, b: 0.41585082, a: 1}
+  - {r: 0.4653425, g: 0.990566, b: 0.41585082, a: 1}
+  - {r: 0.990566, g: 0.69238657, b: 0.41585082, a: 1}
+  - {r: 0.990566, g: 0.41585082, b: 0.51058865, a: 1}
+  - {r: 0.41585082, g: 0.8292513, b: 0.990566, a: 1}
+  - {r: 0.51113784, g: 0.41585082, b: 0.990566, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
   starColors:
   - {r: 1, g: 0.7607844, b: 0, a: 1}
   - {r: 1, g: 1, b: 1, a: 1}
@@ -727,6 +754,18 @@ MonoBehaviour:
   - {fileID: 21300000, guid: ecf7b80712cebd042820b11f9a6f3049, type: 3}
   - {fileID: 21300000, guid: 5c7b6fcdc51c1ec4eb1e4d66c3943700, type: 3}
   levelNumberText: {fileID: 0}
+  levelSubtitleText: {fileID: 0}
+  subtitlePrefabs: []
+  subtitlestring: ',The Phantom Menace,Back in the Habit,The Beginning,Die Harder,Red,
+    White & Blonde,Back 2 tha Hood,Golden Receiver,The Squeakquel,Electric Boogaloo,Passion
+    of the Crust,Chipwrecked,Cruise Control,First Blood Part II,On the Move,Armed
+    and Fabulous,Citizens on Patrol,Back in Training,The Revenge,Back to Perfection,Full
+    Throttle,Back in Business,Heading Home,The New Batch,The Last Stand,State of the
+    Union,The Next Chapter,The Final Chapter,Resurrection,Risk Addiction,The Quickening,I
+    Want To Believe,Re-Entry,Beyond Cyberspace,Dark Territory,The Cradle Of Life,The
+    Quest For Peace,With a Vengeance,Attack of the Clones,Dawn of the Dinosaurs,Dawn
+    of Justice,The Sequel,First Contact,28 Weeks Later,Beyond,Days Of Future Past,The
+    Force Awakens,The Wrath Of Khan,The Empire Strikes Back,Fury Road,Judgment Day'
   currentLevel: 0
   levelIndex: 0
   firstLaunch: 1

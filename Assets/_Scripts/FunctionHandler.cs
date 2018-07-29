@@ -197,7 +197,7 @@ public class FunctionHandler : Singleton<FunctionHandler>
 
             PlayerPrefs.SetInt("LevelIndex", lvlIndex);
 
-            PlayerPrefs.SetFloat("MoneyGoal", GameManager.Instance.moneyGoal + 10);
+            PlayerPrefs.SetFloat("MoneyGoal", GameManager.Instance.moneyGoal + GameManager.Instance.moneyGoal/3);
 
             //StartCoroutine(MenuScreen.Instance.FadeOut("Credits"));
             StartCoroutine(MenuScreen.Instance.FadeOut("Credits"));
@@ -238,6 +238,7 @@ public class FunctionHandler : Singleton<FunctionHandler>
 
             GameManager.Instance.PowerUpImg.SetActive(false);
             GameManager.Instance.PowerUpMissileImg.SetActive(false);
+            GameManager.Instance.powerUpPanel.SetActive(false);
             //DoubleShieldCost = Mathf.Round(DoubleShieldCost*= 1.25f);
         }
     }
@@ -256,7 +257,7 @@ public class FunctionHandler : Singleton<FunctionHandler>
 
             GameManager.Instance.PowerUpImg.SetActive(false);
             GameManager.Instance.PowerUpMissileImg.SetActive(false);
-            moneyMultiplierText.gameObject.SetActive(true);
+            GameManager.Instance.powerUpPanel.SetActive(false);
             //GameManager.Instance.Money -= DoubleMissileCost;
             //GameManager.Instance.moneyText.text = GameManager.Instance.Money.ToString();
             //DoubleMissileCost = Mathf.Round(DoubleMissileCost *= 2f);

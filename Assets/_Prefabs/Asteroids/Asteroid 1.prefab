@@ -354,7 +354,7 @@ MonoBehaviour:
   debreePrefs:
   - {fileID: 1796179306407480, guid: b208fa67ed1ceef40a08b67e425e11d0, type: 2}
   - {fileID: 1796179306407480, guid: c2f4843b3210cd0438597bb4de9d8b3d, type: 2}
-  powerUpPercent: 50
+  powerUpPercent: 10
   speed: 0.2
 --- !u!136 &136037054950621272
 CapsuleCollider:
