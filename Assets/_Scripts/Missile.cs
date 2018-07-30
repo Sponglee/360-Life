@@ -124,41 +124,23 @@ public class Missile : MonoBehaviour
 
     private void OnTriggerEnter (Collider other)
     {
+      
         if (other.gameObject.CompareTag("Debree") || other.gameObject.CompareTag("PowerUp"))
         {
-            //Debug.Log("HHHHHHHHHHHOOOOOOOOOOOOOOOOOMMMMMMMMMMMMMMMMEEEEEEEEEEEEEE");
+
             comingHome = true;
-            //missileLife = 2f;
-            //other.gameObject.GetComponent<Planet>().PlanetTargets.Clear();
             target = home;
            
-            //gameObject.transform.SetParent(AsteroidSpawner.Instance.solarSystem);
-            ////SimplePool.Despawn(gameObject);
-            //Destroy(other.gameObject);
         }
         else if (other.gameObject.CompareTag("Life") && comingHome)
         {
-            //Debug.Log("LLLLLLLLLLLLLIIIIIIIIIIIIIIIIIIIIFFFFFFFFFFFFFEEEEEEEEE");
+          
             comingHome = false;
             started = false;
-
-
             SimplePool.Despawn(gameObject);
 
-            //Destroy(gameObject);
-
-
-            //if(transform.Find("Debree(Clone)") != null)
-            //{
-            //    Destroy(transform.Find("Debree(Clone)").gameObject);
-            //}
+           
         }
-        //else if (other.gameObject.CompareTag("Planet"))
-        //{
-        //    hasFired = false;
-        //    missileLife = 2f;
-        //    SimplePool.Despawn(gameObject);
-        //    //home.GetComponent<Planet>().MissileCount--;
-        //}
+       
     }
 }

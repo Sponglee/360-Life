@@ -145,9 +145,27 @@ public class GameManager : Singleton<GameManager> {
 
         if (SceneManager.GetActiveScene().name == "Main")
         {
-           
 
-            AudioManager.Instance.PlaySound("mainMusic",true);
+            switch (Random.Range(0,2))
+            {
+                case 0:
+                    AudioManager.Instance.PlaySound("mainMusic", true);
+                    break;
+                case 1:
+                    AudioManager.Instance.PlaySound("mainMusic1", true);
+                    break;
+                case 2:
+                    AudioManager.Instance.PlaySound("mainMusic2", true);
+                    break;
+                default:
+                    break;
+            }
+          
+
+
+
+
+
             //pick earth location
             earth = tmpPlanets[PlayerPrefs.GetInt("EarthIndex", 1)].transform;
             //enable moon
@@ -168,6 +186,13 @@ public class GameManager : Singleton<GameManager> {
         }
         else if (SceneManager.GetActiveScene().name == "TITLE")
         {
+
+            AudioManager.Instance.PlaySound("titleMusic", true);
+
+
+
+
+
             /******INTRO BRIEFING INITIALIZER****/
             #region titleString
             string planetName;
@@ -201,16 +226,23 @@ public class GameManager : Singleton<GameManager> {
 
 
             briefing.text = string.Format("Planet <color=green>{0}</color>, year {1}. " +
-                "Mankind has discovered a suspicious activity in space {2}. Unseen asteroid flow is threatening species survival. Civilization has united {3} to " +
-                "build a spaceship and set sails to another part of galaxy. The only way to succeed is to gather rare compounds " +
+                "Mankind has discovered a suspicious activity in space {2}. Unseen asteroid flow is threatening our survival. Whole civilization has united {3} to " +
+                "{4} a spaceship and set sails to another part of the galaxy. The only way to succeed is to gather rare compounds " +
                 "from asteroids to {4} a colony ship. Help humanity stay alive {5}.", planetName, year.ToString(), two, three,four,five);
             #endregion stringManager;
 
             /*******INTRO BRIEFING ******/
-            AudioManager.Instance.PlaySound("titleMusic",true);
+
+
+
         }
         else if (SceneManager.GetActiveScene().name == "CREDITS")
         {
+            AudioManager.Instance.PlaySound("creditsMusic", true);
+
+
+
+
 
             /******INTRO BRIEFING INITIALIZER****/
             #region creditString
@@ -225,16 +257,20 @@ public class GameManager : Singleton<GameManager> {
            
            
 
-            briefing.text = string.Format("Directed by\nSolid Hinken\n\n" +
-                "Story\nSolid Hinken\n\n" +
-                "Music\nDL-sounds\nMarcin Klosowski\n\n" +
-                "Cast\n{0}\n\n{1}\n\n{2}\n\n{3}\n\n{4}\n\n" +
-                "Director of photography\nSolid Hinken\n\n" +
-                "Camera\nSolid Hinken\n\n\n\n\nTo Be Continued....", actors[0], actors[1], actors[2],actors[3],actors[4]);
+            briefing.text = string.Format(
+                "DIRECTED BY\nSolid Hinken\n\n" +
+                "STORY\nSolid Hinken\n\n" +
+                "GAME DESIGN\nSolid Hinken\n\n" +
+               
+                "MUSIC\nDL-sounds\nMarcin Klosowski\nMISO STUDIO\n\n\n" +
+                "GUEST ACTORS\n{0}\n\n{1}\n\n{2}\n\n{3}\n\n{4}\n\n" +
+                 "PROGRAMMING\nSolid Hinken\n\n" +
+                "ANIMATION\nSolid Hinken\n\n" +
+                "CAMERA\nSolid Hinken\n\n\n\n\n\n\n\nTo Be Continued....", actors[0], actors[1], actors[2],actors[3],actors[4]);
             #endregion creditString
 
             /*******INTRO BRIEFING ******/
-            AudioManager.Instance.PlaySound("creditsMusic",true);
+           
         }
 
 
@@ -245,6 +281,10 @@ public class GameManager : Singleton<GameManager> {
         if (titlePlanet != null)
             titlePlanet.sprite = LevelManager.Instance.lvlData.logoPlanet;
 
+        //Get a sequel number 
+        if (PlayerPrefs.GetInt("LevelIndex", 0) > 0 && SceneManager.GetActiveScene().name == "TITLE")
+            GameObject.FindGameObjectWithTag("titleNumber").GetComponent<Text>().text = (PlayerPrefs.GetInt("LevelIndex", 0) + 1).ToString();
+        
         //Grab star Explosion color
         if (starExplosion != null)
             starExplosion.GetComponent<Renderer>().material.SetColor("_TintColor", LevelManager.Instance.lvlData.starColor);
@@ -282,95 +322,6 @@ public class GameManager : Singleton<GameManager> {
        
      
     }
-
-
- //   // Update is called once per frame
- //   void FixedUpdate() {
-
-
-
- //       //if (shieldUp)
-            
-            
-
-
- //       //moneyTimer += Time.deltaTime;
-
- //       //Debug.Log(lifePlanets.Count);
-
- //       //if (moneyTimer >= 1)
- //       //{
- //       //    scores += mps * lifeCount;
- //       //   // Debug.Log(">>>>" + mps * lifeCount);
-
- //       //    scoreText.text = scores.ToString();
- //       //    moneyTimer = 0;
- //       //}
-
-
-
-
-
-
-
- //       //if (lifeCount < numberOfPlanets)
- //       //{
- //       //    //lifeTimer += 1 *  Time.deltaTime;
- //       //    lifeSlider.value = lifeTimer / lifeSpreadTime;
- //       //}
- //       //else
- //       //{
- //       //    lifeTimer = 0;
- //       //    lifeSlider.value = lifeTimer / lifeSpreadTime;
- //       //}
- //       //if (lifeTimer>= lifeSpreadTime )
- //       //{
-
- //       //    lifeTimer = 0;
- //       //    //if(lifeMultiplier != 1)
- //       //    //{
- //       //    //    lifeSpreadTime *= 1.25;
- //       //    //    lifeMultiplier = 1;
- //       //    //}
-
- //       //if (lifeCount < numberOfPlanets)
- //       //    {
- //       //        GameObject lifeTmp;
- //       //        do
- //       //        {
- //       //            if (lifePlanets.Count > 0)
- //       //            {
- //       //                lifeTmp = lifePlanets.Dequeue();
- //       //                //Debug.Log("do " + lifePlanets.Count + " : " + lifeTmp.CompareTag("Life"));
- //       //            }
- //       //            else lifeTmp = null;
- //       //        }
- //       //        while (lifeTmp == null && lifeTmp.CompareTag("Life"));
-
-
- //       //        lifeTmp.GetComponent<Planet>().SetTag = "Life";
- //       //        lifeTmp.GetComponent<Outline>().enabled = true;
-
-
- //       //        lifeTimer = 0;
- //       //        lifeSpreadTime += 0.25f * lifeSpreadTime;
-
- //       //        if (shieldUp)
- //       //            lifeTmp.transform.GetChild(0).gameObject.SetActive(true);
-
- //       //    }
- //           //LifeCount++;
- //           //scoreMultip.text = string.Format("x{0}", lifeCount);
- //       //}
-
-
-
- //       //if(timeUI.activeSelf == true)
- //       //{
- //       //    timeUI.GetComponent<Image>().fillAmount = 1-AsteroidSpawner.Instance.lifeSlider.value;
- //       //}
-	//}
-
 
 
     public IEnumerator StopGameOver()

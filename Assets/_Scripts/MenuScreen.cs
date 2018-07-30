@@ -36,7 +36,7 @@ public class MenuScreen : Singleton<MenuScreen> {
             }
             fadeGroup.alpha = 1 - Time.timeSinceLevelLoad;
         }
-        else if(bringTimeBack)
+        else if(bringTimeBack && SceneManager.GetActiveScene().name == "Main")
         {
             Time.timeScale = 0;
             bringTimeBack = false;

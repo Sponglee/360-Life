@@ -82,6 +82,7 @@ public class Debree : MonoBehaviour
     }
     private void OnTriggerEnter (Collider other)
     {
+        Debug.Log(other.gameObject.name);
         if (other.gameObject.CompareTag("Missile") && !homing)
         {
             homing = true;

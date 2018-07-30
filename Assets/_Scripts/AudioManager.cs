@@ -73,7 +73,7 @@ public class AudioManager : Singleton<AudioManager>
     private void OnLevelWasLoaded(int level)
     {
         VolumeChange(PlayerPrefs.GetFloat("Volume", 0.5f));
-        Debug.Log(PlayerPrefs.GetFloat("Volume", 0.5f));
+        //Debug.Log(PlayerPrefs.GetFloat("Volume", 0.5f));
     }
 
 

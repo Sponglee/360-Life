@@ -189,7 +189,8 @@ public class FunctionHandler : Singleton<FunctionHandler>
         if(SceneManager.GetActiveScene().name != "TITLE")
         {
             GameObject.FindGameObjectWithTag("titleLogo").GetComponent<Image>().sprite = LevelManager.Instance.lvlData.logoPlanet;
-            GameObject.FindGameObjectWithTag("titleNumber").GetComponent<Text>().text = PlayerPrefs.GetInt("LevelIndex", 0).ToString();
+            if (PlayerPrefs.GetInt("LevelIndex", 0) > 0)
+                GameObject.FindGameObjectWithTag("titleNumber").GetComponent<Text>().text = (PlayerPrefs.GetInt("LevelIndex", 0)+1).ToString();
         }
     }
 
@@ -217,11 +218,18 @@ public class FunctionHandler : Singleton<FunctionHandler>
     public void PlainScene()
     {
        
+       
         StartCoroutine(MenuScreen.Instance.FadeOut("Main"));
     }
 
     public void TilteScene()
     {
+        if (SceneManager.GetActiveScene().name == "CREDITS")
+            PlayerPrefs.SetInt("CreditExit", 1);
+        else
+            PlayerPrefs.SetInt("CreditExit", 0);
+
+        Debug.Log(PlayerPrefs.GetInt("CreditExit", 1));
 
         SceneManager.LoadScene("TITLE");
     }
@@ -249,6 +257,11 @@ public class FunctionHandler : Singleton<FunctionHandler>
         canvas.GetComponent<Animator>().SetTrigger("titleStart");
     }
 
+
+    public void OpenBrowser(string url)
+    {
+        Application.OpenURL(url);
+    }
     /*************************PANEL FUNCTIONS **************************************/
 
 

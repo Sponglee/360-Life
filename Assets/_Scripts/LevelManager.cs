@@ -122,10 +122,11 @@ public class LevelManager : Singleton<LevelManager>{
 
         //Debug.Log(levelIndex + " : " + currentLevel);
         //DontDestroyOnLoad(gameObject);
-        if (SceneManager.GetActiveScene().name == "TITLE")
+        Debug.Log(PlayerPrefs.GetInt("CreditExit", 1));
+        if (SceneManager.GetActiveScene().name == "TITLE" && PlayerPrefs.GetInt("CreditExit",1)==1)
         {
             levelIndex = PlayerPrefs.GetInt("LevelIndex", 0);
-
+           
             //Enable tutorial
             if (levelIndex == 0)
                 PlayerPrefs.SetInt("TutorialTrigger", 0);
@@ -199,7 +200,7 @@ public class LevelManager : Singleton<LevelManager>{
         lvlData.hazardCol = hazardColors[int.Parse(tokens[3])];
         lvlData.logoPlanet = logoPlanets[int.Parse(tokens[4])];
         lvlData.subtitle = subtitlePrefabs[int.Parse(tokens[5])];
-        PlayerPrefs.SetInt("CurrentLevel",levelIndex);
+      
 
        
     }
