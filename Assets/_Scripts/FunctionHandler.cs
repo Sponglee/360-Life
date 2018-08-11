@@ -243,7 +243,7 @@ public class FunctionHandler : Singleton<FunctionHandler>
 
             PlayerPrefs.SetInt("LevelIndex", lvlIndex);
 
-            PlayerPrefs.SetFloat("MoneyGoal", GameManager.Instance.moneyGoal + 20);
+            PlayerPrefs.SetFloat("MoneyGoal", GameManager.Instance.moneyGoal + 50);
 
             //StartCoroutine(MenuScreen.Instance.FadeOut("Credits"));
             StartCoroutine(MenuScreen.Instance.FadeOut("Credits"));
