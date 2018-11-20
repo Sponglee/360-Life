@@ -19,6 +19,7 @@ public class GameManager : Singleton<GameManager> {
 
     public Slider moneySlider;
     public Animator launchAnim;
+    public GameObject launchSprite;
 
     public float moneyGoal;
     private float money = 0;
@@ -36,6 +37,7 @@ public class GameManager : Singleton<GameManager> {
             moneyGoalTxt.text = string.Format("{0}/{1}", money.ToString(), moneyGoal.ToString());
             if (money >= moneyGoal)
             {
+                launchSprite.SetActive(true);
                 launchAnim.SetBool("CanLaunch", true);
             }
 
@@ -135,8 +137,8 @@ public class GameManager : Singleton<GameManager> {
 
     void Start()
     {
-
-
+        
+       
         /*INITIALIZER==========================================*/
         missileLimit = 1;
         PowerUpEnabled = false;
@@ -145,7 +147,7 @@ public class GameManager : Singleton<GameManager> {
 
         if (SceneManager.GetActiveScene().name == "Main")
         {
-
+            launchSprite.SetActive(false);
             switch (Random.Range(0,2))
             {
                 case 0:
