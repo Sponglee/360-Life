@@ -99,31 +99,9 @@ public class Asteroid : MonoBehaviour
             if(SceneManager.GetActiveScene().name == "Main")
             {
 
-                //Check if it's a powerUp
-                DebreePowerUpCheck();
-
-                GameObject tmp = Instantiate(debreePrefs[debreeIndex], transform.position, Quaternion.identity);
-
-                if (debreeIndex == 1)
-                {
-                    tmp.GetComponent<Debree>().IsPowerUp = true;
-                }
-
-               
+                Collide();
                
             }
-
-
-            StartCoroutine(StopDestroy());
-            //gameObject.transform.GetChild(0).gameObject.SetActive(false);
-
-
-
-
-
-
-
-
         }
 
 
@@ -137,6 +115,22 @@ public class Asteroid : MonoBehaviour
 
     }
 
+
+    public void Collide()
+    {
+
+        //Check if it's a powerUp
+        DebreePowerUpCheck();
+
+        GameObject tmp = Instantiate(debreePrefs[debreeIndex], transform.position, Quaternion.identity);
+
+        if (debreeIndex == 1)
+        {
+            tmp.GetComponent<Debree>().IsPowerUp = true;
+        }
+
+        StartCoroutine(StopDestroy());
+    }
     private IEnumerator StopDestroy()
     {
         yield return new WaitForSecondsRealtime(0.5f);

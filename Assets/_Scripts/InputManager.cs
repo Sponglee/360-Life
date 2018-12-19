@@ -16,28 +16,63 @@ public class InputManager : MonoBehaviour {
     private void Awake()
     {
         Application.targetFrameRate = 60;
-        this.speedHistory = new List<float>();
+        speedHistory = new List<float>();
        
     }
 
 
     void Update()
     {
-        if (!GameManager.Instance.gameOver)
-        {
-            this.UpdateInput();
-            
-            this.currentAngleSpeed = Mathf.Lerp(this.currentAngleSpeed, 0f, 5f * Time.deltaTime);
-            
-            this.currentAngle += this.currentAngleSpeed * Time.deltaTime;
-            //
-            //int num = (int)(this.currentAngle / 10f);
-            //this.currentAngleRotLocal = Mathf.Lerp(this.currentAngleRotLocal, (float)(num * 10), 20f * Time.deltaTime);
-            base.transform.localRotation = Quaternion.Euler(new Vector3(0f, this.currentAngle, 0f));
-    }
-}
 
-   
+        if(Input.GetMouseButtonDown(0))
+        {
+            GameObject tmp = GrabRayObj("Asteroid");
+            if (tmp != null && tmp.CompareTag("Asteroid"))
+            {
+                tmp.GetComponent<Asteroid>().Collide();
+            }
+                
+        }
+    //    if (!GameManager.Instance.gameOver)
+    //    {
+    //        UpdateInput();
+            
+    //        currentAngleSpeed = Mathf.Lerp(this.currentAngleSpeed, 0f, 5f * Time.deltaTime);
+            
+    //        currentAngle += currentAngleSpeed * Time.deltaTime;
+    //        //
+    //        //int num = (int)(this.currentAngle / 10f);
+    //        //this.currentAngleRotLocal = Mathf.Lerp(this.currentAngleRotLocal, (float)(num * 10), 20f * Time.deltaTime);
+    //        base.transform.localRotation = Quaternion.Euler(new Vector3(0f, this.currentAngle, 0f));
+    //}
+    }
+
+    //Get reference to object hit by ray with tag
+    private GameObject GrabRayObj(string obj)
+    {
+        RaycastHit hit;
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        if (Physics.Raycast(ray, out hit, 500.0f))
+        {
+            if (hit.transform)
+            {
+                Debug.DrawRay(ray.origin, ray.direction * 500f, Color.red, 10f);
+                Debug.Log(hit.transform.name);
+                if (hit.transform.gameObject.CompareTag(obj))
+                {
+                    return hit.transform.gameObject;
+                }
+                return hit.transform.gameObject;
+            }
+        }
+        return null;
+
+
+
+
+    }
+
     private void UpdateInput()
     {
         //
